@@ -1,6 +1,6 @@
 <template>
   <nav class="bg-white shadow">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="container mx-auto px-8">
       <div class="flex justify-between h-16">
         <div class="flex">
           <div class="flex-shrink-0 flex items-center">
@@ -68,7 +68,7 @@
 
 <script>
 export default {
-  name: 'AdminHeader',
+  name: 'AdminNav',
   data() {
     return {
       showUserMenu: false
