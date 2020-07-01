@@ -11,10 +11,12 @@
 export default {
   name: 'AdminTitle',
   props: {
+    // sets the title of the page
     title: {
       type: String,
       required: true,
     },
+    // sets the subtitle of page
     subtitle: {
       type: String,
       required: true

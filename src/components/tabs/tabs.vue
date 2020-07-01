@@ -19,6 +19,7 @@
 export default {
   name: 'Tabs',
   props: {
+    // array of tabs text and path of which they should lead to
     tabs: {
       type: Array,
       required: true,

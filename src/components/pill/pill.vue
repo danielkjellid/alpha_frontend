@@ -16,21 +16,25 @@
 export default {
   name: 'Pill',
   props: {
+    // decides the fill color of the dot in the pill
     fill: {
       type: String,
       required: false,
       default: 'text-gray-400'
     },
+    // predefined fill that makes button green
     success: {
       type: Boolean,
       required: false,
       default: false
     },
+    // predefined fill that makes button yellow
     warning: {
       type: Boolean,
       required: false,
       default: false
     },
+    // predefined fill that makes button red
     danger: {
       type: Boolean,
       required: false,

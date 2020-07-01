@@ -6,9 +6,11 @@
       <div v-if="tabs" class="mb-8">
         <Tabs :tabs="tabs" />
       </div>
-      <slot name="overview-content">
-
-      </slot>
+      <div>
+        <slot name="overview-content">
+          <!-- page content -->
+        </slot>
+      </div>
     </div>
   </div>
 </template>
@@ -26,14 +28,17 @@ export default {
     Tabs
   },
   props: {
+    // title of page
     title: {
       type: String,
       required: true
     },
+    // subtitle of page
     subtitle: {
       type: String,
       required: true
     },
+    // navigational tabs
     tabs: {
       type: Array,
       required: false

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- table actions consits of an input field and action buttons -->
     <div v-if="showTableActions" class="flex items-center justify-between mb-5">
       <BaseInput 
         label="Search" 
@@ -37,10 +38,12 @@
         <!-- loop through items in the row items array -->
         <tr v-for="(item, index) in items" :key="index">
           <td v-for="(value, property, index) in item" :key="index" class="px-5 py-5 whitespace-no-wrap border-b border-gray-300 text-sm leading-5 text-gray-900">
+            <!-- add slot to be able to style/edit each column according to content presented -->
             <slot :name="property" :item="item">
               {{ value }}
             </slot>
           </td>
+          <!-- icon to go to the detail of the data presented -->
           <td class="px-5 py-5 whitespace-no-wrap border-b border-gray-300 text-right">
             <BaseButton icon :to="typeof item.id !== undefined ? `${detailBase}${item.id}` : `${detailbase}${item.slug}`">
               <BaseIcon name="eye" />
@@ -56,48 +59,33 @@
 export default {
   name: 'Table',
   props: {
+    // sets the table headers
     headers: {
       type: Array,
       required: true
     },
+    // sets the table items (rows)
     items: {
       type: Array,
       required: true
     },
+    // base url for viewing detail page
     detailBase: {
       type: String,
       required: true
     },
+    // boolean to show/hide table actions
     showTableActions: {
       type: Boolean,
       required: false,
-      default: true,
+      default: false,
     },
+    // icon to be displayed in input (if any), e.g. search
     tableActionInputIcon: {
       type: String,
       required: false,
       default: null
     }
   },
-  data() {
-    return {
-      data: []
-    }
-  },
-  computed: {
-    mappedItems() {
-      return this.items.map(item => {
-        if (item.id) {
-          delete item.id
-          return item
-        } else if (item.slug) {
-          delete item.slug
-          return item
-        } else {
-          return item
-        }
-      })
-    }
-  }
 }
 </script>

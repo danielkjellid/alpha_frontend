@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: 'Input',
+  name: 'BaseInput',
   props: {
     // controls the for and id fields in input and label
     id: {
@@ -33,10 +33,12 @@ export default {
       required: false,
       default: false,
     },
+    // sets the label itself
     label: {
       type: String,
       required: true,
     },
+    // decides wether an input should have an icon by defined icon name
     icon: {
       type: String,
       required: false,

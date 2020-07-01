@@ -15,21 +15,25 @@
 export default {
   name: 'BaseButton',
   props: {
+    // designates the button as icon - round and flat
     icon: {
       type: Boolean,
       required: false,
       default: false
     },
+    // applies the light theme variant to the button, usually used as a secondary action
     light: {
       type: Boolean,
       required: false,
       default: false,
     },
+    // will decide wether the button is set as <button> or <router-link> as well as decide the route
     to: {
       type: [String, Object],
       required: false,
       default: null
     },
+    // sets the button type e.g. submit, button etc
     buttonType: {
       type: String,
       required: false,
