@@ -3,6 +3,7 @@
     <AdminOverviewTemplate 
       title="Brukere"
       subtitle="En oversikt over alle registrerte brukere"
+      :tabs="tabs"
     >
       <template #overview-content>
         <Table 
@@ -38,6 +39,11 @@ export default {
   },
   data() {
     return {
+      tabs: [
+        { text: 'Side 1', to: '/' },
+        { text: 'Side 2', to: '/test' },
+        { text: 'Side 3', to: '/test2' }
+      ],
       tableHeaders: [
         { text: 'Id', value: 'id' },
         { text: 'Navn', value: 'name' },
