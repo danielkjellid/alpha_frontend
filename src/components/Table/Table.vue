@@ -1,12 +1,14 @@
 <template>
   <div>
     <div v-if="showTableActions" class="flex items-center justify-between mb-5">
-      <BaseInput 
-        label="Search" 
-        :icon="tableActionInputIcon"
-        block
-        hiddenLabel
-      />
+      <div>
+        <BaseInput 
+          label="Search" 
+          :icon="tableActionInputIcon"
+          block
+          hiddenLabel
+        />
+      </div>
       <div class="flex items-center ml-3">
         <slot name="actions">
           <!-- table-actions -->

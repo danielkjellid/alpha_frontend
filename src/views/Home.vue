@@ -4,15 +4,26 @@
     <AdminOverviewTemplate 
       title="Brukere"
       subtitle="En oversikt over alle registrerte brukere"
-      detailBase="/users/"
-      :showTableActions="true"
-      tableActionInputIcon="search"
-      :tableHeaders="tableHeaders"
-      :tableItems="tableItems"
     >
-      <template #table-actions>
-        <BaseButton light class="mr-2">Eksporter</BaseButton>
-        <BaseButton>Ny bruker</BaseButton>
+        <!-- <template #active="{ item }">
+          <span class="text-green-600">{{item.active}}</span>
+        </template> -->
+      <template #overview-content>
+        <Table 
+          :showTableActions="true"
+          tableActionInputIcon="search"
+          :headers="tableHeaders" 
+          :items="tableItems"
+          detailBase="/users"
+        >
+          <template #actions>
+            <BaseButton light class="mr-2">Eksporter</BaseButton>
+            <BaseButton>Ny bruker</BaseButton>
+          </template>
+          <template #active="{ item }">
+            <span class="text-green-600">{{item.active}}</span>
+          </template>
+        </Table>
       </template>
     </AdminOverviewTemplate>
   </div>
@@ -21,11 +32,13 @@
 <script>
 import AdminOverviewTemplate from '@/views/templates/AdminOverview'
 import Pill from '@/components/pill'
+import Table from '@/components/table'
 
 export default {
   name: 'Home',
   components: {
     AdminOverviewTemplate,
+    Table,
     Pill
   },
   data() {
