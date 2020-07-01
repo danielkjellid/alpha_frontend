@@ -3,10 +3,8 @@
     <AdminOverviewTemplate title="Brukere" subtitle="En oversikt over alle registrerte brukere" :tabs="tabs">
       <template #overview-content>
         <Table showTableActions :headers="tableHeaders" :items="tableItems" detailBase="/users">
-          <template #input>
+          <template #table-actions>
             <BaseInput label="Search" icon="search" placeholder="Søk etter brukere..." block hiddenLabel />
-          </template>
-          <template #actions>
             <div class="flex items-center flex-shrink-0 ml-3">
               <BaseButton light class="mr-2">Eksporter</BaseButton>
               <BaseButton>Ny bruker</BaseButton>

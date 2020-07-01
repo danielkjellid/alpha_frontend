@@ -2,11 +2,8 @@
   <div>
     <!-- table actions consits of an input field and action buttons -->
     <div v-if="showTableActions" class="flex items-center justify-between mb-5">
-      <slot name="input">
-        <!-- table input -->
-      </slot>
-      <slot name="actions">
-        <!-- table-actions -->
+      <slot name="table-actions">
+        <!-- table actions -->
       </slot>
     </div>
     <table class="min-w-full">
