@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import AdminOverviewTemplate from '@/views/templates/AdminOverview'
+import AdminOverviewTemplate from '@/views/templates/admin-overview'
 import Table from '@/components/table'
 
 export default {

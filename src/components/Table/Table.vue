@@ -36,7 +36,7 @@
             </slot>
           </td>
           <!-- icon to go to the detail of the data presented -->
-          <td class="px-5 py-5 whitespace-no-wrap border-b border-gray-300 text-right">
+          <td v-if="hasActions" class="px-5 py-5 whitespace-no-wrap border-b border-gray-300 text-right">
             <BaseButton icon :to="typeof item.id !== undefined ? `${detailBase}${item.id}` : `${detailbase}${item.slug}`">
               <BaseIcon name="eye" />
             </BaseButton>
@@ -79,5 +79,14 @@ export default {
       default: null
     }
   },
+  computed: {
+    hasActions() {
+      if (this.headers.filter(header => header.value === 'actions').length > 0) {
+        return true
+      } else {
+        return false
+      }
+    }
+  }
 }
 </script>
