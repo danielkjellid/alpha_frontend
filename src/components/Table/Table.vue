@@ -2,17 +2,12 @@
   <div>
     <!-- table actions consits of an input field and action buttons -->
     <div v-if="showTableActions" class="flex items-center justify-between mb-5">
-      <BaseInput 
-        label="Search" 
-        :icon="tableActionInputIcon"
-        block
-        hiddenLabel
-      />
-      <div class="flex items-center flex-shrink-0 ml-3">
-        <slot name="actions">
-          <!-- table-actions -->
-        </slot>
-      </div>
+      <slot name="input">
+        <!-- table input -->
+      </slot>
+      <slot name="actions">
+        <!-- table-actions -->
+      </slot>
     </div>
     <table class="min-w-full">
       <thead>

@@ -12,7 +12,7 @@
           'pl-10': icon, 
           'w-full': block
         }"
-        placeholder="you@example.com" />
+        :placeholder="placeholder" />
     </div>
   </div>
 </template>
@@ -37,6 +37,10 @@ export default {
     label: {
       type: String,
       required: true,
+    },
+    placeholder: {
+      type: String,
+      required: false,
     },
     // decides wether an input should have an icon by defined icon name
     icon: {

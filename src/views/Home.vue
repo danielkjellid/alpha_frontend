@@ -1,21 +1,16 @@
 <template>
   <div>
-    <AdminOverviewTemplate 
-      title="Brukere"
-      subtitle="En oversikt over alle registrerte brukere"
-      :tabs="tabs"
-    >
+    <AdminOverviewTemplate title="Brukere" subtitle="En oversikt over alle registrerte brukere" :tabs="tabs">
       <template #overview-content>
-        <Table 
-          :showTableActions="true"
-          tableActionInputIcon="search"
-          :headers="tableHeaders" 
-          :items="tableItems"
-          detailBase="/users"
-        >
+        <Table showTableActions :headers="tableHeaders" :items="tableItems" detailBase="/users">
+          <template #input>
+            <BaseInput label="Search" icon="search" placeholder="Søk etter brukere..." block hiddenLabel />
+          </template>
           <template #actions>
-            <BaseButton light class="mr-2">Eksporter</BaseButton>
-            <BaseButton>Ny bruker</BaseButton>
+            <div class="flex items-center flex-shrink-0 ml-3">
+              <BaseButton light class="mr-2">Eksporter</BaseButton>
+              <BaseButton>Ny bruker</BaseButton>
+            </div>
           </template>
           <template #active="{ item }">
             <BaseIcon v-if="item.active" name="check-circle" solid fill="text-green-400" class="mx-auto" />
