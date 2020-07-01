@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Pill>Mottatt</Pill>
     <AdminOverviewTemplate 
       title="Brukere"
       subtitle="En oversikt over alle registrerte brukere"
@@ -8,17 +9,24 @@
       tableActionInputIcon="search"
       :tableHeaders="tableHeaders"
       :tableItems="tableItems"
-    />
+    >
+      <template #table-actions>
+        <BaseButton light class="mr-2">Eksporter</BaseButton>
+        <BaseButton>Ny bruker</BaseButton>
+      </template>
+    </AdminOverviewTemplate>
   </div>
 </template>
 
 <script>
 import AdminOverviewTemplate from '@/views/templates/AdminOverview'
+import Pill from '@/components/pill'
 
 export default {
   name: 'Home',
   components: {
     AdminOverviewTemplate,
+    Pill
   },
   data() {
     return {

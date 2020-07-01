@@ -3,8 +3,9 @@
     :is="type"
     :to="to"
     :type="buttonType"
-    class="inline-flex items-center text-sm leading-5 font-medium transition ease-in-out duration-150"
+    class="flex-shrink-0 inline-flex items-center text-sm leading-5 font-medium transition ease-in-out duration-150"
     :class="renderClasses()"
+    v-on="$listeners"
   >
     <slot>Button</slot>
   </component>
@@ -36,15 +37,17 @@ export default {
     }
   },
   computed: {
+    // set the button as <button> or <router-link> dependant on props passed
     type() {
       if (this.to) {
         return 'router-link'
       } else {
         return 'button'
       }
-    }
+    },
   },
   methods: {
+    // render classes based on props
     renderClasses() {
       let classes = null
 

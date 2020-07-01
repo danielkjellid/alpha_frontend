@@ -29,15 +29,22 @@
         :headers="tableHeaders" 
         :items="tableItems"
         :detailBase="detailBase"
-      />
+      >
+        <template #actions>
+          <slot name="table-actions"></slot>
+        </template>
+        <template #active="{ item }">
+          <span class="text-green-600">{{item.active}}</span>
+        </template>
+      </Table>
     </div>
   </div>
 </template>
 
 <script>
-import AdminNav from '@/components/AdminNav'
-import AdminTitle from '@/components/AdminTitle'
-import Table from '@/components/Table'
+import AdminNav from '@/components/admin-nav'
+import AdminTitle from '@/components/admin-title'
+import Table from '@/components/table'
 
 export default {
   name: 'AdminOverview',
