@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Pill>Mottatt</Pill>
     <AdminOverviewTemplate 
       title="Brukere"
       subtitle="En oversikt over alle registrerte brukere"
@@ -29,7 +28,6 @@
 
 <script>
 import AdminOverviewTemplate from '@/views/templates/AdminOverview'
-import Pill from '@/components/pill'
 import Table from '@/components/table'
 
 export default {
@@ -37,7 +35,6 @@ export default {
   components: {
     AdminOverviewTemplate,
     Table,
-    Pill
   },
   data() {
     return {

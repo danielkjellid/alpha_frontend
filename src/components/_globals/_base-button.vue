@@ -3,7 +3,7 @@
     :is="type"
     :to="to"
     :type="buttonType"
-    class="flex-shrink-0 inline-flex items-center text-sm leading-5 font-medium transition ease-in-out duration-150"
+    class="inline-flex flex-shrink-0 items-center text-sm leading-5 font-medium transition ease-in-out duration-150"
     :class="renderClasses()"
     v-on="$listeners"
   >
