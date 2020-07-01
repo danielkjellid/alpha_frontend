@@ -1,6 +1,6 @@
 <template>
   <div
-    v-html="require(`../../assets/icons/${name}.svg`)"
+    v-html="renderRequirePath"
     class="h-5 w-5 fill-current"
     :class="renderFillColor"
   />
@@ -22,6 +22,11 @@ export default {
       type: String,
       required: false,
       default: 'text-gray-500'
+    },
+    solid: {
+      type: Boolean,
+      required: false,
+      default: false,
     }
   },
   computed: {
@@ -35,6 +40,13 @@ export default {
       }
 
       return color
+    },
+    renderRequirePath() {
+      if (this.solid) {
+        return require(`../../assets/icons/solid/${this.name}.svg`)
+      } else {
+        return require(`../../assets/icons/outline/${this.name}.svg`)
+      }
     }
   }
 }

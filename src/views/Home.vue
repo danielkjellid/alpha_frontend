@@ -5,9 +5,6 @@
       title="Brukere"
       subtitle="En oversikt over alle registrerte brukere"
     >
-        <!-- <template #active="{ item }">
-          <span class="text-green-600">{{item.active}}</span>
-        </template> -->
       <template #overview-content>
         <Table 
           :showTableActions="true"
@@ -21,7 +18,8 @@
             <BaseButton>Ny bruker</BaseButton>
           </template>
           <template #active="{ item }">
-            <span class="text-green-600">{{item.active}}</span>
+            <BaseIcon v-if="item.active" name="check-circle" solid fill="text-green-400" class="mx-auto" />
+            <BaseIcon v-else name="x-circle" solid fill="text-red-400" class="mx-auto" />
           </template>
         </Table>
       </template>
