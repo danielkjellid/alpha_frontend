@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AdminOverviewTemplate title="Brukere" subtitle="En oversikt over alle registrerte brukere" :tabs="tabs">
+    <AdminOverviewTemplate title="Brukere" subtitle="En oversikt over alle registrerte brukere">
       <template #overview-content>
         <Table showTableActions :headers="tableHeaders" :items="tableItems" detailBase="/users/">
           <template #table-actions>
@@ -37,11 +37,11 @@ export default {
   },
   data() {
     return {
-      tabs: [
-        { text: 'Side 1', to: '/' },
-        { text: 'Side 2', to: '/test' },
-        { text: 'Side 3', to: '/test2' }
-      ],
+      // tabs: [
+      //   { text: 'Side 1', to: '/' },
+      //   { text: 'Side 2', to: '/test' },
+      //   { text: 'Side 3', to: '/test2' }
+      // ],
       tableHeaders: [
         { text: 'Id', value: 'id' },
         { text: 'Navn', value: 'name' },

@@ -26,7 +26,7 @@
           </th>
         </tr>
       </thead>
-      <tbody class="bg-white">
+      <tbody v-if="items" class="bg-white">
         <!-- loop through items in the row items array -->
         <tr v-for="(item, index) in items" :key="index">
           <td v-for="(value, property, index) in item" :key="index" class="px-5 py-5 whitespace-no-wrap border-b border-gray-300 text-sm leading-5 text-gray-900">
@@ -40,6 +40,13 @@
             <BaseButton icon :to="typeof item.id !== undefined ? `${detailBase}${item.id}` : `${detailbase}${item.slug}`">
               <BaseIcon name="eye" />
             </BaseButton>
+          </td>
+        </tr>
+      </tbody>
+      <tbody v-else>
+        <tr>
+          <td :colspan="headers.length">
+            <BaseNodata></BaseNodata>
           </td>
         </tr>
       </tbody>
