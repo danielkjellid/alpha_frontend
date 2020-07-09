@@ -1,5 +1,6 @@
 <template>
   <div>
+    <p>{{ permissions }}</p>
     <AdminOverviewTemplate title="Brukere" subtitle="En oversikt over alle registrerte brukere">
       <template #overview-content>
         <BaseTable showTableActions :headers="tableHeaders" :items="tableItems" detailBase="/users/">
@@ -32,6 +33,12 @@ export default {
   computed: {
     tableItems() {
       return this.$store.state.users.usersList
+    },
+    permissions() {
+      return this.$store.state.users.requestUserPermissions
+    },
+    doesUserHavePermission(permission) {
+      return this.$store.getters.users.doesUserHavePermission(permission)
     }
   },
   data() {
@@ -54,6 +61,7 @@ export default {
   },
   created() {
     this.$store.dispatch('users/fetchUsers')
+    //this.$store.dispatch('users/fetchUserPermissions')
   }
 }
 </script>

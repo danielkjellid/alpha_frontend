@@ -35,4 +35,6 @@ export default function dispatchActionForAllModules(actionName, { modules = allM
     // dispatch action globally
     store.dispatch(actionName)
   }
+
+  console.log('done')
 }

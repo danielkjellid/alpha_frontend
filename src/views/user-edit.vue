@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     saveChanges() {
-      console.log('test')
+      // TODO: save changes to API
     }
   }
 }

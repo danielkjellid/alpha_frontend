@@ -26,7 +26,7 @@
           </th>
         </tr>
       </thead>
-      <tbody v-if="items" class="bg-white">
+      <tbody v-if="items && items.length > 0" class="bg-white">
         <!-- loop through items in the row items array -->
         <tr v-for="(item, index) in items" :key="index">
           <td v-for="(value, property, index) in item" :key="index" class="px-5 py-5 text-sm leading-5 text-gray-900 whitespace-no-wrap border-b border-gray-300">
