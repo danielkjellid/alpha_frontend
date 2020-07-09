@@ -1,8 +1,8 @@
 <template>
   <div>
     <AdminNav />
-    <AdminTitle :title="title" :subtitle="subtitle" />
-    <div class="container py-12 px-8 mx-auto">
+    <AdminOverviewHeader :title="title" :subtitle="subtitle" />
+    <div class="container px-8 py-12 mx-auto">
       <div v-if="tabs" class="mb-8">
         <Tabs :tabs="tabs" />
       </div>
@@ -17,14 +17,14 @@
 
 <script>
 import AdminNav from '@/components/admin-nav'
-import AdminTitle from '@/components/admin-title'
+import AdminOverviewHeader from '@/components/admin-overview-header'
 import Tabs from '@/components/tabs'
 
 export default {
   name: 'AdminOverview',
   components: {
     AdminNav,
-    AdminTitle,
+    AdminOverviewHeader,
     Tabs
   },
   props: {

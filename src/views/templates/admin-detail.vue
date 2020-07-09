@@ -2,28 +2,19 @@
   <div>
     <AdminNav />
     <div class="container px-8 py-12 mx-auto">
-      <div class="pb-8 border-b border-gray-300">
-        <BaseBreadcrumbs :breadcrumbs="breadcrumbs" />
-        <div class="flex items-center justify-between">
-          <div class="mt-6">
-            <div :class="{'flex items-center': $slots['header-append']}">
-              <h1 class="text-2xl font-semibold text-gray-900" :class="{'mr-3': $slots['header-append']}">{{ title }}</h1>
-              <slot name="header-append"></slot>
-            </div>
-            <p v-if="subtitle" class="text-sm text-gray-600">{{ subtitle }}</p>
-          </div>
-          <div>
-            <slot name="page-actions">
-              <!-- page actions -->
-            </slot>
-          </div>
-        </div>
-      </div>
+      <AdminDetailHeader :title='title' :subtitle="subtitle" :breadcrumbs="breadcrumbs">
+        <template v-if="$slots['header-append']" #header-append>
+          <slot name="header-append"></slot>
+        </template>
+        <template #page-actions>
+          <slot name="page-actions"></slot>
+        </template>
+      </AdminDetailHeader>
       <div class="flex items-start w-full">
         <div class="w-1/4 py-5 pr-5">
           <div v-for="(data, index) in wrapperData" :key="index">
             <h2 class="text-lg font-medium text-gray-900" :class="{ 'mt-6': data !== wrapperData[0] }">{{ data.label }}</h2>
-            <div v-for="field in data.fields" :key="field" class="mt-5">
+            <div v-for="(field, index) in data.fields" :key="index" class="mt-5">
               <p class="mb-1 text-sm font-semibold text-gray-600">{{ field.text }}</p>
               <div v-for="(value, property, index) in item" :key="index" class="text-sm text-gray-900">
                 <template v-if="field.field === property">
@@ -48,11 +39,13 @@
 
 <script>
 import AdminNav from '@/components/admin-nav'
+import AdminDetailHeader from '@/components/admin-detail-header'
 
 export default {
   name: 'AdminDetail',
   components: {
-    AdminNav
+    AdminNav,
+    AdminDetailHeader
   },
   props: {
     title: {
