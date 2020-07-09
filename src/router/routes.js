@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import Home from '@/views/home'
 import UsersOverview from '@/views/users-overview'
 import UserDetail from '@/views/user-detail'
+import UserEdit from '@/views/user-edit'
 
 Vue.use(VueRouter)
 
@@ -22,6 +23,11 @@ const routes = [
     path: '/backend/users/1',
     name: 'UserDetail',
     component: UserDetail
+  },
+  {
+    path: '/backend/users/1/edit',
+    name: 'UserEdit',
+    component: UserEdit
   }
 
 ]
