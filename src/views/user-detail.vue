@@ -1,5 +1,8 @@
 <template>
   <AdminDetail 
+    title='User fullname'
+    subtitle="user@example.com"
+    :breadcrumbs="breadcrumbs"
     :wrapperData="wrapperData"
     :item="item"
   >
@@ -49,9 +52,9 @@ export default {
   },
   data() {
     return {
-      breadcumbs: [
+      breadcrumbs: [
         {text: 'Brukere', disabled: false, href: 'backend/users'}, 
-        {text: 'Daniel Kjellid', disabled: true, href: 'backend/users'}
+        {text: 'Example user', disabled: true, href: 'backend/users'}
       ],
       wrapperData: [
         {
@@ -81,10 +84,10 @@ export default {
         },
       ],
       item: {
-        full_name: 'Daniel Kjellid',
-        email: 'daniel_kjellid@hotmail.com',
-        phone_number: 45276890,
-        full_address: 'Gunnar Schjelderupsvei 11R',
+        full_name: 'Example user',
+        email: 'example@hotmail.com',
+        phone_number: 12345678,
+        full_address: 'Street 1, 0123 Oslo',
         accept_marketing: true,
         accept_personalization: false,
         accept_third_party_personalization: true,

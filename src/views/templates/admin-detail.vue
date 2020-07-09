@@ -3,11 +3,14 @@
     <AdminNav />
     <div class="container px-8 py-12 mx-auto">
       <div class="pb-8 border-b border-gray-300">
-        <BaseBreadcrumbs :breadcrumbs="[{text: 'Brukere', disabled: false, href: 'backend/users'}, {text: 'Daniel Kjellid', disabled: true, href: 'backend/users'}]" />
+        <BaseBreadcrumbs :breadcrumbs="breadcrumbs" />
         <div class="flex items-center justify-between">
           <div class="mt-6">
-            <h1 class="text-2xl font-semibold text-gray-900">Daniel Kjellid</h1>
-            <p class="text-sm text-gray-600">daniel.kjellid@gmail.com</p>
+            <div :class="{'flex items-center': $slots['header-append']}">
+              <h1 class="text-2xl font-semibold text-gray-900" :class="{'mr-3': $slots['header-append']}">{{ title }}</h1>
+              <slot name="header-append"></slot>
+            </div>
+            <p v-if="subtitle" class="text-sm text-gray-600">{{ subtitle }}</p>
           </div>
           <div>
             <slot name="page-actions">
@@ -52,6 +55,18 @@ export default {
     AdminNav
   },
   props: {
+    title: {
+      type: String,
+      required: true
+    },
+    subtitle: {
+      type: String,
+      required: false
+    },
+    breadcrumbs: {
+      type: Array,
+      required: true
+    },
     wrapperData: {
       type: Array,
       required: true,
