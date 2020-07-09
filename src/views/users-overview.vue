@@ -2,7 +2,7 @@
   <div>
     <AdminOverviewTemplate title="Brukere" subtitle="En oversikt over alle registrerte brukere">
       <template #overview-content>
-        <Table showTableActions :headers="tableHeaders" :items="tableItems" detailBase="/users/">
+        <BaseTable showTableActions :headers="tableHeaders" :items="tableItems" detailBase="/users/">
           <template #table-actions>
             <BaseInput label="Search" icon="search" placeholder="Søk etter brukere..." block hiddenLabel />
             <div class="flex items-center flex-shrink-0 ml-3">
@@ -14,7 +14,7 @@
             <BaseIcon v-if="item.is_active" name="check-circle" solid fill="text-green-400" class="mx-auto" />
             <BaseIcon v-else name="x-circle" solid fill="text-red-400" class="mx-auto" />
           </template>
-        </Table>
+        </BaseTable>
       </template>
     </AdminOverviewTemplate>
   </div>
@@ -23,13 +23,11 @@
 <script>
 //import axios from 'axios'
 import AdminOverviewTemplate from '@/views/templates/admin-overview'
-import Table from '@/components/table'
 
 export default {
   name: 'UsersOverview',
   components: {
     AdminOverviewTemplate,
-    Table,
   },
   computed: {
     tableItems() {
