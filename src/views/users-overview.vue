@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p>{{ permissions }}</p>
     <AdminOverviewTemplate title="Brukere" subtitle="En oversikt over alle registrerte brukere">
       <template #overview-content>
         <BaseTable showTableActions :headers="tableHeaders" :items="tableItems" detailBase="/users/">
@@ -22,7 +21,6 @@
 </template>
 
 <script>
-//import axios from 'axios'
 import AdminOverviewTemplate from '@/views/templates/admin-overview'
 
 export default {
@@ -34,12 +32,6 @@ export default {
     tableItems() {
       return this.$store.state.users.usersList
     },
-    permissions() {
-      return this.$store.state.users.requestUserPermissions
-    },
-    doesUserHavePermission(permission) {
-      return this.$store.getters.users.doesUserHavePermission(permission)
-    }
   },
   data() {
     return {
@@ -61,7 +53,6 @@ export default {
   },
   created() {
     this.$store.dispatch('users/fetchUsers')
-    //this.$store.dispatch('users/fetchUserPermissions')
   }
 }
 </script>
