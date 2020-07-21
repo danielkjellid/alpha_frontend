@@ -3,6 +3,9 @@
     <AdminNav />
     <div class="container px-8 py-12 mx-auto">
       <AdminDetailHeader :title='title' :subtitle="subtitle" :breadcrumbs="breadcrumbs">
+        <!-- to be able to attach a pill/icon/button at the end of the page title -->
+        <!-- i dynamically create a slot and check if this is present -->
+        <!-- this is to be able to change classes dynamically ('flex') --> 
         <template v-if="$slots['header-append']" #header-append>
           <slot name="header-append"></slot>
         </template>
@@ -11,13 +14,17 @@
         </template>
       </AdminDetailHeader>
       <div class="flex items-start w-full">
+        <!-- the left part of the screen is important information about the detail instance -->
         <div class="w-1/4 py-5 pr-5">
+          <!-- in the parent component there is a defined a list which lables the data -->
+          <!-- the loops bellow attaches each field to its label based on the fields pulled from api -->
           <div v-for="(data, index) in wrapperData" :key="index">
             <h2 class="text-lg font-medium text-gray-900" :class="{ 'mt-6': data !== wrapperData[0] }">{{ data.label }}</h2>
             <div v-for="(field, index) in data.fields" :key="index" class="mt-5">
               <p class="mb-1 text-sm font-semibold text-gray-600">{{ field.text }}</p>
               <div v-for="(value, property, index) in item" :key="index" class="text-sm text-gray-900">
                 <template v-if="field.field === property">
+                  <!-- attach slot to be able to change representation of data if needed -->
                   <slot :name="property" :item="item">
                     {{ value }}
                   </slot>
@@ -48,22 +55,27 @@ export default {
     AdminDetailHeader
   },
   props: {
+    // title of page
     title: {
       type: String,
       required: true
     },
+    // subtitle of page
     subtitle: {
       type: String,
       required: false
     },
+    // page breadcrumbs
     breadcrumbs: {
       type: Array,
       required: true
     },
+    // array of objects which attaches the correct field name to the correct label
     wrapperData: {
       type: Array,
       required: true,
     },
+    // data
     item: {
       type: Object,
       required: true,

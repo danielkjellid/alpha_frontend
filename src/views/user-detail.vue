@@ -1,16 +1,16 @@
 <template>
   <AdminDetail 
-    title='User fullname'
-    subtitle="user@example.com"
+    :title='userFullName'
+    :subtitle="user.email"
     :breadcrumbs="breadcrumbs"
     :wrapperData="wrapperData"
-    :item="item"
+    :item="user"
   >
     <template #page-actions>
       <BaseButton>Main action</BaseButton>
     </template>
-    <template #accept_marketing="{ item }">
-      <div v-if="item.accept_marketing" class="flex items-center">
+    <template #subscribed_to_newsletter="{ item }">
+      <div v-if="item.subscribed_to_newsletter" class="flex items-center">
         <BaseIcon name="check-circle" solid fill="text-green-400"  class="mr-2"/>
         Godtar
       </div>
@@ -19,8 +19,8 @@
         Godtar ikke
       </div>
     </template>
-    <template #accept_personalization="{ item }">
-      <div v-if="item.accept_personalization" class="flex items-center">
+    <template #allow_personalization="{ item }">
+      <div v-if="item.allow_personalization" class="flex items-center">
         <BaseIcon name="check-circle" solid fill="text-green-400"  class="mr-2"/>
         Godtar
       </div>
@@ -29,8 +29,8 @@
         Godtar ikke
       </div>
     </template>
-    <template #accept_third_party_personalization="{ item }">
-      <div v-if="item.accept_third_party_personalization" class="flex items-center">
+    <template #allow_third_party_personalization="{ item }">
+      <div v-if="item.allow_third_party_personalization" class="flex items-center">
         <BaseIcon name="check-circle" solid fill="text-green-400"  class="mr-2"/>
         Godtar
       </div>
@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import { apiService } from '@/common/api.service'
 import AdminDetail from '@/views/templates/admin-detail'
 
 export default {
@@ -52,10 +53,7 @@ export default {
   },
   data() {
     return {
-      breadcrumbs: [
-        {text: 'Brukere', disabled: false, href: 'backend/users'}, 
-        {text: 'Example user', disabled: true, href: 'backend/users'}
-      ],
+      user: {},
       wrapperData: [
         {
           label: 'Generelle data',
@@ -63,15 +61,15 @@ export default {
             { field: 'full_name', text: 'Navn' },
             { field: 'email', text: 'E-post' },
             { field: 'phone_number', text: 'Telefon' },
-            { field: 'full_address', text: 'Adresse' },
+            { field: 'address', text: 'Adresse' },
           ]
         },
         {
           label: 'Preferanser',
           fields: [
-            { field: 'accept_marketing', text: 'Markedsføring' },
-            { field: 'accept_personalization', text: 'Personalisering' },
-            { field: 'accept_third_party_personalization', text: 'Tredjepartspersonalisering' },
+            { field: 'subscribed_to_newsletter', text: 'Markedsføring' },
+            { field: 'allow_personalization', text: 'Personalisering' },
+            { field: 'allow_third_party_personalization', text: 'Tredjepartspersonalisering' },
           ]
         },
         {
@@ -79,7 +77,7 @@ export default {
           fields: [
             { field: 'date_joined', text: 'Registrert' },
             { field: 'last_login', text: 'Sist login' },
-            { field: 'accquisition_source', text: 'Kilde' },
+            { field: 'acquisition_source', text: 'Kilde' },
           ]
         },
       ],
@@ -96,6 +94,28 @@ export default {
         accquisition_source: 'referal/newsletter/1'
       }
     }
+  },
+  computed: {
+    breadcrumbs() {
+      return [
+        {text: 'Brukere', disabled: false, href: 'backend/users'}, 
+        {text: this.userFullName, disabled: true,}
+      ]
+    },
+    userFullName() {
+      return this.user.first_name + ' ' + this.user.last_name
+    },
+  },
+  methods: {
+    fetchUser(id) {
+      apiService(`users/${id}/`)
+        .then(user => {
+          this.user = user
+        })
+    } 
+  },
+  created() {
+    this.fetchUser(this.$route.params.id)
   }
 }
 </script>

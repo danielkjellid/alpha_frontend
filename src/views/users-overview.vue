@@ -2,7 +2,7 @@
   <div>
     <AdminOverviewTemplate title="Brukere" subtitle="En oversikt over alle registrerte brukere">
       <template #overview-content>
-        <BaseTable showTableActions :headers="tableHeaders" :items="tableItems" detailBase="/users/">
+        <BaseTable showTableActions :headers="tableHeaders" :items="tableItems" detailBase="/backend/users/">
           <template #table-actions>
             <BaseInput label="Search" icon="search" placeholder="Søk etter brukere..." block hiddenLabel />
             <div class="flex items-center flex-shrink-0 ml-3">
@@ -35,11 +35,6 @@ export default {
   },
   data() {
     return {
-      // tabs: [
-      //   { text: 'Side 1', to: '/' },
-      //   { text: 'Side 2', to: '/test' },
-      //   { text: 'Side 3', to: '/test2' }
-      // ],
       tableHeaders: [
         { text: 'Id', value: 'id' },
         { text: 'Navn', value: 'name' },
