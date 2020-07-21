@@ -1,8 +1,8 @@
 <template>
   <div>
-    <AdminEdit
-      title='User fullname'
-      subtitle="user@example.com"
+    <Edit
+      :title='`Rediger "${user.full_name}"`'
+      :subtitle="user.email"
       :breadcrumbs="breadcrumbs"
     >
       <template #page-actions>
@@ -11,43 +11,177 @@
       <template #edit-content>
         <FormGroup :groups="formGroups" @save-changes="saveChanges">
           <template #contactinfo>
-            <BaseInput label="Test" block></BaseInput>
+            <div class="flex items-center">
+              <BaseInput
+                id="id_first_name"
+                v-model="user.first_name" 
+                label="Fornavn"
+                :value="user.first_name"
+                block 
+                class="mr-2"
+              />
+              <BaseInput 
+                id="id_last_name"
+                v-model="user.last_name" 
+                :value="user.last_name"
+                label="Etternavn" 
+                block 
+              />
+            </div>
+            <div class="mt-5">
+              <BaseInput
+                id="id_phone_number"
+                v-model.number="user.phone_number" 
+                :value="user.phone_number"
+                label="Telefonnummer"
+                block 
+              />
+            </div>
+            <div class="mt-5">
+              <BaseInput
+                id="id_email"
+                v-model="user.email" 
+                :value="user.email"
+                label="E-post" 
+                block 
+              />
+            </div>
+            <div class="flex items-center mt-5">
+              <BaseInput
+                id="id_street_address"
+                v-model="user.street_address"
+                :value="user.street_address" 
+                label="Gateadresse" 
+                block 
+                class="mr-2" 
+              />
+              <div class="flex items-center">
+                <BaseInput
+                  id="id_zip_code"
+                  v-model.number="user.zip_code" 
+                  :value="user.zip_code"
+                  type="number"
+                  label="Postnummer" 
+                  block 
+                  class="mr-2" 
+                />
+                <BaseInput
+                  id="id_zip_place"
+                  v-model="user.zip_place"
+                  :value="user.zip_place"
+                  label="Poststed" 
+                  block 
+                />
+              </div>
+            </div>
           </template>
           <template #notifications>
-            <p>Test 2</p>
+            <BaseCheckbox
+              id="id_has_confirmed_email"
+              v-model="user.has_confirmed_email" 
+              :checked="user.has_confirmed_email" 
+              label="Verifisert e-post" 
+              helpText="Kunden har bekreftet e-post adressen"
+            />
+            <BaseCheckbox
+              id="id_disabled_emails"
+              v-model="user.disabled_emails" 
+              :checked="user.disabled_emails" 
+              label="Deaktivert e-post" 
+              helpText="Kunden vil ikke få noe form for kommuinkasjon (typisk brukt for konkurenter)"
+              class="mt-5"
+            />
+            <BaseCheckbox
+              id="id_subscribed_to_newsletter"
+              v-model="user.subscribed_to_newsletter" 
+              :checked="user.subscribed_to_newsletter" 
+              label="Nyhetsbrev" 
+              helpText="Kunden mottar nyhetsbrev av oss"
+              class="mt-5"
+            />
+            <BaseCheckbox
+              id="id_allow_personalization"
+              v-model="user.allow_personalization" 
+              :checked="user.allow_personalization" 
+              label="Personalisering" 
+              helpText="Brukeren ønsker en personalisert brukeropplevelse, og kan se noen sider annerledes"
+              class="mt-5"
+            />
+            <BaseCheckbox
+              id="id_allow_third_party_personalization"
+              v-model="user.allow_third_party_personalization" 
+              :checked="user.allow_third_party_personalization" 
+              label="Tredjepartspersonalisering" 
+              helpText="Ønsker tredjepartspersonalisering, og kan derfor se relevante anonser utenfor nettsiden"
+              class="mt-5"
+            />
+            <BaseInput
+              id="id_acquisition_source"
+              v-model="user.acquisition_source"
+              :value="user.acquisition_source"
+              label="Kilde" 
+              block
+              class="mt-5"
+            />
+          </template>
+          <template #high-level-account-management>
+            <!-- TBA -->
           </template>
         </FormGroup>
       </template>
-    </AdminEdit>
+    </Edit>
   </div>
 </template>
 
 <script>
-import AdminEdit from '@/views/templates/admin-edit'
+import { apiService } from '@/common/api.service'
+
+import Edit from '@/views/templates/edit'
 import FormGroup from '@/components/form-group'
 
 export default {
   name: 'UserEdit',
   components: {
-    AdminEdit,
+    Edit,
     FormGroup
   },
   data() {
     return {
+      user: {},
       breadcrumbs: [
         { text: 'Brukere', disabled: false, href: 'backend/users' }, 
         { text: 'Example user', disabled: true, href: 'backend/users' }
       ],
       formGroups: [
         { title: 'Kontaktinfo', text: 'Generel kontaktinformasjon', value: 'contactinfo' },
-        { title: 'Varslinger', text: 'Hvordan ønsker du at vi skal holde kontakt med deg? Generelle preferanser og innstillinger for varsling.', value: 'notifications' }
+        { title: 'Varslinger', text: 'Hvordan ønsker du at vi skal holde kontakt med deg? Generelle preferanser og innstillinger for varsling.', value: 'notifications' },
+        { title: 'Kontoadministrasjon', text: 'Høhynivå kontoadministrasjon. Vært svært forsiktig med å røre disse instillingene. Kan føre til at bruker stenges ute fra tjenesten', value: 'high-level-account-management' }
       ]
     }
   },
   methods: {
+    fetchUser(id) {
+      apiService(`users/${id}/`)
+        .then(user => {
+          this.user = user
+        })
+    },
     saveChanges() {
-      // TODO: save changes to API
+      apiService(`users/${this.$route.params.id}/`, 'PATCH', this.user )
+        .then(
+          // fetch user again for vue to update instance without reload
+          this.fetchUser(this.$route.params.id),
+          
+          // redirect user back to detail page
+          this.$router.push({
+            name: 'UserDetail',
+            params: this.$route.params.id
+          })
+        )
     }
-  }
+  },
+  created() {
+    this.fetchUser(this.$route.params.id)
+  },
 }
 </script>

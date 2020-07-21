@@ -1,5 +1,4 @@
 import axios from 'axios'
-import querystring from 'querystring'
 
 async function getJSON(response) {
   if (response.status === 204) return '' // no content, return empty string
@@ -15,7 +14,7 @@ function apiService(endpoint, method, data) {
       'Accept': 'application/json',
       'Content-Type': 'application/json;charset=UTF-8'
     },
-    data: data !== undefined ? querystring.stringify(data) : null,
+    data: data !== undefined ? JSON.stringify(data) : null,
   }
 
   return (

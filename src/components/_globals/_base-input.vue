@@ -1,18 +1,22 @@
 <template>
   <div :class="{ 'w-full': block }">
-    <label :for="id" :class="{ 'sr-only' : hiddenLabel }" class="block text-sm font-medium leading-5 text-gray-700 mb-1">{{ label }}</label>
+    <label :for="id" :class="{ 'sr-only' : hiddenLabel }" class="block mb-1 text-sm font-medium leading-5 text-gray-700">{{ label }}</label>
     <div class="relative rounded-md">
-      <div v-if="icon" class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+      <div v-if="icon" class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
         <BaseIcon :name="icon" />
       </div>
-      <input 
-        :id="id" 
-        class="form-input block text-sm leading-5" 
+      <input
+        @input="$emit('input', $event.target.value)" 
+        :id="id"
+        :value="value"
         :class="{ 
           'pl-10': icon, 
           'w-full': block
         }"
-        :placeholder="placeholder" />
+        :placeholder="placeholder"
+        :type="type"
+        class="form-input block text-sm leading-5" 
+      />
     </div>
   </div>
 </template>
@@ -41,6 +45,15 @@ export default {
     placeholder: {
       type: String,
       required: false,
+    },
+    value: {
+      type: String,
+      required: false
+    },
+    type: {
+      type: String,
+      required: false,
+      default: 'text'
     },
     // decides wether an input should have an icon by defined icon name
     icon: {

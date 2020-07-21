@@ -1,13 +1,13 @@
 <template>
   <AdminDetail 
-    :title='userFullName'
+    :title='user.full_name'
     :subtitle="user.email"
     :breadcrumbs="breadcrumbs"
     :wrapperData="wrapperData"
     :item="user"
   >
     <template #page-actions>
-      <BaseButton>Main action</BaseButton>
+      <BaseButton :to="`${$route.params.id}/edit/`">Rediger bruker</BaseButton>
     </template>
     <template #subscribed_to_newsletter="{ item }">
       <div v-if="item.subscribed_to_newsletter" class="flex items-center">
@@ -81,30 +81,15 @@ export default {
           ]
         },
       ],
-      item: {
-        full_name: 'Example user',
-        email: 'example@hotmail.com',
-        phone_number: 12345678,
-        full_address: 'Street 1, 0123 Oslo',
-        accept_marketing: true,
-        accept_personalization: false,
-        accept_third_party_personalization: true,
-        date_joined: '20. August 2019 15:32',
-        last_login: '21. August 2019 15:32',
-        accquisition_source: 'referal/newsletter/1'
-      }
     }
   },
   computed: {
     breadcrumbs() {
       return [
-        {text: 'Brukere', disabled: false, href: 'backend/users'}, 
-        {text: this.userFullName, disabled: true,}
+        {text: 'Brukere', disabled: false, href: '/backend/users'}, 
+        {text: this.user.full_name, disabled: true,}
       ]
-    },
-    userFullName() {
-      return this.user.first_name + ' ' + this.user.last_name
-    },
+    }
   },
   methods: {
     fetchUser(id) {

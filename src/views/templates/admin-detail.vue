@@ -1,7 +1,7 @@
 <template>
   <div>
     <AdminNav />
-    <div class="container px-8 py-12 mx-auto">
+    <div class="container px-8 pt-12 mx-auto">
       <AdminDetailHeader :title='title' :subtitle="subtitle" :breadcrumbs="breadcrumbs">
         <!-- to be able to attach a pill/icon/button at the end of the page title -->
         <!-- i dynamically create a slot and check if this is present -->
@@ -13,9 +13,9 @@
           <slot name="page-actions"></slot>
         </template>
       </AdminDetailHeader>
-      <div class="flex items-start w-full">
+      <div class="h-min-screen flex items-start w-full">
         <!-- the left part of the screen is important information about the detail instance -->
-        <div class="w-1/4 py-5 pr-5">
+        <div class="w-1/4 py-5 pr-5 border-r border-gray-300">
           <!-- in the parent component there is a defined a list which lables the data -->
           <!-- the loops bellow attaches each field to its label based on the fields pulled from api -->
           <div v-for="(data, index) in wrapperData" :key="index">
@@ -33,7 +33,7 @@
             </div>
           </div>
         </div>
-        <div class="w-3/4 h-full py-5 pl-5 border-l border-gray-300">
+        <div class="w-3/4 h-full py-5 pl-5">
           <p>Content</p>
           <slot name="overview-content">
             <!-- page content -->

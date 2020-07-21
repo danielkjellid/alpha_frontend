@@ -25,7 +25,7 @@ const routes = [
     component: UserDetail
   },
   {
-    path: '/backend/users/1/edit',
+    path: '/backend/users/:id/edit',
     name: 'UserEdit',
     component: UserEdit
   }
