@@ -1,7 +1,7 @@
 <template>
   <div>
     <AdminNav />
-    <div class="container px-8 pt-12 mx-auto">
+    <div class="container max-w-6xl px-8 pt-12 mx-auto">
       <AdminDetailHeader :title='title' :subtitle="subtitle" :breadcrumbs="breadcrumbs">
         <!-- to be able to attach a pill/icon/button at the end of the page title -->
         <!-- i dynamically create a slot and check if this is present -->

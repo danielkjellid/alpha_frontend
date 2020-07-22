@@ -2,7 +2,7 @@
   <div>
     <AdminNav />
     <AdminOverviewHeader :title="title" :subtitle="subtitle" />
-    <div class="container px-8 py-12 mx-auto">
+    <div class="container max-w-6xl px-8 pt-12 mx-auto">
       <div v-if="tabs" class="mb-8">
         <Tabs :tabs="tabs" />
       </div>
