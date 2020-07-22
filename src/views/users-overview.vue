@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { apiService } from '@/common/api.service'
 import AdminOverviewTemplate from '@/views/templates/admin-overview'
 
 export default {
@@ -28,13 +29,9 @@ export default {
   components: {
     AdminOverviewTemplate,
   },
-  computed: {
-    tableItems() {
-      return this.$store.state.users.usersList
-    },
-  },
   data() {
     return {
+      tableItems: [],
       tableHeaders: [
         { text: 'Id', value: 'id' },
         { text: 'Navn', value: 'name' },
@@ -46,8 +43,17 @@ export default {
       ],
     }
   },
+  methods: {
+    fetchUsers() {
+      apiService('users/')
+        .then(users => {
+          console.log(users)
+          this.tableItems = users
+        })
+    }
+  },
   created() {
-    this.$store.dispatch('users/fetchUsers')
+    this.fetchUsers()
   }
 }
 </script>

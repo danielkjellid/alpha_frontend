@@ -1,14 +1,8 @@
 import { apiService } from '@/common/api.service'
 
-export const state = {
-  usersList: [],
-}
+export const state = {}
 
-export const mutations = {
-  'FETCH_USERS' (state, users) {
-    state.usersList = users
-  }
-}
+export const mutations = {}
 
 export const actions = {
   init: ({ dispatch }) => {
@@ -20,12 +14,6 @@ export const actions = {
         localStorage.setItem('userPermissions', JSON.stringify(userPermissions))
       })
   },
-  fetchUsers: ({ commit }) => {
-    apiService('users/')
-      .then(users => {
-        commit('FETCH_USERS', users)
-      })
-  }
 }
 
 export const getters = {}
