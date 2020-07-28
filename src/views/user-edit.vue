@@ -36,7 +36,7 @@
             <div class="mt-5">
               <BaseInput
                 id="id_phone_number"
-                v-model.number="user.phone_number" 
+                v-model="user.phone_number" 
                 :value="user.phone_number"
                 label="Telefonnummer"
                 block
@@ -66,7 +66,7 @@
               <div class="flex items-center">
                 <BaseInput
                   id="id_zip_code"
-                  v-model.number="user.zip_code" 
+                  v-model="user.zip_code" 
                   :value="user.zip_code"
                   type="number"
                   label="Postnummer" 
