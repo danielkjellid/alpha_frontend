@@ -9,9 +9,13 @@ module.exports = {
           '50': '#f9fafb',
           ...colors.gray
         },
-        blue:{
+        blue: {
           '50': '#F7FAFC',
           ...colors.blue
+        },
+        red: {
+          '50': '#fdf2f2',
+          ...colors.red
         }
       }
     },

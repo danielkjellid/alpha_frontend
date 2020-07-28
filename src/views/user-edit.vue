@@ -10,6 +10,9 @@
       </template>
       <template #edit-content>
         <FormGroup :groups="formGroups" @save-changes="saveChanges">
+          <template #errors v-if="errorsLength > 0">
+            <BaseError></BaseError>
+          </template>
           <template #contactinfo>
             <div class="flex items-center">
               <BaseInput
@@ -19,13 +22,15 @@
                 :value="user.first_name"
                 block 
                 class="mr-2"
+                :error="errorMsg(errors.first_name)"
               />
               <BaseInput 
                 id="id_last_name"
                 v-model="user.last_name" 
                 :value="user.last_name"
                 label="Etternavn" 
-                block 
+                block
+                :error="errorMsg(errors.last_name)"
               />
             </div>
             <div class="mt-5">
@@ -34,7 +39,8 @@
                 v-model.number="user.phone_number" 
                 :value="user.phone_number"
                 label="Telefonnummer"
-                block 
+                block
+                :error="errorMsg(errors.phone_number)"
               />
             </div>
             <div class="mt-5">
@@ -43,7 +49,8 @@
                 v-model="user.email" 
                 :value="user.email"
                 label="E-post" 
-                block 
+                block
+                :error="errorMsg(errors.email)"
               />
             </div>
             <div class="flex items-center mt-5">
@@ -53,7 +60,8 @@
                 :value="user.street_address" 
                 label="Gateadresse" 
                 block 
-                class="mr-2" 
+                class="mr-2"
+                :error="errorMsg(errors.street_address)" 
               />
               <div class="flex items-center">
                 <BaseInput
@@ -63,14 +71,16 @@
                   type="number"
                   label="Postnummer" 
                   block 
-                  class="mr-2" 
+                  class="mr-2"
+                  :error="errorMsg(errors.zip_code)" 
                 />
                 <BaseInput
                   id="id_zip_place"
                   v-model="user.zip_place"
                   :value="user.zip_place"
                   label="Poststed" 
-                  block 
+                  block
+                  :error="errorMsg(errors.zip_place)"
                 />
               </div>
             </div>
@@ -148,6 +158,7 @@ export default {
   data() {
     return {
       user: {},
+      errors: {},
       breadcrumbs: [
         { text: 'Brukere', disabled: false, href: 'backend/users' }, 
         { text: 'Example user', disabled: true, href: 'backend/users' }
@@ -159,6 +170,11 @@ export default {
       ]
     }
   },
+  computed: {
+    errorsLength() {
+      return Object.keys(this.errors).length
+    }
+  },
   methods: {
     fetchUser(id) {
       apiService(`users/${id}/`)
@@ -168,16 +184,25 @@ export default {
     },
     saveChanges() {
       apiService(`users/${this.$route.params.id}/`, 'PATCH', this.user )
-        .then(
-          // fetch user again for vue to update instance without reload
-          this.fetchUser(this.$route.params.id),
-          
-          // redirect user back to detail page
-          this.$router.push({
-            name: 'UserDetail',
-            params: this.$route.params.id
-          })
-        )
+        .then(response => {
+          if (response) {
+              // fetch user again for vue to update instance without reload
+              this.fetchUser(this.$route.params.id),
+
+              // redirect user back to detail page
+              this.$router.push({
+                name: 'UserDetail',
+                params: this.$route.params.id
+              })
+          }
+        })
+        .catch(error => {
+          let errorMessage = JSON.parse(error.message)
+          this.errors = errorMessage
+        })
+    },
+    errorMsg(message) {
+      if (message !== undefined) return message.toString()
     }
   },
   created() {

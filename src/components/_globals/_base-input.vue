@@ -11,13 +11,18 @@
         :value="value"
         :class="{ 
           'pl-10': icon, 
-          'w-full': block
+          'w-full': block,
+          'pr-10 border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red': error
         }"
         :placeholder="placeholder"
         :type="type"
         class="form-input block text-sm leading-5" 
       />
+      <div v-if="error" class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+        <BaseIcon name="exclemation-circle" solid fill="text-red-500" />
+      </div>
     </div>
+    <p v-if="error" class="absolute text-sm text-red-600">{{ error }}</p>
   </div>
 </template>
 
@@ -66,6 +71,10 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    error: {
+      type: [Array, String],
+      required: false
     }
   }
 }

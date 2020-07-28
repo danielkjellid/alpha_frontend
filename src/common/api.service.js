@@ -21,7 +21,7 @@ function apiService(endpoint, method, data) {
     axios(options)
       .then(getJSON)
       .catch(error => {
-        throw new Error(`API ${error}`)
+        throw new Error(JSON.stringify(error.response.data))
       })
   )
 }

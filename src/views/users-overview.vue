@@ -47,7 +47,6 @@ export default {
     fetchUsers() {
       apiService('users/')
         .then(users => {
-          console.log(users)
           this.tableItems = users
         })
     }
