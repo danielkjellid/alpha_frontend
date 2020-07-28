@@ -7,7 +7,7 @@
     :item="user"
   >
     <template #page-actions>
-      <BaseButton :to="'edit/'">Rediger bruker</BaseButton>
+      <BaseButton :to="`/backend/users/${$route.params.id}/edit/`">Rediger bruker</BaseButton>
     </template>
     <template #subscribed_to_newsletter="{ item }">
       <div v-if="item.subscribed_to_newsletter" class="flex items-center">
