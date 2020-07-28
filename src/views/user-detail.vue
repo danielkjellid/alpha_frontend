@@ -1,13 +1,13 @@
 <template>
   <AdminDetail 
-    :title='user.full_name'
-    :subtitle="user.email"
+    :title='userFullName'
+    :subtitle="userEmail"
     :breadcrumbs="breadcrumbs"
     :wrapperData="wrapperData"
     :item="user"
   >
     <template #page-actions>
-      <BaseButton :to="`${$route.params.id}/edit/`">Rediger bruker</BaseButton>
+      <BaseButton :to="'edit/'">Rediger bruker</BaseButton>
     </template>
     <template #subscribed_to_newsletter="{ item }">
       <div v-if="item.subscribed_to_newsletter" class="flex items-center">
@@ -84,6 +84,12 @@ export default {
     }
   },
   computed: {
+    userFullName() {
+      return this.user.full_name
+    },
+    userEmail() {
+      return this.user.email
+    },
     breadcrumbs() {
       return [
         {text: 'Brukere', disabled: false, href: '/backend/users'}, 

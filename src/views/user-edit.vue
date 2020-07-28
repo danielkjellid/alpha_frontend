@@ -159,10 +159,6 @@ export default {
     return {
       user: {},
       errors: {},
-      breadcrumbs: [
-        { text: 'Brukere', disabled: false, href: 'backend/users' }, 
-        { text: 'Example user', disabled: true, href: 'backend/users' }
-      ],
       formGroups: [
         { title: 'Kontaktinfo', text: 'Generel kontaktinformasjon', value: 'contactinfo' },
         { title: 'Varslinger', text: 'Hvordan ønsker du at vi skal holde kontakt med deg? Generelle preferanser og innstillinger for varsling.', value: 'notifications' },
@@ -171,6 +167,13 @@ export default {
     }
   },
   computed: {
+    breadcrumbs() {
+      return [
+        { text: 'Brukere', disabled: false, href: '/backend/users' }, 
+        { text: this.user.full_name, disabled: false, href: `/backend/users/${this.$route.params.id}/` },
+        { text: 'Rediger', disabled: true },
+      ]
+    },
     errorsLength() {
       return Object.keys(this.errors).length
     }

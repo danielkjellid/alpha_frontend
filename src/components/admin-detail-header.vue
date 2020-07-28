@@ -23,7 +23,6 @@ export default {
   name: 'AdminDetailHeader',
   props: {
     title: {
-      type: String,
       required: true
     },
     subtitle: {
