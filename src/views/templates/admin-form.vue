@@ -11,7 +11,7 @@
         </template>
       </AdminDetailHeader>
       <div class="w-full">
-        <slot name="edit-content"></slot>
+        <slot name="content"></slot>
       </div>
     </div>
   </div>

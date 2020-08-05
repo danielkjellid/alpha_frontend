@@ -28,8 +28,7 @@ const routes = [
     path: '/backend/users/:id/edit',
     name: 'UserEdit',
     component: UserEdit
-  }
-
+  },
 ]
 
 const router = new VueRouter({

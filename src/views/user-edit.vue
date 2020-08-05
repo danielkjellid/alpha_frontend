@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Edit
+    <AdminForm
       :title='`Rediger "${user.full_name}"`'
       :subtitle="user.email"
       :breadcrumbs="breadcrumbs"
@@ -8,7 +8,7 @@
       <template #page-actions>
         <BaseButton>Main action</BaseButton>
       </template>
-      <template #edit-content>
+      <template #content>
         <FormGroup :groups="formGroups" @save-changes="saveChanges">
           <template #errors v-if="errorsLength > 0">
             <BaseError></BaseError>
@@ -139,20 +139,20 @@
           </template>
         </FormGroup>
       </template>
-    </Edit>
+    </AdminForm>
   </div>
 </template>
 
 <script>
 import { apiService } from '@/common/api.service'
 
-import Edit from '@/views/templates/edit'
+import AdminForm from '@/views/templates/admin-form'
 import FormGroup from '@/components/form-group'
 
 export default {
   name: 'UserEdit',
   components: {
-    Edit,
+    AdminForm,
     FormGroup
   },
   data() {
