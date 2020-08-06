@@ -6,8 +6,7 @@
           <template #table-actions>
             <BaseInput label="Search" icon="search" placeholder="Søk etter brukere..." block hiddenLabel />
             <div class="flex items-center flex-shrink-0 ml-3">
-              <BaseButton light class="mr-2">Eksporter</BaseButton>
-              <BaseButton>Ny bruker</BaseButton>
+              <BaseButton v-if="$perm('has_users_export') " light>Eksporter</BaseButton>
             </div>
           </template>
           <template #is_active="{ item }">
@@ -50,6 +49,10 @@ export default {
           this.tableItems = users
         })
     }
+  },
+  async mounted() {
+    //await this.$store.users.dispatch('init')
+    await this.$store.dispatch('users/fetchUserPermissions')
   },
   created() {
     this.fetchUsers()

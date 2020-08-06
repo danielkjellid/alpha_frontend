@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from '@/views/home'
-import UsersOverview from '@/views/users-overview'
+// import UsersOverview from '@/views/users-overview'
 import UserDetail from '@/views/user-detail'
 import UserEdit from '@/views/user-edit'
 
@@ -17,7 +17,7 @@ const routes = [
   {
     path: '/backend/users',
     name: 'UsersOverview',
-    component: UsersOverview,
+    component: () => import('@/views/users-overview.vue'),
   },
   {
     path: '/backend/users/:id',

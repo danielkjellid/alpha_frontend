@@ -202,6 +202,7 @@ export default {
         .catch(error => {
           let errorMessage = JSON.parse(error.message)
           this.errors = errorMessage
+          window.scrollTo(0, 0)
         })
     },
     errorMsg(message) {
