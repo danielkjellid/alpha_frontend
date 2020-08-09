@@ -2,13 +2,13 @@ export default {
   methods: {
     $perm(permission) {
 
-      let userPermissions = JSON.parse(this.$store.state.users.userPermissions)
+      let currentUser = this.$store.state.users.currentUser
 
-      if (userPermissions !== null) {
+      if (currentUser) {
         if (
-          userPermissions.is_superuser 
-          || userPermissions.permissions.includes(permission) 
-          || userPermissions.group_permissions.includes(permission)
+          currentUser.is_superuser 
+          || currentUser.permissions.includes(permission) 
+          || currentUser.group_permissions.includes(permission)
           ) {
           return true
         } else {
