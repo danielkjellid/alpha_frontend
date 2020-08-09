@@ -34,9 +34,8 @@
           </div>
         </div>
         <div class="w-3/4 h-full py-5 pl-5">
-          <p>Content</p>
           <slot name="overview-content">
-            <!-- page content -->
+            Content
           </slot>
         </div>
       </div>

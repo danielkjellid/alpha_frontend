@@ -50,10 +50,6 @@ export default {
         })
     }
   },
-  async mounted() {
-    //await this.$store.users.dispatch('init')
-    await this.$store.dispatch('users/fetchUserPermissions')
-  },
   created() {
     this.fetchUsers()
   }

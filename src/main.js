@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './app.vue'
-import router from '@/router/routes'
+import router from '@/router'
 import store from '@/state/store'
 import axios from 'axios'
 

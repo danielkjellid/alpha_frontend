@@ -39,17 +39,22 @@
         Godtar ikke
       </div>
     </template>
+    <template #overview-content>
+      <Tabs :tabs="[{text: 'Ordre', to: 'test'}, {text: 'Handlekurv', to: 'test'}]"/>
+    </template>
   </AdminDetail>
 </template>
 
 <script>
 import { apiService } from '@/common/api.service'
 import AdminDetail from '@/views/templates/admin-detail'
+import Tabs from '@/components/tabs'
 
 export default {
   name: 'UserDetail',
   components: {
-    AdminDetail
+    AdminDetail,
+    Tabs
   },
   data() {
     return {

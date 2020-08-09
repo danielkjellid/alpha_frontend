@@ -1,14 +1,6 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Home from '@/views/home.vue'
 
-import Home from '@/views/home'
-// import UsersOverview from '@/views/users-overview'
-import UserDetail from '@/views/user-detail'
-import UserEdit from '@/views/user-edit'
-
-Vue.use(VueRouter)
-
-const routes = [
+export default [
   {
     path: '/',
     name: 'Home',
@@ -18,22 +10,18 @@ const routes = [
     path: '/backend/users',
     name: 'UsersOverview',
     component: () => import('@/views/users-overview.vue'),
+    meta: {
+      authRequired: true,
+    }
   },
   {
     path: '/backend/users/:id',
     name: 'UserDetail',
-    component: UserDetail
+    component: () => import('@/views/user-detail.vue'),
   },
   {
     path: '/backend/users/:id/edit',
     name: 'UserEdit',
-    component: UserEdit
+    component: () => import('@/views/user-edit.vue'),
   },
 ]
-
-const router = new VueRouter({
-  mode: 'history',
-  routes
-})
-
-export default router
