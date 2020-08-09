@@ -32,7 +32,10 @@ export const getters = {
   getCurrentUser: (state) => {
     return state.currentUser
   },
-  getAuthenticated: (state) => {
+  getIsAuthenticated: (state) => {
     return state.currentUser.is_authenticated
+  },
+  getIsStaff: (state) => {
+    return state.currentUser.is_staff
   }
 }

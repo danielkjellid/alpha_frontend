@@ -24,29 +24,55 @@ router.beforeEach(async (routeTo, routeFrom, next) => {
   // check if auth is required on this route
   // (including nested routes).
   const authRequired = routeTo.matched.some((route) => route.meta.authRequired)
+  const staffRequired = routeTo.matched.some((route) => route.meta.staffRequired)
+  
   const currentUser = store.state.users.currentUser
 
   if (!authRequired) return next()
 
-  // if the authRequired flag is true in route meta
   if (authRequired) {
-    // if the currentUser state is not null
-    if (currentUser && currentUser.is_authenticated) {
+    if (currentUser && currentUser.is_authenticated) { 
       next()
     } else {
-      // run the fetchCurrentUser action in store
-      // this is in case of the route being accessed before the init action is run, and the currentUser state is null
-      await store.dispatch('users/fetchCurrentUser').then(() => {
-        // when the action is run, get the object trough the getCurrentUser getter
-        const user = store.getters['users/getCurrentUser']
+        // run the fetchCurrentUser action in store
+        // this is in case of the route being accessed before the init action is run, and the currentUser state is null
+        await store.dispatch('users/fetchCurrentUser')
+          .then(() => {
+            // when the action is run, get the object through the getCurrentUser getter
+            const user = store.getters['users/getCurrentUser']
 
-        // if the user is fetched from the api, and still not authenticated, redirect to login
-        if (!user.is_authenticated) {
-          window.location.href = '/bruker/logg-inn/'
-        } else {
-          next()
-        }
-      })
+            // if the user is fetched from the api, and still not authenticated, redirect to login
+            if (!user.is_authenticated) {
+              window.location.href = '/bruker/logg-inn/'
+            } else {
+              next()
+            }
+          })
+    }
+  }
+
+  if (staffRequired) {
+    if (currentUser && currentUser.is_authenticated) {
+      if (currentUser.is_staff) {
+        next()
+      } else {
+        next({ path: '/404' })
+      }
+    } else {
+      await store.dispatch('users/fetchCurrentUser')
+        .then(() => {
+          // when the action is run, get the object through the getCurrentUser getter
+          const user = store.getters['users/getCurrentUser']
+
+          // if the user is fetched from the api, and still not authenticated, redirect to login
+          if (!user.is_authenticated) {
+            window.location.href = '/bruker/logg-inn/'
+          } else if (!user.is_staff) {
+            next({ path: '/404' })
+          } else {
+            next()
+          }
+        })
     }
   }
 })
