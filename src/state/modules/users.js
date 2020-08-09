@@ -15,18 +15,24 @@ export const actions = {
     dispatch('fetchCurrentUser')
   },
   fetchCurrentUser: ({ commit }) => {
-    apiService('user/')
+    return new Promise((resolve, reject) => {
+      apiService('user/')
       .then(user => {
+        console.log('fired')
         commit('SET_CURRENT_USER', user)
+        resolve()
+      }).catch(() => {
+        reject()
       })
-      .catch(() => {
-        commit('SET_CURRENT_USER', null)
-      })
+    })
   },
 }
 
 export const getters = {
+  getCurrentUser: (state) => {
+    return state.currentUser
+  },
   getAuthenticated: (state) => {
     return state.currentUser.is_authenticated
-  },
+  }
 }

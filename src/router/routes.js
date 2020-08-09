@@ -10,9 +10,7 @@ export default [
     path: '/backend/users',
     name: 'UsersOverview',
     component: () => import('@/views/users-overview.vue'),
-    meta: {
-      authRequired: true,
-    }
+    meta: { authRequired: true }
   },
   {
     path: '/backend/users/:id',

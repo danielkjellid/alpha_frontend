@@ -47,6 +47,7 @@
         </div>
       </div>
     </transition>
+    <router-link to="/backend/users">Users</router-link>
   </div>
 </template>
 
