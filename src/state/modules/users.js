@@ -18,7 +18,6 @@ export const actions = {
     return new Promise((resolve, reject) => {
       apiService('user/')
       .then(user => {
-        console.log('fired')
         commit('SET_CURRENT_USER', user)
         resolve()
       }).catch(() => {

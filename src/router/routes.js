@@ -15,16 +15,27 @@ export default [
     path: '/backend/users',
     name: 'UsersOverview',
     component: () => import('@/views/users-overview.vue'),
-    meta: { authRequired: true, staffRequired: true }
+    meta: { 
+      authRequired: true, 
+      staffRequired: true 
+    }
   },
   {
     path: '/backend/users/:id',
     name: 'UserDetail',
     component: () => import('@/views/user-detail.vue'),
+    meta: { 
+      authRequired: true, 
+      staffRequired: true 
+    }
   },
   {
     path: '/backend/users/:id/edit',
     name: 'UserEdit',
     component: () => import('@/views/user-edit.vue'),
+    meta: { 
+      authRequired: true, 
+      staffRequired: true 
+    }
   },
 ]

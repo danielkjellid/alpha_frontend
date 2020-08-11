@@ -6,7 +6,12 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  page() {
+    return {
+      title: 'Flishuset',
+    }
+  },
 }
 </script>
 

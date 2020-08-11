@@ -25,6 +25,17 @@ import AdminOverviewTemplate from '@/views/templates/admin-overview'
 
 export default {
   name: 'UsersOverview',
+  page() {
+    return {
+      title: 'Backend: Users',
+      meta: [
+        {
+          name: 'description',
+          content: 'An overview of registered users.'
+        }
+      ]
+    }
+  },
   components: {
     AdminOverviewTemplate,
   },

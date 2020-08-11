@@ -1,9 +1,13 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import VueRouter from 'vue-router' // https://github.com/declandewet/vue-meta
+import VueMeta from 'vue-meta'
 import routes from './routes'
 import store from '@/state/store'
 
 Vue.use(VueRouter)
+Vue.use(VueMeta, {
+  keyName: 'page'
+})
 
 const router = new VueRouter({
   routes,

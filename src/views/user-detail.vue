@@ -52,6 +52,17 @@ import Tabs from '@/components/tabs'
 
 export default {
   name: 'UserDetail',
+  page() {
+    return {
+      title: `Backend: ${this.user.full_name}`,
+      meta: [
+        {
+          name: 'description',
+          content: `The backend page for user ${this.user.full_name}.`
+        }
+      ]
+    }
+  },
   components: {
     AdminDetail,
     Tabs

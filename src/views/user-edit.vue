@@ -151,6 +151,17 @@ import FormGroup from '@/components/form-group'
 
 export default {
   name: 'UserEdit',
+  page() {
+    return {
+      title: 'Backend: User administration',
+      meta: [
+        {
+          name: 'description',
+          content: `Edit user ${this.user.full_name}.`
+        }
+      ]
+    }
+  },
   components: {
     AdminForm,
     FormGroup
