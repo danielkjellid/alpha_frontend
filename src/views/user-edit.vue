@@ -5,9 +5,6 @@
       :subtitle="user.email"
       :breadcrumbs="breadcrumbs"
     >
-      <template #page-actions>
-        <BaseButton>Main action</BaseButton>
-      </template>
       <template #content>
         <FormGroup :groups="formGroups" @save-changes="saveChanges">
           <template #errors v-if="errorsLength > 0">

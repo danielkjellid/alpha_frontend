@@ -6,9 +6,6 @@
         <template v-if="$slots['header-append']" #header-append>
           <slot name="header-append"></slot>
         </template>
-        <template #page-actions>
-          <slot name="page-actions"></slot>
-        </template>
       </AdminDetailHeader>
       <div class="w-full">
         <slot name="content"></slot>
