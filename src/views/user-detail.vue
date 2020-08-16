@@ -47,8 +47,8 @@
 
 <script>
 import { apiService } from '@/common/api.service'
-import AdminDetail from '@/views/templates/admin-detail'
-import Tabs from '@/components/tabs'
+import AdminDetail from '@/views/templates/admin-detail.vue'
+import Tabs from '@/components/tabs.vue'
 
 export default {
   name: 'UserDetail',

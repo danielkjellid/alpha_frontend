@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import AdminNav from '@/components/admin-nav'
-import AdminOverviewHeader from '@/components/admin-overview-header'
+import AdminNav from '@/components/admin-nav.vue'
+import AdminOverviewHeader from '@/components/admin-overview-header.vue'
 import Tabs from '@/components/tabs'
 
 export default {

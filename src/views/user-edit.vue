@@ -143,8 +143,8 @@
 <script>
 import { apiService } from '@/common/api.service'
 
-import AdminForm from '@/views/templates/admin-form'
-import FormGroup from '@/components/form-group'
+import AdminForm from '@/views/templates/admin-form.vue'
+import FormGroup from '@/components/form-group.vue'
 
 export default {
   name: 'UserEdit',

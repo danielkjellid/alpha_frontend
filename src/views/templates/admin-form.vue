@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import AdminNav from '@/components/admin-nav'
-import AdminDetailHeader from '@/components/admin-detail-header'
+import AdminNav from '@/components/admin-nav.vue'
+import AdminDetailHeader from '@/components/admin-detail-header.vue'
 
 export default {
   name: 'AdminEdit',

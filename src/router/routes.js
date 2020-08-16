@@ -12,6 +12,15 @@ export default [
     component: Home
   },
   {
+    path: '/backend/inventory',
+    name: 'InventoryOverview',
+    component: () => import('@/views/inventory-overview.vue'),
+    meta: {
+      authRequired: true,
+      staffRequired: true
+    }
+  },
+  {
     path: '/backend/users',
     name: 'UsersOverview',
     component: () => import('@/views/users-overview.vue'),

@@ -1,17 +1,15 @@
 <template>
   <div>
-    <AdminOverviewTemplate title="Brukere" subtitle="En oversikt over alle registrerte brukere">
+    <AdminOverviewTemplate title="Inventar" subtitle="En oversikt over kategorier og inventar" :tabs="tabs">
       <template #overview-content>
         <BaseTable showTableActions :headers="tableHeaders" :items="tableItems" detailBase="/backend/users/">
           <template #table-actions>
             <BaseInput label="Search" icon="search" placeholder="Søk etter brukere..." block hiddenLabel />
             <div class="flex items-center flex-shrink-0 ml-3">
-              <BaseButton v-if="$perm('has_users_export')" light>Eksporter</BaseButton>
+              <!-- TODO: figure out how to dynamixcally switch between buttons and tables -->
+              <!-- <BaseButton>Opprett kategori</BaseButton> -->
+              <BaseButton v-if="$perm('has_users_export') " light>Eksporter</BaseButton>
             </div>
-          </template>
-          <template #is_active="{ item }">
-            <BaseIcon v-if="item.is_active" name="check-circle" solid fill="text-green-400" class="mx-auto" />
-            <BaseIcon v-else name="x-circle" solid fill="text-red-400" class="mx-auto" />
           </template>
         </BaseTable>
       </template>
@@ -20,18 +18,18 @@
 </template>
 
 <script>
-import { apiService } from '@/common/api.service'
+//import { apiService } from '@/common/api.service'
 import AdminOverviewTemplate from '@/views/templates/admin-overview.vue'
 
 export default {
-  name: 'UsersOverview',
+  name: 'InventoryOverview',
   page() {
     return {
-      title: 'Backend: Users',
+      title: 'Backend: Inventory',
       meta: [
         {
           name: 'description',
-          content: 'An overview of registered users.'
+          content: 'An overview of inventory.'
         }
       ]
     }
@@ -41,28 +39,29 @@ export default {
   },
   data() {
     return {
+      tabs: [{ text: 'Kategorier', to: '#' }, { text: 'Produkter', to: '#' }, {text: 'Kjøkken', to: '#'}],
       tableItems: [],
       tableHeaders: [
         { text: 'Id', value: 'id' },
         { text: 'Navn', value: 'name' },
-        { text: 'E-post', value: 'email' },
-        { text: 'Adresse', value: 'address' },
-        { text: 'Registrert', value: 'dateJoined' },
+        { text: 'Forelder', value: 'parent' },
+        { text: 'Rekkefølge', value: 'order' },
+        { text: 'Bredde', value: 'width' },
         { text: 'Aktiv', value: 'active', align: 'center' },
         { text: '', value: 'actions' },
       ],
     }
   },
-  methods: {
-    fetchUsers() {
-      apiService('users/')
-        .then(users => {
-          this.tableItems = users
-        })
-    }
-  },
-  created() {
-    this.fetchUsers()
-  }
+  // methods: {
+  //   fetchUsers() {
+  //     apiService('users/')
+  //       .then(users => {
+  //         this.tableItems = users
+  //       })
+  //   }
+  // },
+  // created() {
+  //   this.fetchUsers()
+  // }
 }
 </script>
