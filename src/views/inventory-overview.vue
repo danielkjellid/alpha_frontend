@@ -39,7 +39,7 @@ export default {
   },
   data() {
     return {
-      tabs: [{ text: 'Kategorier', to: '#' }, { text: 'Produkter', to: '#' }, {text: 'Kjøkken', to: '#'}],
+      tabs: [{ text: 'Produkter', to: '/backend/inventory/' }, { text: 'Kategorier', to: '#' }, {text: 'Kjøkken', to: '#'}],
       tableItems: [],
       tableHeaders: [
         { text: 'Id', value: 'id' },

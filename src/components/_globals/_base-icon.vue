@@ -1,8 +1,8 @@
 <template>
   <div
     v-html="renderRequirePath"
-    class="h-5 w-5 fill-current"
-    :class="dark ? 'text-gray-900' : fill"
+    class="w-5 h-5 fill-current"
+    :class="[dark ? 'text-gray-900' : fill, height, width]"
   />
 </template>
 
@@ -25,13 +25,25 @@ export default {
     fill: {
       type: String,
       required: false,
-      default: 'text-gray-500'
+      default: 'fill-current'
     },
     // decides if the icon should be outlined or solid
     solid: {
       type: Boolean,
       required: false,
       default: false,
+    },
+    // decides the height of the icon
+    height: {
+      type: String,
+      required: false,
+      default: 'h-5'
+    },
+    // decides the width of the icon
+    width: {
+      type: String,
+      required: false,
+      default: 'w-5'
     }
   },
   computed: {

@@ -1,13 +1,12 @@
 <template>
-  <div class="bg-gray-800">
+  <div class="bg-red-800">
     <BaseNavbar />
-    <router-link to="/2">Home 2</router-link>
+    <router-link to="/">Home 1</router-link>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Home',
 
 }
 </script>

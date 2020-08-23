@@ -38,7 +38,7 @@
             </td>
             <!-- icon to go to the detail of the data presented -->
             <td v-if="hasActions" class="px-5 py-5 text-right whitespace-no-wrap border-b border-gray-300">
-              <BaseButton icon :to="typeof item.id !== undefined ? `${detailBase}${item.id}` : `${detailbase}${item.slug}`">
+              <BaseButton icon light :to="typeof item.id !== undefined ? `${detailBase}${item.id}` : `${detailbase}${item.slug}`">
                 <BaseIcon name="eye" />
               </BaseButton>
             </td>

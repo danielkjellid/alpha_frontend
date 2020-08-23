@@ -12,6 +12,14 @@ export default [
     component: Home
   },
   {
+    path: '/2',
+    name: 'Home2',
+    component: () => import('@/views/home2.vue'),
+    meta: {
+      navbarDark: true,
+    }
+  },
+  {
     path: '/backend/inventory',
     name: 'InventoryOverview',
     component: () => import('@/views/inventory-overview.vue'),
