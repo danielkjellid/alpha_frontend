@@ -1,5 +1,7 @@
 <template>
   <nav class="relative">
+    <!-- color of navbar content is rended according to route meta -->
+    <!-- this is because we want to render a transparent bar and white text over pages where there is an image on top -->
     <div class="relative z-10 shadow" :class="renderNavbarDark ? 'bg-white' : 'bg-transparent'">
       <div class="sm:py-8 sm:px-8 px-5 py-5">
         <div class="flex items-center justify-between">
@@ -9,7 +11,9 @@
                 <path d="M0 154.24V0h308.48v86.4H86.4v23.36h109.63l2.693 2.744v83.523l-2.744 2.694H86.4v109.76H0zm112.64 111.04v-43.2h83.2v86.4h-83.2zm109.44 0v-43.2h86.4v86.4h-86.4zm0-111.04v-41.6h86.4v83.2h-86.4z" />
               </svg>
             </div>
+            <!-- navigation from lg breakpoint and above -->
             <div class="lg:block hidden ml-4">
+              <!-- button to toggle the flyout meunu -->
               <BaseButton @click="flyoutMenuActive = !flyoutMenuActive" plain :class="renderNavbarLinkClasses" class="flex items-center">
                 Katalog
                 <transition
@@ -31,9 +35,10 @@
             </div>
           </div>
           <div class="flex items-center">
+            <!-- user menu, if not authenticated the button will redirect you to the login page -->
             <div v-click-outside="hideUserMenu" class="relative mr-3">
               <div class="flex items-center">
-                <BaseButton @click="userMenuActive = !userMenuActive" icon plain :light="!renderNavbarDark">
+                <BaseButton @click="openUserMenuOrRedirect" icon plain :light="!renderNavbarDark">
                   <BaseIcon name="user" height="h-6" width="w-6"/>
                 </BaseButton>
               </div>
@@ -65,10 +70,12 @@
                 </div>
               </transition>
             </div>
+            <!-- link and icon to cart -->
             <BaseButton to="/" icon plain :light="!renderNavbarDark" class="md:mr-0 flex items-center mr-3">
-              <BaseIcon name="cart" height="h-6" width="w-6"/>
+              <BaseIcon name="shopping-bag" height="h-6" width="w-6"/>
                <span class="ml-1 text-sm font-medium" :class="renderNavbarDark ? 'text-gray-600' : 'text-gray-400'">0</span>
             </BaseButton>
+            <!-- menu button for md screens and bellow -->
             <BaseButton @click="mobileMenuActive = true" icon plain :light="!renderNavbarDark" class="lg:hidden">
               <BaseIcon name="menu" height="h-6" width="w-6"/>
             </BaseButton>
@@ -76,6 +83,7 @@
         </div>
       </div>
     </div>
+    <!-- flyoutmenu component -->
     <transition
       enter-class="-translate-y-1 opacity-0"
       enter-active-class="transition duration-200 ease-out"
@@ -83,9 +91,11 @@
       leave-class="translate-y-0 opacity-100"
       leave-active-class="transition duration-150 ease-in"
       leave-to-class="-translate-y-1 opacity-0"
-    >
-      <FlyoutMenu v-show="flyoutMenuActive" :menuItems="menuItems" />
+    > 
+      <!-- closing menu does not work -->
+      <FlyoutMenu v-show="flyoutMenuActive" @close-menu="flyoutMenuActive = false" :menuItems="menuItems" />
     </transition>
+    <!-- mobile menu component -->
     <transition name="slide-in">
       <MobileMenu v-show="mobileMenuActive" @close-menu="mobileMenuActive = false" :menuItems="menuItems" />
     </transition>
@@ -103,21 +113,29 @@ export default {
     FlyoutMenu
   },
   computed: {
+    // render the navbar background and color of content accordingly based on route meta
     renderNavbarDark() {
       if (this.$route.meta.navbarDark !== undefined) return true
     
       return false
     },
+    // render classes of links according to the route meta
     renderNavbarLinkClasses() {
       if (this.renderNavbarDark) return 'hover:text-gray-600 leading-8 text-gray-900 transition duration-150 ease-in-out'
 
       return 'hover:text-white leading-8 text-gray-300 transition duration-150 ease-in-out'
     },
+    // set active links according to route meta
     renderNavbarLinkActiveClasses() {
       if (this.renderNavbarDark) return 'text-gray-900'
 
       return 'active-pale-link'
-    }
+    },
+    // property that holds if the user is authenticated
+    // used to show sub user menu or redirect user to login page
+    userIsAuthenticated() {
+      return this.$store.getters['users/getIsAuthenticated']
+    },
   },
   data() {
     return {
@@ -189,6 +207,16 @@ export default {
   methods: {
     hideUserMenu() {
       this.userMenuActive = false
+    },
+    // check if the user is autheticated and open the menu or redirect to login accordingly
+    openUserMenuOrRedirect() {
+      const currentUser = this.$store.getters['users/getIsAuthenticated']
+
+      if (currentUser) {
+        this.userMenuActive = !this.userMenuActive
+      } else {
+        window.location.href = '/bruker/logg-inn/'
+      }
     }
   },
 }

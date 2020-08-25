@@ -29,12 +29,18 @@ export const actions = {
 
 export const getters = {
   getCurrentUser: (state) => {
-    return state.currentUser
+    if (state.currentUser) return state.currentUser
+
+    return null
   },
   getIsAuthenticated: (state) => {
-    return state.currentUser.is_authenticated
+    if (state.currentUser) return state.currentUser.is_authenticated
+
+    return false
   },
   getIsStaff: (state) => {
-    return state.currentUser.is_staff
+    if (state.currentUser) return state.currentUser.is_staff
+
+    return false
   }
 }
