@@ -50,15 +50,15 @@
                 leave-active-class="transition duration-75 ease-in"
                 leave-to-class="transform scale-95 opacity-0"
               >
-                <div v-show="userMenuActive" class="absolute right-0 mt-2 origin-top-right bg-white rounded shadow">
+                <div v-show="userMenuActive" class="absolute right-0 w-56 min-w-full mt-2 origin-top-right bg-white rounded shadow">
                   <div class="w-full px-5 py-5 border-b border-gray-300">
                     <div class="flex items-center">
                       <div class="flex items-center justify-center w-10 h-10 border border-gray-400 rounded-full">
                         <BaseIcon name="user" fill="text-gray-500" />
                       </div>
                       <div class="ml-3">
-                        <div class="text-sm font-medium leading-6 text-gray-800">Daniel Kjellid</div>
-                        <div class="text-xs font-medium leading-5 text-gray-600">daniel@example.com</div>
+                        <div class="text-sm font-medium leading-6 text-gray-800">{{ user.full_name }}</div>
+                        <div class="text-xs font-medium leading-5 text-gray-600">{{ user.email }}</div>
                       </div>
                     </div>
                   </div>
@@ -130,6 +130,10 @@ export default {
       if (this.renderNavbarDark) return 'text-gray-900'
 
       return 'active-pale-link'
+    },
+    // get current user logged into application
+    user() {
+      return this.$store.getters['users/getCurrentUser']
     },
     // property that holds if the user is authenticated
     // used to show sub user menu or redirect user to login page
