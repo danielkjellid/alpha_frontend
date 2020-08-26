@@ -1,5 +1,5 @@
 <template>
-  <nav class="relative">
+  <nav class="relative" v-click-outside="hideFlyoutMenu">
     <!-- color of navbar content is rended according to route meta -->
     <!-- this is because we want to render a transparent bar and white text over pages where there is an image on top -->
     <div class="relative z-10 shadow" :class="renderNavbarDark ? 'bg-white' : 'bg-transparent'">
@@ -205,6 +205,9 @@ export default {
     }
   },
   methods: {
+    hideFlyoutMenu() {
+      if (this.flyoutMenuActive) this.flyoutMenuActive = false
+    },
     hideUserMenu() {
       this.userMenuActive = false
     },
