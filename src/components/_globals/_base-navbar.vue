@@ -131,6 +131,11 @@ export default {
 
       return 'active-pale-link'
     },
+    // set the menu items in the catalog dropdown
+    // fetched from the API
+    menuItems() {
+      return this.$store.getters['inventory/getNavbarCategories']
+    },
     // get current user logged into application
     user() {
       return this.$store.getters['users/getCurrentUser']
@@ -146,7 +151,7 @@ export default {
       mobileMenuActive: false,
       flyoutMenuActive: false,
       userMenuActive: false,
-      menuItems: [
+      menuItemss: [
         { 
           title: 'Fliser',
           items: [

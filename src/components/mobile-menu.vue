@@ -31,17 +31,17 @@
               <!-- display dropdown menu accoring to state -->
               <div v-show="catalogMenuActive">
                 <!-- loop through prop and set title and subcontent accordingly -->
-                <div class="mt-6" v-for="menuItem in menuItems" :key="menuItem.title">
+                <div class="mt-6" v-for="menuItem in menuItems" :key="menuItem.id">
                   <h3 class="text-xs font-medium leading-4 tracking-wide text-gray-500 uppercase">
-                    {{ menuItem.title }}
+                    {{ menuItem.name }}
                   </h3>
                   <div>
                     <router-link 
-                      v-for="(item, index) in menuItem.items" 
-                      :key="index" :to="item.href" 
+                      v-for="child in menuItem.children" 
+                      :key="child.id" :to="`/kategorier/${menuItem.slug}/${child.slug}`" 
                       class="hover:text-gray-600 block py-2 text-sm leading-6 text-gray-700"
                     >
-                      {{ item.title }}
+                      {{ child.name }}
                     </router-link>
                   </div>
                 </div>
