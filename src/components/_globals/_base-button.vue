@@ -51,6 +51,12 @@ export default {
       required: false,
       default: false
     },
+    // render button as white text with white borders and transparent background
+    outlined: {
+      type: Boolean,
+      required: false,
+      default: false,
+    }
   },
   computed: {
     // set the button as <button> or <router-link> dependant on props passed
@@ -76,6 +82,7 @@ export default {
       // button is styled as a normal button
       if (this.plain) return null
       if (this.light) return 'text-sm font-medium leading-5  rounded-md px-4 py-2 text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 hover:border-gray-400 focus:outline-none focus:border-gray-400 focus:shaow-outline-gray active:bg-gray-100 active:border-gray-400'
+      if (this.outlined) return 'text-sm font-medium leading-5  rounded-md px-4 py-2 text-white bg-transparent border border-white hover:bg-black hover:bg-opacity-25 focus:outline-none focus:bg-opacity-25 focus:bg-black focus:shaow-outline-gray active:bg-black active:bg-opacity-25'
 
       return 'text-sm font-medium leading-5 rounded-md px-4 py-2 text-white bg-gray-800 border border-transparent hover:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray active:bg-gray-900'
     }

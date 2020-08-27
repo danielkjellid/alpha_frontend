@@ -89,7 +89,6 @@
 export default {
   props: {
     menuItems: {
-      type: Array,
       required: true,
     }
   },

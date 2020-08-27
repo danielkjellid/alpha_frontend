@@ -56,7 +56,7 @@
                       <div class="flex items-center justify-center w-10 h-10 border border-gray-400 rounded-full">
                         <BaseIcon name="user" fill="text-gray-500" />
                       </div>
-                      <div class="ml-3">
+                      <div v-if="user" class="ml-3">
                         <div class="text-sm font-medium leading-6 text-gray-800">{{ user.full_name }}</div>
                         <div class="text-xs font-medium leading-5 text-gray-600">{{ user.email }}</div>
                       </div>
@@ -151,66 +151,6 @@ export default {
       mobileMenuActive: false,
       flyoutMenuActive: false,
       userMenuActive: false,
-      menuItemss: [
-        { 
-          title: 'Fliser',
-          items: [
-            { title: 'Alle fliser', href: '#' },
-            { title: 'Bad', href: '#' },
-            { title: 'Kjøkken', href: '#' },
-            { title: 'Stue, gang og oppholdsrom', href: '#' },
-            { title: 'Utendørs', href: '#' },
-            { title: 'Fliseheller', href: '#' },
-            { title: 'Mosaikk', href: '#' },
-            { title: 'Spesialflis', href: '#' },
-          ] 
-        },
-        { 
-          title: 'Kjøkken',
-          items: [
-            { title: 'Alle kjøkken', href: '#' },
-            { title: 'Nordic One', href: '#' },
-            { title: 'Nordic Craft', href: '#' },
-            { title: 'Nordic Nature', href: '#' },
-            { title: 'Nordic Multifront', href: '#' },
-            { title: 'Nordic Inline', href: '#' },
-            { title: 'Nordic Modern', href: '#' },
-            { title: 'Nordic Silk', href: '#' },
-          ] 
-        },
-        { 
-          title: 'Innredning',
-          items: [
-            { title: 'All innredning', href: '#' },
-            { title: 'Servanter', href: '#' },
-            { title: 'Servantskap', href: '#' },
-            { title: 'Vannklosetter', href: '#' },
-            { title: 'Badekar', href: '#' },
-            { title: 'Dusj', href: '#' },
-            { title: 'Benkeplate', href: '#' },
-            { title: 'Speil og speilskap', href: '#' },
-          ] 
-        },
-        { 
-          title: 'Belysning',
-          items: [
-            { title: 'All belysning', href: '#' },
-            { title: 'Gulvlamper', href: '#' },
-            { title: 'Bordlamper', href: '#' },
-            { title: 'Vegglamper', href: '#' },
-            { title: 'Taklamper', href: '#' },
-            { title: 'Baderomsbelysning', href: '#' },
-          ] 
-        },
-        { 
-          title: 'Blandebatterier',
-          items: [
-            { title: 'Alle blandebatterier', href: '#' },
-            { title: 'Bad', href: '#' },
-            { title: 'Kjøkken', href: '#' },
-          ] 
-        },
-      ]
     }
   },
   methods: {

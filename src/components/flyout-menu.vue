@@ -25,16 +25,8 @@
 export default {
   props: {
     menuItems: {
-      type: Array,
       required: true,
     }
   },
-  methods: {
-    // emit close event to parent upon click outside the flyout menu
-    closeFlyoutMenu() {
-      console.log('test')
-      this.$emit('close-menu')
-    }
-  }
 }
 </script>
