@@ -1,5 +1,5 @@
 <template>
-  <div class="absolute left-0 right-0 transform bg-white shadow-lg">
+  <div class="absolute left-0 right-0 z-10 transform bg-white shadow-lg">
     <div class="xl:gap-12 grid max-w-6xl grid-cols-5 gap-20 px-8 py-6 mx-auto">
       <!-- loop through prop and set title and subcontent accordingly in a grid format -->
       <div v-for="menuItem in menuItems" :key="menuItem.id">

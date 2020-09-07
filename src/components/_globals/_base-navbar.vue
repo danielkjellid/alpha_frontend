@@ -1,8 +1,8 @@
 <template>
-  <nav class="relative" v-click-outside="hideFlyoutMenu">
+  <nav :class="renderNavbarDark ? 'relative' : 'absolute left-0 right-0'" v-click-outside="hideFlyoutMenu">
     <!-- color of navbar content is rended according to route meta -->
     <!-- this is because we want to render a transparent bar and white text over pages where there is an image on top -->
-    <div class="relative z-10 shadow" :class="renderNavbarDark ? 'bg-white' : 'bg-transparent'">
+    <div class="relative z-10" :class="renderNavbarDark ? 'bg-white shadow' : 'bg-transparent'">
       <div class="sm:py-8 sm:px-8 px-5 py-5">
         <div class="flex items-center justify-between">
           <div class="flex items-center">
@@ -14,7 +14,12 @@
             <!-- navigation from lg breakpoint and above -->
             <div class="lg:block hidden ml-4">
               <!-- button to toggle the flyout meunu -->
-              <BaseButton @click="flyoutMenuActive = !flyoutMenuActive" plain :class="renderNavbarLinkClasses" class="flex items-center">
+              <BaseButton 
+                @click="flyoutMenuActive = !flyoutMenuActive" 
+                plain 
+                :class="renderNavbarLinkClasses" 
+                class="flex items-center"
+              >
                 Katalog
                 <transition
                   enter-class="-translate-y-1 opacity-0"
@@ -24,8 +29,20 @@
                   leave-active-class="transition duration-150 ease-in"
                   leave-to-class="-translate-y-1 opacity-0"
                 >
-                  <BaseIcon v-if="!flyoutMenuActive" name="chevron-down" solid class="hover:text-gray-600 ml-1 text-gray-500" />
-                  <BaseIcon v-else name="chevron-up" solid class="hover:text-gray-600 ml-1 text-gray-500" />
+                  <BaseIcon 
+                    v-if="!flyoutMenuActive" 
+                    name="chevron-down" 
+                    solid 
+                    class="ml-1"
+                    :class="renderNavbarDark ? 'hover:text-gray-600 text-gray-500' : 'text-gray-300 hover:text-white'"
+                  />
+                  <BaseIcon 
+                    v-else 
+                    name="chevron-up" 
+                    solid 
+                    class="ml-1"
+                    :class="renderNavbarDark ? 'hover:text-gray-600 text-gray-500' : 'text-gray-300 hover:text-white'"
+                  />
                 </transition>
               </BaseButton>
               <router-link to="/kjokken" :class="renderNavbarLinkClasses" :active-class="renderNavbarLinkActiveClasses" class="ml-4">Inspirasjon</router-link>
@@ -38,7 +55,7 @@
             <!-- user menu, if not authenticated the button will redirect you to the login page -->
             <div v-click-outside="hideUserMenu" class="relative mr-3">
               <div class="flex items-center">
-                <BaseButton @click="openUserMenuOrRedirect" icon plain :light="!renderNavbarDark">
+                <BaseButton aria-label="Open user menu" @click="openUserMenuOrRedirect" icon plain :light="!renderNavbarDark">
                   <BaseIcon name="user" height="h-6" width="w-6"/>
                 </BaseButton>
               </div>
