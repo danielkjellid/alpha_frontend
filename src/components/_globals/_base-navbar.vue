@@ -2,12 +2,12 @@
   <nav :class="renderNavbarDark ? 'relative' : 'absolute left-0 right-0'" v-click-outside="hideFlyoutMenu">
     <!-- color of navbar content is rended according to route meta -->
     <!-- this is because we want to render a transparent bar and white text over pages where there is an image on top -->
-    <div class="relative z-10" :class="renderNavbarDark ? 'bg-white shadow' : 'bg-transparent'">
+    <div class="relative z-10" :class="renderNavbarDark ? 'bg-white shadow' : ( flyoutMenuActive ? 'bg-white shadow' : 'bg-transparent')">
       <div class="sm:py-8 sm:px-8 px-5 py-5">
         <div class="flex items-center justify-between">
           <div class="flex items-center">
             <div>
-              <svg class="w-8 h-8 text-white" :class="renderNavbarDark ? 'text-gray-800' : 'text-white'" viewBox="0 0 308 308" fill="currentColor">
+              <svg class="w-8 h-8 text-white" :class="renderNavbarDark ? 'text-gray-800' : ( flyoutMenuActive ? 'text-gray-800' : 'text-white')" viewBox="0 0 308 308" fill="currentColor">
                 <path d="M0 154.24V0h308.48v86.4H86.4v23.36h109.63l2.693 2.744v83.523l-2.744 2.694H86.4v109.76H0zm112.64 111.04v-43.2h83.2v86.4h-83.2zm109.44 0v-43.2h86.4v86.4h-86.4zm0-111.04v-41.6h86.4v83.2h-86.4z" />
               </svg>
             </div>
@@ -29,20 +29,9 @@
                   leave-active-class="transition duration-150 ease-in"
                   leave-to-class="-translate-y-1 opacity-0"
                 >
-                  <BaseIcon 
-                    v-if="!flyoutMenuActive" 
-                    name="chevron-down" 
-                    solid 
-                    class="ml-1"
-                    :class="renderNavbarDark ? 'hover:text-gray-600 text-gray-500' : 'text-gray-300 hover:text-white'"
-                  />
-                  <BaseIcon 
-                    v-else 
-                    name="chevron-up" 
-                    solid 
-                    class="ml-1"
-                    :class="renderNavbarDark ? 'hover:text-gray-600 text-gray-500' : 'text-gray-300 hover:text-white'"
-                  />
+                  <svg viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6 mt-px ml-1" :class="{'text-gray-500 hover:fill-current' : renderNavbarDark}">
+                    <path fill-rule="evenodd" :d="renderChevronPath" clip-rule="evenodd"></path>
+                  </svg>
                 </transition>
               </BaseButton>
               <router-link to="/kjokken" :class="renderNavbarLinkClasses" :active-class="renderNavbarLinkActiveClasses" class="ml-4">Inspirasjon</router-link>
@@ -55,7 +44,7 @@
             <!-- user menu, if not authenticated the button will redirect you to the login page -->
             <div v-click-outside="hideUserMenu" class="relative mr-3">
               <div class="flex items-center">
-                <BaseButton aria-label="Open user menu" @click="openUserMenuOrRedirect" icon plain :light="!renderNavbarDark">
+                <BaseButton aria-label="Open user menu" @click="openUserMenuOrRedirect" icon plain :light="renderNavbarIconLight">
                   <BaseIcon name="user" height="h-6" width="w-6"/>
                 </BaseButton>
               </div>
@@ -88,12 +77,12 @@
               </transition>
             </div>
             <!-- link and icon to cart -->
-            <BaseButton to="/" icon plain :light="!renderNavbarDark" class="md:mr-0 flex items-center mr-3">
+            <BaseButton to="/" icon plain :light="renderNavbarIconLight" class="md:mr-0 flex items-center mr-3">
               <BaseIcon name="shopping-bag" height="h-6" width="w-6"/>
                <span class="ml-1 text-sm font-medium" :class="renderNavbarDark ? 'text-gray-600' : 'text-gray-400'">0</span>
             </BaseButton>
             <!-- menu button for md screens and bellow -->
-            <BaseButton @click="mobileMenuActive = true" icon plain :light="!renderNavbarDark" class="lg:hidden">
+            <BaseButton @click="mobileMenuActive = true" icon plain :light="renderNavbarIconLight" class="lg:hidden">
               <BaseIcon name="menu" height="h-6" width="w-6"/>
             </BaseButton>
           </div>
@@ -138,7 +127,7 @@ export default {
     },
     // render classes of links according to the route meta
     renderNavbarLinkClasses() {
-      if (this.renderNavbarDark) return 'hover:text-gray-600 leading-8 text-gray-900 transition duration-150 ease-in-out'
+      if (this.renderNavbarDark || this.flyoutMenuActive) return 'hover:text-gray-600 leading-8 text-gray-900 transition duration-150 ease-in-out'
 
       return 'hover:text-white leading-8 text-gray-300 transition duration-150 ease-in-out'
     },
@@ -147,6 +136,17 @@ export default {
       if (this.renderNavbarDark) return 'text-gray-900'
 
       return 'active-pale-link'
+    },
+    renderNavbarIconLight() {
+      if (this.renderNavbarDark) return false
+      if (this.flyoutMenuActive) return false
+
+      return true
+    },
+    renderChevronPath() {
+      if (this.flyoutMenuActive) return 'M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z'
+
+      return 'M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'
     },
     // set the menu items in the catalog dropdown
     // fetched from the API
@@ -182,6 +182,7 @@ export default {
       const currentUser = this.$store.getters['users/getIsAuthenticated']
 
       if (currentUser) {
+        this.flyoutMenuActive = false
         this.userMenuActive = !this.userMenuActive
       } else {
         window.location.href = '/bruker/logg-inn/'

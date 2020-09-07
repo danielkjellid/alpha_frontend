@@ -1,7 +1,6 @@
 <template>
   <div
     v-html="renderRequirePath"
-    class="w-5 h-5 fill-current"
     :class="[dark ? 'text-gray-900' : fill, height, width]"
   />
 </template>

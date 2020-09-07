@@ -3,6 +3,7 @@
     <BaseNavbar />
     <div>
       <div>
+        <!-- main promotional campaign -->
         <article class="image-full-container relative overflow-hidden">
           <div class="table-cell align-middle">
             <!-- dummy images for the time being -->
@@ -29,14 +30,24 @@
             </div>
             <div class="absolute bottom-0 left-0 right-0 mb-8 text-center">
               <BaseButton icon light plain>
-                <BaseIcon class="animate-bounce" name="chevron-down" fill="text-white hover:text-gray-300" height="h-12" width="w-12" />
+                <BaseIcon class="animate-bounce-slow" name="chevron-down" fill="text-white hover:text-gray-300" height="h-12" width="w-12" />
               </BaseButton>
             </div>
           </div>
         </article>
       </div>
-      <div>
-        <p>Breadcrumbs</p>
+      <div class="max-w-3xl px-8 py-8 mx-auto text-center">
+        <p class="text-sm text-gray-900">
+          Fliser fra Flishuset er av svært høy kvalitet. Alle våre fliser er gjennomfarget og betegnes som ”full body stone” på fagspråket. Denne type fliser egner seg til alle bruksområder. Flisene er bygget på modul, slik at det vil være mulig å kombinere ulike størrelser med fliser og de vil stemme overens i fuger.
+        </p>
+        <br>
+        <p class="text-sm text-gray-900">
+          En stor andel av våre kunder er “vanlige kunder” som ønsker fliser i fra våre anerkjente Italienske produsenter. En annen stor andel av kundene våre er arkitekter og interiørarkitekter.
+        </p>
+        <br>
+        <p class="text-sm text-gray-900">
+          Vi leverer over hele landet.
+        </p>
       </div>
       <div>
         <div class="sm:grid-cols-2 grid grid-cols-1 gap-0">
@@ -86,14 +97,12 @@
 
 <script>
 import { apiService } from '@/common/api.service'
-import breakpoints from '@/utils/breakpoints'
 
 export default {
   name: 'Home',
   data() {
     return {
       categories: null,
-      breakpoints
     }
   },
   methods: {

@@ -1,6 +1,9 @@
 const { colors } = require('tailwindcss/defaultTheme')
 
 module.exports = {
+  future: {
+    removeDeprecatedGapUtilities: true,
+  },
   purge: [],
   theme: {
     extend: {
@@ -17,6 +20,9 @@ module.exports = {
           '50': '#fdf2f2',
           ...colors.red
         }
+      },
+      animation: {
+        'bounce-slow': 'bounce 2s infinite',
       }
     },
   },
