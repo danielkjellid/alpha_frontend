@@ -1,8 +1,8 @@
 <template>
-  <div class="relative min-h-screen">
+  <div>
     <BaseNavbar />
-    <div>
-      <div>
+    <main>
+      <section>
         <!-- main promotional campaign -->
         <article class="image-full-container relative overflow-hidden">
           <div class="table-cell align-middle">
@@ -35,26 +35,27 @@
             </div>
           </div>
         </article>
-      </div>
-      <div class="max-w-3xl px-8 py-8 mx-auto text-center">
-        <p class="text-sm text-gray-900">
-          Fliser fra Flishuset er av svært høy kvalitet. Alle våre fliser er gjennomfarget og betegnes som ”full body stone” på fagspråket. Denne type fliser egner seg til alle bruksområder. Flisene er bygget på modul, slik at det vil være mulig å kombinere ulike størrelser med fliser og de vil stemme overens i fuger.
-        </p>
-        <br>
-        <p class="text-sm text-gray-900">
-          En stor andel av våre kunder er “vanlige kunder” som ønsker fliser i fra våre anerkjente Italienske produsenter. En annen stor andel av kundene våre er arkitekter og interiørarkitekter.
-        </p>
-        <br>
-        <p class="text-sm text-gray-900">
-          Vi leverer over hele landet.
-        </p>
-      </div>
+      </section>
       <div>
-        <div class="sm:grid-cols-2 grid grid-cols-1 gap-0">
+        <div class="max-w-3xl px-8 py-8 mx-auto text-center">
+          <p class="text-sm text-gray-900">
+            Fliser fra Flishuset er av svært høy kvalitet. Alle våre fliser er gjennomfarget og betegnes som ”full body stone” på fagspråket. Denne type fliser egner seg til alle bruksområder. Flisene er bygget på modul, slik at det vil være mulig å kombinere ulike størrelser med fliser og de vil stemme overens i fuger.
+          </p>
+          <br>
+          <p class="text-sm text-gray-900">
+            En stor andel av våre kunder er “vanlige kunder” som ønsker fliser i fra våre anerkjente Italienske produsenter. En annen stor andel av kundene våre er arkitekter og interiørarkitekter.
+          </p>
+          <br>
+          <p class="text-sm text-gray-900">
+            Vi leverer over hele landet.
+          </p>
+        </div>
+        <!-- categories -->
+        <section class="sm:grid-cols-2 grid grid-cols-1 gap-0">
           <article
             v-for="category in categories" 
             :key="category.id"
-            class="relative overflow-hidden border border-red-700"
+            class="relative overflow-hidden"
             :class="category.width === 'full' ? 'col-span-2 image-full-container' : 'col-span-2 sm:col-span-1 image-half-container'"
           >
             <div class="table-cell align-middle">
@@ -89,9 +90,9 @@
               </BaseButton>
             </div>
           </article>
-        </div>
+        </section>
       </div>
-    </div>
+    </main>
   </div>
 </template>
 
@@ -118,87 +119,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  .image-full-container {
-    height: 375px;
-    width: 100%;
-  }
-
-  .image-half-container {
-    height: 375px;
-    width: 100%;
-  }
-  
-  @media (min-width: 640px) {
-    .image-full-container {
-      height: 300px;
-      width: 100%;
-    }
-
-    .image-half-container {
-      height: 300px;
-      width: 100%;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .image-full-container {
-      height: 366px;
-      width: 100%;
-    }
-
-    .image-half-container {
-      height: 362px;
-      width: 100%;
-    }
-  }
-
-  @media (min-width:1024px) {
-    .image-full-container {
-      height: 480px;
-      width: 100%;
-    }
-
-    .image-half-container {
-      height: 480px;
-      width: 100%;
-    }
-  }
-
-  @media (min-width: 1280px) {
-    .image-full-container {
-      height: 660px;
-      width: 100%;
-    }
-
-    .image-half-container {
-      height: 660px;
-      width: 100%;
-    }
-  }
-
-  @media (min-width: 2048px) {
-    .image-full-container {
-      height: 800px;
-      width: 100%;
-    }
-
-    .image-half-container {
-      height: 800px;
-      width: 100%;
-    }
-  }
-
-  @media (min-width: 3072px) {
-    .image-full-container {
-      height: 940px;
-      width: 100%;
-    }
-
-    .image-half-container {
-      height: 940px;
-      width: 100%;
-    }
-  }
-</style>
