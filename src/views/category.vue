@@ -19,7 +19,7 @@
                         https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/belysning/5fd72d0a6328b5d9f453eaa3216d663b.jpg 2560w,
                         https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/belysning/1766491d3dd2b83b5c7a17f421c414f6.jpg 3072w`"
             >
-            <div class="absolute bottom-0 left-0 right-0 flex items-center justify-center h-full">
+            <div class="absolute bottom-0 left-0 right-0 flex items-center justify-center h-full px-4">
               <div class="text-center">
                 <h2 class="text-2xl font-medium text-white">Fliser</h2>
               </div>
