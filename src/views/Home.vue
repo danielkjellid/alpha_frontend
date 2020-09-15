@@ -108,7 +108,7 @@ export default {
   },
   methods: {
     fetchCategories() {
-      apiService(`categories/`)
+      apiService('categories/')
       .then(categories => {
         this.categories = categories
       })

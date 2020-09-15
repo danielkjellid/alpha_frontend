@@ -121,7 +121,6 @@ export default {
   computed: {
     // render the navbar background and color of content accordingly based on route meta
     renderNavbarTransparent() {
-      console.log(this.$route.meta.navbarTransparent)
       if (this.$route.meta.navbarTransparent === undefined || this.$route.meta.navbarTransparent === false) return false
 
       return true

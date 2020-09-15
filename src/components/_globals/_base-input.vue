@@ -1,6 +1,6 @@
 <template>
   <div :class="{ 'w-full': block }">
-    <label :for="id" :class="{ 'sr-only' : hiddenLabel }" class="block mb-1 text-sm font-medium leading-5 text-gray-700">{{ label }}</label>
+    <label :for="id" :class="{ 'sr-only' : hiddenLabel, 'mb-1' : label }" class="block text-sm font-medium leading-5 text-gray-700">{{ label }}</label>
     <div class="relative rounded-md">
       <div v-if="icon" class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
         <BaseIcon :name="icon" fill="text-gray-500"/>
