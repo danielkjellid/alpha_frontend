@@ -17,7 +17,7 @@
       <div class="product-info pt-4 pb-1">
         <div v-if="!showVariants" class="flex items-center justify-between">
           <p class="text-base font-medium text-gray-900">{{ product.name }}</p>
-          <p class="text-sm font-medium text-gray-900">kr {{ product.price | formatPrice }} <span class="text-gray-500">per {{ product.unit }}</span></p>
+          <p class="text-sm font-medium text-gray-900">kr {{ product.gross_price | formatPrice }} <span class="text-gray-500">per {{ product.unit }}</span></p>
           <!-- TODO: add logic for discounted products -->
           <!-- <p class="text-sm font-medium text-gray-900">
             <span class="text-gray-500"><strike>kr 499,00</strike></span> - old price
@@ -25,22 +25,14 @@
             <span class="text-gray-500">m2</span> - unit
           </p> -->
         </div>
-        <div v-else class="py-y flex items-center">
-          <div 
-            @mouseover="productImage = 'https://cdn-thumbnails.s3.eu-west-1.amazonaws.com/keope/60ca5b718dab93784edbe75af7e43d0f.jpg'"
-            @mouseleave="productImage = 'https://assets.ellosgroup.com/i/ellos/b?$eg$&$em$&$ep$&$el$&n=ell_1575271-01_Fm_M0031913&mw=380&rw=380&fmt=webp'"
+        <div v-else class="py-y flex items-center" @mouseleave="productImage = product.thumbnail">
+          <div
+            v-for="(variant, index) in product.variants"
+            :key="`${index}-${variant}`"
+            @mouseover="productImage = variant.thumbnail"
             class="w-8 h-8 mr-2 overflow-hidden border-2 border-gray-300 rounded-full"
           >
-            <img src="https://cdn-thumbnails.s3.eu-west-1.amazonaws.com/keope/60ca5b718dab93784edbe75af7e43d0f.jpg" alt="">
-          </div>
-          <div class="w-8 h-8 mr-2 overflow-hidden border-2 border-gray-300 rounded-full">
-            <img src="https://cdn-thumbnails.s3.eu-west-1.amazonaws.com/keope/c420f979c32ecf0ec840083d0c9991e3.jpg" alt="">
-          </div>
-          <div class="w-8 h-8 mr-2 overflow-hidden border-2 border-gray-300 rounded-full">
-            <img src="https://cdn-thumbnails.s3.eu-west-1.amazonaws.com/keope/3d7b72c12b024d7050d1bbc0336d1420.jpg" alt="">
-          </div>
-          <div class="w-8 h-8 overflow-hidden border-2 border-gray-300 rounded-full">
-            <img src="https://cdn-thumbnails.s3.eu-west-1.amazonaws.com/keope/34abe4e7b1613c7104c3f33a14886da1.jpg" alt="">
+            <img :src="variant.image" :alt="`Image of ${product.name} variant: ${variant.name}`">
           </div>
         </div>
       </div>
@@ -54,7 +46,7 @@ export default {
   data() {
     return {
       showVariants: false,
-      productImage: 'https://assets.ellosgroup.com/i/ellos/b?$eg$&$em$&$ep$&$el$&n=ell_1575271-01_Fm_M0031913&mw=380&rw=380&fmt=webp',
+      productImage: this.product.thumbnail,
     }
   },
   props: {
