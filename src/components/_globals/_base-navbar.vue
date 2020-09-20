@@ -77,7 +77,7 @@
               </transition>
             </div>
             <!-- link and icon to cart -->
-            <BaseButton to="/" icon plain :light="renderNavbarIconLight" class="md:mr-0 flex items-center mr-3">
+            <BaseButton to="/" icon plain :light="renderNavbarIconLight" class="lg:mr-0 flex items-center mr-3">
               <BaseIcon name="shopping-bag" height="h-6" width="w-6"/>
                <span class="ml-1 text-sm font-medium" :class="!renderNavbarTransparent ? 'text-gray-600' : 'text-gray-400'">0</span>
             </BaseButton>

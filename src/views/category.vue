@@ -4,19 +4,27 @@
     <main>
       <!-- main category image -->
       <section>
-        <article class="image-full-container relative overflow-hidden">
+        <article 
+          v-for="cat in category"
+          :key="cat.name"
+          class="image-full-container relative overflow-hidden">
           <div class="table-cell align-middle">
             <!-- dummy images for the time being -->
-            <img src="https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/belysning/12dd09e9045b7d0b9a704ea9930122bb.jpg" alt="" class="absolute bottom-0 left-0 right-0 w-full h-full" :srcset="`https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/belysning/efd2f12a48eb069752621b400d983518.jpg 512w,
-                        https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/belysning/734a76e4dabe6516991d5fbb76cc44c9.jpg 1024w,
-                        https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/belysning/85d0abe28a8db662b56d4dfd4dfe59c3.jpg 1024w,
-                        https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/belysning/12dd09e9045b7d0b9a704ea9930122bb.jpg 1536w,
-                        https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/belysning/6f8b4f797cade7a3fc042e251fd82d7c.jpg 2048w,
-                        https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/belysning/5fd72d0a6328b5d9f453eaa3216d663b.jpg 2560w,
-                        https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/belysning/1766491d3dd2b83b5c7a17f421c414f6.jpg 3072w`">
+            <img 
+              :src="cat.image_1536x660" 
+              alt=""
+              class="absolute bottom-0 left-0 right-0 w-full h-full"
+              :srcset="`${cat.image_512x512} 512w,
+                        ${cat.image_1024x1024} 1024w,
+                        ${cat.image_1024x480} 1024w,
+                        ${cat.image_1536x660} 1536w,
+                        ${cat.image_2048x800} 2048w,
+                        ${cat.image_2560x940} 2560w,
+                        ${cat.image_3072x940} 3072w`"
+            >
             <div class="absolute bottom-0 left-0 right-0 flex items-center justify-center h-full px-4">
               <div class="text-center">
-                <h2 class="text-2xl font-medium text-white">Fliser</h2>
+                <h2 class="text-2xl font-medium text-white">{{ cat.name }}</h2>
               </div>
             </div>
             <div class="absolute bottom-0 left-0 right-0 mb-8 text-center">
@@ -104,21 +112,15 @@ export default {
       ]
     },
     filteredProducts() {
-      let productList = []
-
-      let appendProduct = (value, product) => {
-        if (this.selectedFilters.includes(value.name)) {
-          productList.push(product)
-        }
-      }
-
-      this.products.filter(product => {
-        product.categories.filter(category => {appendProduct(category, product)})
-        product.styles.filter(style => {appendProduct(style, product)})
-        product.applications.filter(application => {appendProduct(application, product)})
-        product.materials.filter(material => {appendProduct(material, product)})
-        product.colors.filter(color => {appendProduct(color, product)})
-      })
+      const productList = this.products.filter(product => 
+        this.selectedFilters.every(filter => 
+          product.categories.some(category => category.name === filter) ||
+          product.styles.some(style => style.name == filter) ||
+          product.applications.some(application => application.name == filter) ||
+          product.materials.some(material => material.name == filter) ||
+          product.colors.some(color => color.name == filter)
+        )
+      )
 
       if (productList.length > 0) {
         return productList
@@ -198,6 +200,7 @@ export default {
       testFilters: [],
       filters: [],
       selectedFilters: [],
+      category: {},
     }
   },
   methods: {
@@ -219,6 +222,15 @@ export default {
           this.products = products
         })
     },
+    fetchCategory() {
+      let category = this.$route.path
+      const cleanCategory = category.replace(/\\|\//g, '')
+
+      apiService(`categories/category/${cleanCategory}/`)
+        .then(category => {
+          this.category = category
+        })
+    },
     toggleFilter(filter) {
       if (this.selectedFilters.includes(filter)) {
         this.selectedFilters.splice(this.selectedFilters.indexOf(filter), 1)
@@ -228,6 +240,7 @@ export default {
     },
   },
   created() {
+    this.fetchCategory()
     this.fetchProducts()
     this.fetchFilters()
   }
