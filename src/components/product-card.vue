@@ -7,7 +7,7 @@
   >
     <router-link to="/">
       <div class="product-media relative overflow-hidden bg-gray-100">
-        <img src="https://assets.ellosgroup.com/i/ellos/b?$eg$&$em$&$ep$&$el$&n=ell_1575271-01_Fm_M0031913&mw=380&rw=380&fmt=webp">
+        <img :src="productImage">
         <div class="absolute bottom-0 left-0 mb-6">
           <div v-show="product.can_be_purchased_online" class="py-1 pl-2 pr-3 text-sm font-medium text-white bg-gray-900 bg-opacity-75 rounded-r-full">Kan kjøpes på nett</div>
           <!-- TODO: add logic to check if product is part of campagin -->
@@ -26,7 +26,11 @@
           </p> -->
         </div>
         <div v-else class="py-y flex items-center">
-          <div class="w-8 h-8 mr-2 overflow-hidden border-2 border-gray-300 rounded-full">
+          <div 
+            @mouseover="productImage = 'https://cdn-thumbnails.s3.eu-west-1.amazonaws.com/keope/60ca5b718dab93784edbe75af7e43d0f.jpg'"
+            @mouseleave="productImage = 'https://assets.ellosgroup.com/i/ellos/b?$eg$&$em$&$ep$&$el$&n=ell_1575271-01_Fm_M0031913&mw=380&rw=380&fmt=webp'"
+            class="w-8 h-8 mr-2 overflow-hidden border-2 border-gray-300 rounded-full"
+          >
             <img src="https://cdn-thumbnails.s3.eu-west-1.amazonaws.com/keope/60ca5b718dab93784edbe75af7e43d0f.jpg" alt="">
           </div>
           <div class="w-8 h-8 mr-2 overflow-hidden border-2 border-gray-300 rounded-full">
@@ -50,6 +54,7 @@ export default {
   data() {
     return {
       showVariants: false,
+      productImage: 'https://assets.ellosgroup.com/i/ellos/b?$eg$&$em$&$ep$&$el$&n=ell_1575271-01_Fm_M0031913&mw=380&rw=380&fmt=webp',
     }
   },
   props: {
@@ -66,18 +71,18 @@ export default {
       return value.replace(/\./g, ',')
 
     }
-  }
+  },
 }
 </script>
 
 <style scoped>
   .product-card {
     width: 100%;
-    height: 475px;
+    height: auto;
   }
 
   .product-media {
-    height: 400px;
+    height: auto;
     width: 100%;
   }
 

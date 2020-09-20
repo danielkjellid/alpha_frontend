@@ -36,7 +36,7 @@
             <div class="mb-5" v-if="selectedFilters.length > 0">
               <h3 class="text-xs font-medium leading-4 tracking-wide text-gray-500 uppercase">Valgte filtre</h3>
               <div class="mt-2">
-                <BaseButton v-for="filter in selectedFilters" :key="filter" plain class="hover:bg-gray-100 w-full px-2 py-2 text-sm leading-6 text-gray-500 rounded" @click="() => toggleFilter(filter)">
+                <BaseButton v-for="(filter, index) in selectedFilters" :key="`${filter}-${index}`" plain class="hover:bg-gray-100 bg-gray-50 w-full px-2 py-2 mb-1 text-sm leading-6 text-gray-500 border border-gray-300 rounded" @click="() => toggleFilter(filter)">
                   <div class="flex items-center">
                     <BaseIcon name="x" solid height="h-4" width="w-4" />
                     <span class="ml-3 text-gray-700">{{ filter }}</span>
@@ -65,7 +65,7 @@
               </div>
             </section>
             <section class="sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-4 lg:gap-1 grid w-full grid-cols-1 gap-2 mt-5">
-              <ProductCard v-for="product in filteredProducts" :key="product.id" :product="product" />
+              <ProductCard v-for="product in filteredProducts" :key="`${product.id}-${product.name}`" :product="product" />
             </section>
           </div>
         </div>
@@ -106,42 +106,23 @@ export default {
     filteredProducts() {
       let productList = []
 
+      let appendProduct = (value, product) => {
+        if (this.selectedFilters.includes(value.name)) {
+          productList.push(product)
+        }
+      }
+
       this.products.filter(product => {
-        product.categories.filter(category => {
-          if (this.selectedFilters.includes(category.name)) {
-            productList.push(product)
-            return productList
-          }
-        })
-        product.styles.filter(style => {
-          if (this.selectedFilters.includes(style.name)) {
-            productList.push(product)
-            return productList
-          }
-        })
-        product.applications.filter(application => {
-          if (this.selectedFilters.includes(application.name)) {
-            productList.push(product)
-            return productList
-          }
-        })
-        product.materials.filter(material => {
-          if (this.selectedFilters.includes(material.name)) {
-            productList.push(product)
-            return productList
-          }
-        })
-        product.colors.filter(colors => {
-          if (this.selectedFilters.includes(colors.name)) {
-            productList.push(product)
-            return productList
-          }
-        })
+        product.categories.filter(category => {appendProduct(category, product)})
+        product.styles.filter(style => {appendProduct(style, product)})
+        product.applications.filter(application => {appendProduct(application, product)})
+        product.materials.filter(material => {appendProduct(material, product)})
+        product.colors.filter(color => {appendProduct(color, product)})
       })
 
-      if (productList.length > 0)
+      if (productList.length > 0) {
         return productList
-      else {
+      } else {
         return this.products
       }
     },
