@@ -7,9 +7,11 @@
         <div class="flex items-center justify-between">
           <div class="flex items-center">
             <div>
-              <svg class="w-8 h-8 text-white" :class="!renderNavbarTransparent ? 'text-gray-800' : ( flyoutMenuActive ? 'text-gray-800' : 'text-white')" viewBox="0 0 308 308" fill="currentColor">
-                <path d="M0 154.24V0h308.48v86.4H86.4v23.36h109.63l2.693 2.744v83.523l-2.744 2.694H86.4v109.76H0zm112.64 111.04v-43.2h83.2v86.4h-83.2zm109.44 0v-43.2h86.4v86.4h-86.4zm0-111.04v-41.6h86.4v83.2h-86.4z" />
-              </svg>
+              <router-link to="/">
+                <svg class="w-8 h-8 text-white" :class="!renderNavbarTransparent ? 'text-gray-800' : ( flyoutMenuActive ? 'text-gray-800' : 'text-white')" viewBox="0 0 308 308" fill="currentColor">
+                  <path d="M0 154.24V0h308.48v86.4H86.4v23.36h109.63l2.693 2.744v83.523l-2.744 2.694H86.4v109.76H0zm112.64 111.04v-43.2h83.2v86.4h-83.2zm109.44 0v-43.2h86.4v86.4h-86.4zm0-111.04v-41.6h86.4v83.2h-86.4z" />
+                </svg>
+              </router-link>
             </div>
             <!-- navigation from lg breakpoint and above -->
             <nav class="lg:block hidden ml-4">

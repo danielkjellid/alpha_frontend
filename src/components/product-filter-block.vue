@@ -12,17 +12,11 @@
         :class="{'border border-gray-300 bg-gray-50' : filterActive(item.name)}"
         @click="() => toggleFilter(item)"
       > 
-        <!-- <div class="flex items-center">
-          <slot name="box" :item="item">
-            <BaseCheckbox :label="`select ${item.name}`" hiddenLabel :checked="filterActive(item.name)" />
-          </slot>
-          <span>{{ item.name }}</span>
-        </div> -->
-        <div class="flex items-center">
+        <div class="flex items-center justify-start text-left">
           <slot name="box" :item="item"></slot>
           {{ item.name }}
         </div>
-        <div class="flex items-center justify-center w-5 h-5 text-xs text-gray-700 bg-gray-300 rounded">
+        <div class="flex items-center justify-center flex-shrink-0 w-5 h-5 text-xs text-gray-700 bg-gray-300 rounded">
           {{ item.count }}
         </div>
       </BaseButton>

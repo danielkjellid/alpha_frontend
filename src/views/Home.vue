@@ -85,7 +85,7 @@
               <h2 class="text-xl text-white">{{ category.name }}</h2>
             </div>
             <div class="absolute bottom-0 left-0 right-0 mb-8 text-center">
-              <BaseButton outlined :to="`/kategorier/${category.slug}/`">
+              <BaseButton outlined :to="`/${category.slug}/`">
                 {{ category.name }}
               </BaseButton>
             </div>

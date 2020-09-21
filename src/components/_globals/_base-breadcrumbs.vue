@@ -1,12 +1,12 @@
 <template>
   <div>
     <nav class="sm:hidden">
-      <a href="#" class="hover:text-gray-600 flex items-center text-sm font-medium leading-5 text-gray-900 transition duration-150 ease-in-out">
+      <router-link to="/" class="hover:text-gray-600 flex items-center text-sm font-medium leading-5 text-gray-900 transition duration-150 ease-in-out">
         <svg class="flex-shrink-0 w-5 h-5 mr-1 -ml-1 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"/>
         </svg>
-        Tilbake
-      </a>
+        Forsiden
+      </router-link>
     </nav>
     <nav class="sm:flex items-center hidden text-sm font-medium leading-5">
       <div v-for="(breadcrumb, index) in breadcrumbs" :key="index" class="flex items-center">
@@ -28,11 +28,12 @@
 
 <script>
 export default {
- props: {
-   breadcrumbs: {
-     type: Array,
-     required: true
-   }
- }
+  name: 'BaseBreadcrumbs',
+  props: {
+    breadcrumbs: {
+      type: Array,
+      required: true
+    }
+  }
 }
 </script>

@@ -37,50 +37,64 @@
       </section>
       <!-- site product content -->
       <div class="container px-5 py-8 mx-auto">
-
-        <!--  -->
-        <transition name="slide-in" mode="in-out">
-          <div v-show="filterMenuActive">
-            <div @click="filterMenuActive = false" class="absolute inset-0">
-              <div class="absolute inset-0 z-30 bg-black bg-opacity-50"></div>
-            </div>
-            <div class="absolute top-0 bottom-0 left-0 z-40 w-4/5 min-h-screen px-5 py-8 bg-white">
-              <div class="flex items-center justify-between">
-                <p class="text-base leading-6 text-gray-900">Filtrering</p>
-                <button @click="filterMenuActive = false" class="hover:text-gray-800 w-5 h-5 text-gray-600">
-                  <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                    <path d="M6 18L18 6M6 6l12 12"></path>
-                  </svg>
-                </button>
-              </div>
-              <div class="mt-8">
-                <div class="mb-5" v-if="selectedFilters.length > 0">
-                  <h3 class="text-xs font-medium leading-4 tracking-wide text-gray-500 uppercase">Valgte filtre</h3>
-                  <div class="mt-2">
-                    <BaseButton v-for="(filter, index) in selectedFilters" :key="`${filter}-${index}`" plain class="hover:bg-gray-100 bg-gray-50 w-full px-2 py-2 mb-1 text-sm leading-6 text-gray-500 border border-gray-300 rounded" @click="() => toggleFilter(filter)">
-                      <div class="flex items-center">
-                        <BaseIcon name="x" solid height="h-4" width="w-4" />
-                        <span class="ml-3 text-gray-700">{{ filter }}</span>
+        <!-- filter menu on smaller devices -->
+        <div v-show="filterMenuActive" class="fixed inset-0 z-20 overflow-hidden">
+          <div class="absolute inset-0 overflow-hidden">
+            <div @click="filterMenuActive = false" class="absolute inset-0 transition-opacity bg-black bg-opacity-50"></div>
+              <transition
+                enter-class="-translate-x-full"
+                enter-active-class="sm:duration-700 transition duration-500 ease-in-out transform"
+                enter-to-class="translate-x-0"
+                leave-class="translate-x-0"
+                leave-active-class="sm:duration-700 transition duration-500 ease-in-out transform"
+                leave-to-class="-translate-x-full"
+              >
+                <section v-show="filterMenuActive" class="absolute inset-y-0 left-0 z-30 flex max-w-full mr-10">
+                  <div class="w-screen max-w-xs">
+                    <div class="flex flex-col h-full py-6 space-y-6 overflow-y-scroll bg-white shadow-xl">
+                      <header class="sm:px-6 px-4">
+                        <div class="flex items-start justify-between space-x-3">
+                          <h2 class="text-base font-medium leading-6 text-gray-900">Filtrer</h2>
+                          <div class="h-7 flex items-center">
+                            <button @click="filterMenuActive = false" class="hover:text-gray-800 w-5 h-5 text-gray-600">
+                              <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                <path d="M6 18L18 6M6 6l12 12"></path>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </header>
+                      <div class="relative flex-1 px-3">
+                        <div class="mb-5" v-if="selectedFilters.length > 0">
+                          <h3 class="px-3 text-xs font-medium leading-4 tracking-wide text-gray-500 uppercase">Valgte filtre</h3>
+                          <div class="mt-2">
+                            <BaseButton v-for="(filter, index) in selectedFilters" :key="`${filter}-${index}`" plain class="hover:bg-gray-100 bg-gray-50 w-full px-2 py-2 mb-1 text-sm leading-6 text-gray-500 border border-gray-300 rounded" @click="() => toggleFilter(filter)">
+                              <div class="flex items-center">
+                                <BaseIcon name="x" solid height="h-4" width="w-4" />
+                                <span class="ml-3 text-gray-700">{{ filter }}</span>
+                              </div>
+                            </BaseButton>
+                          </div>
+                        </div>
+                        <ProductFilterBlock title="Kategorier" :items="availableFilters.categories" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
+                        <ProductFilterBlock title="Stil" :items="availableFilters.styles" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
+                        <ProductFilterBlock title="Bruksområde" :items="availableFilters.applications" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
+                        <ProductFilterBlock title="Materiale" :items="availableFilters.materials" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
+                        <ProductFilterBlock title="Farger" :items="availableFilters.colors" :activeFilters="selectedFilters" @toggle-filter="toggleFilter">
+                          <template #box="{ item }">
+                            <div :style="`background-color: ${item.color_hex}`" class="w-5 h-5 mr-3 border border-gray-300 rounded-full"></div>
+                          </template>
+                        </ProductFilterBlock>
                       </div>
-                    </BaseButton>
+                    </div>
                   </div>
-                </div>
-                <ProductFilterBlock title="Kategorier" :items="availableFilters.categories" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
-                <ProductFilterBlock title="Stil" :items="availableFilters.styles" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
-                <ProductFilterBlock title="Bruksområde" :items="availableFilters.applications" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
-                <ProductFilterBlock title="Materiale" :items="availableFilters.materials" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
-                <ProductFilterBlock title="Farger" :items="availableFilters.colors" :activeFilters="selectedFilters" @toggle-filter="toggleFilter">
-                  <template #box="{ item }">
-                    <div :style="`background-color: ${item.color_hex}`" class="w-5 h-5 mr-3 border border-gray-300 rounded-full"></div>
-                  </template>
-                </ProductFilterBlock>
-              </div>
-            </div>
+                </section>
+              </transition>
           </div>
-        </transition>
+        </div>
         
         <!-- TODO: Fix "Back" on smaller screens -->
-        <BaseBreadcrumbs :breadcrumbs="breadcrumbs" class="px-3"/>
+        <BaseBreadcrumbs :breadcrumbs="breadcrumbs" class="lg:px-3"/>
         <div class="flex mt-8">
           <aside class="lg:block hidden w-1/6 mr-4">
             <div class="mb-5" v-if="selectedFilters.length > 0">
@@ -106,11 +120,14 @@
           </aside>
           <div class="lg:w-5/6 w-full">
             <section class="lg:px-3">
-              <div class="flex items-center">
-                <BaseButton @click="filterMenuActive = true" light class="lg:hidden flex items-center mr-3">
-                  <BaseIcon name="filter" class="mr-2" fill="text-gray-500" />
-                  Filter
-                </BaseButton>
+              <div>
+                <div class="lg:hidden w-full mb-2">
+                  <BaseButton @click="filterMenuActive = true" light class="lg:hidden flex items-center justify-center w-full mr-3">
+                    <BaseIcon name="filter" class="mr-2" fill="text-gray-500" />
+                    Filter
+                    <span v-if="selectedFilters.length > 0" class="flex items-center justify-center w-5 h-5 ml-2 text-xs text-gray-700 bg-gray-300 rounded-full">{{ countFiltersActive }}</span>
+                  </BaseButton>
+                </div>
                 <div class="flex items-center w-full">
                   <BaseInput 
                     v-model="search" 
@@ -124,8 +141,11 @@
                 </div>
               </div>
             </section>
-            <section class="sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-4 lg:gap-1 grid w-full grid-cols-1 gap-6 mt-5">
+            <section v-if="products.length > 0" class="sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-4 lg:gap-1 grid w-full grid-cols-1 gap-6 mt-5">
               <ProductCard v-for="product in filteredProducts" :key="`${product.id}-${product.name}`" :product="product" />
+            </section>
+            <section v-else class="px-3">
+              <BaseNodata errorMessage="Vi fant dessverre ingen ting..." />
             </section>
           </div>
         </div>
@@ -166,7 +186,12 @@ export default {
     products() {
       return this.fetchedProducts
     },
+    countFiltersActive() {
+      return this.selectedFilters.length
+    },
     filteredProducts() {
+
+      // check each product filter if any values is inside the selectedFilter array
       const productList = this.products.filter(product => 
         this.selectedFilters.every(filter => 
           product.categories.some(category => category.name === filter) ||
@@ -177,8 +202,11 @@ export default {
         ) 
       )
 
+      // if any filters is selected, return the filtered list
       if (productList.length > 0) {
         return productList
+      
+      // if not, return all products
       } else {
         return this.products
       }
@@ -252,8 +280,6 @@ export default {
   data() {
     return {
       fetchedProducts: [],
-      testFilters: [],
-      filters: [],
       selectedFilters: [],
       category: {},
       filterMenuActive: false,
