@@ -2,12 +2,12 @@
   <article 
     @mouseenter="showVariants = true" 
     @mouseleave="showVariants = false"
-    class="product-card relative px-3 py-3 bg-white"
+    class="product-card lg:px-3 lg:py-3 relative bg-white"
     :class="{'shadow' : showVariants }"
   >
     <router-link to="/">
       <div class="product-media relative overflow-hidden bg-gray-100">
-        <img :src="productImage">
+        <img :src="productImage" :alt="`Image of ${product.name}`">
         <div class="absolute bottom-0 left-0 mb-6">
           <div v-show="product.can_be_purchased_online" class="py-1 pl-2 pr-3 text-sm font-medium text-white bg-gray-900 bg-opacity-75 rounded-r-full">Kan kjøpes på nett</div>
           <!-- TODO: add logic to check if product is part of campagin -->
@@ -26,6 +26,12 @@
           </p> -->
         </div>
         <div v-else class="py-y flex items-center" @mouseleave="productImage = product.thumbnail">
+          <div
+            @mouseover="productImage = product.thumbnail"
+            class="w-8 h-8 mr-2 overflow-hidden border-2 border-gray-300 rounded-full"
+          >
+            <img :src="product.thumbnail" :alt="`Image of ${product.name}`">
+          </div>
           <div
             v-for="(variant, index) in product.variants"
             :key="`${index}-${variant}`"

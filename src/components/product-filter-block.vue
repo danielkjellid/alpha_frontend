@@ -1,6 +1,6 @@
 <template>
   <div class="mb-5">
-    <h3 class="text-xs font-medium leading-4 tracking-wide text-gray-500 uppercase">
+    <h3 class="px-3 text-xs font-medium leading-4 tracking-wide text-gray-500 uppercase">
       {{ title }}
     </h3>
     <div class="mt-2">
