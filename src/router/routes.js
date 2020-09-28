@@ -1,5 +1,6 @@
 import Home from '@/views/home.vue'
 import Category from '@/views/category.vue'
+import Product from '@/views/product.vue'
 
 export default [
   {
@@ -16,9 +17,17 @@ export default [
     }
   },
   {
-    path: '/fliser/',
+    path: '/:category/',
     name: 'Category',
     component: Category,
+    meta: {
+      navbarTransparent: true
+    }
+  },
+  {
+    path: '/:category/:id/',
+    name: 'Product',
+    component: Product,
     meta: {
       navbarTransparent: true
     }

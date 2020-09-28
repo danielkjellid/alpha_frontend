@@ -5,7 +5,7 @@
     class="product-card lg:px-3 lg:py-3 relative bg-white"
     :class="{'shadow' : showVariants }"
   >
-    <router-link to="/">
+    <router-link :to="`${product.slug}/`">
       <div class="product-media relative overflow-hidden bg-gray-100">
         <img :src="productImage" :alt="`Image of ${product.name}`">
         <div class="absolute bottom-0 left-0 mb-6">
