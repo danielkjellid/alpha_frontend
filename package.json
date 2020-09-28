@@ -31,7 +31,6 @@
     "eslint-plugin-vue": "^6.2.2",
     "html-loader": "^1.1.0",
     "tailwindcss": "^1.8.4",
-    "vue-template-compiler": "^2.6.11",
-    "webpack-bundle-tracker": "^0.4.3"
+    "vue-template-compiler": "^2.6.11"
   }
 }

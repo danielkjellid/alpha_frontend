@@ -167,7 +167,7 @@ export default {
       meta: [
         {
           name: 'description',
-          content: `Products attached to the category category.`
+          content: `Products attached to the ${this.currentCategory} category.`
         }
       ]
     }
@@ -177,10 +177,14 @@ export default {
     ProductFilterBlock,
   },
   computed: {
+    currentCategory() {
+      let category = this.$route.path
+      return category.replace(/\\|\//g, '')
+    },
     breadcrumbs() {
       return [
         { text: 'Flishuset', disabled: false, href: '/' },
-        { text: 'Fliser', disabled: true },
+        { text: `${this.currentCategory}`, disabled: true },
       ]
     },
     products() {
@@ -287,38 +291,20 @@ export default {
     }
   },
   methods: {
-    fetchFilters() {
-      let category = this.$route.path
-      const cleanCategory = category.replace(/\\|\//g, '')
-
-      apiService(`products/${cleanCategory}/filters/`)
-        .then(filters => {
-          this.filters = filters
-        })
-    },
     fetchProducts() {
-      let category = this.$route.path
-      const cleanCategory = category.replace(/\\|\//g, '')
-
-      apiService(`products/${cleanCategory}/`)
+      apiService(`products/${this.currentCategory}/`)
         .then(products => {
           this.fetchedProducts = products
         })
     },
     fetchCategory() {
-      let category = this.$route.path
-      const cleanCategory = category.replace(/\\|\//g, '')
-
-      apiService(`categories/category/${cleanCategory}/`)
+      apiService(`categories/category/${this.currentCategory}/`)
         .then(category => {
           this.category = category
         })
     },
     searchEndpoint() {
-      let category = this.$route.path
-      const cleanCategory = category.replace(/\\|\//g, '')
-
-      apiService(`products/${cleanCategory}/?search=${this.search}`)
+      apiService(`products/${this.currentCategory}/?search=${this.search}`)
         .then(products => {
           this.fetchedProducts = products
         })
@@ -334,7 +320,6 @@ export default {
   created() {
     this.fetchCategory()
     this.fetchProducts()
-    this.fetchFilters()
   }
 }
 </script>
