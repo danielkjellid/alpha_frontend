@@ -108,11 +108,11 @@
                 </BaseButton>
               </div>
             </div>
-            <ProductFilterBlock title="Kategorier" :items="availableFilters.categories" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
-            <ProductFilterBlock title="Stil" :items="availableFilters.styles" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
-            <ProductFilterBlock title="Bruksområde" :items="availableFilters.applications" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
-            <ProductFilterBlock title="Materiale" :items="availableFilters.materials" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
-            <ProductFilterBlock title="Farger" :items="availableFilters.colors" :activeFilters="selectedFilters" @toggle-filter="toggleFilter">
+            <ProductFilterBlock :loaded="loaded" title="Kategorier" :items="availableFilters.categories" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
+            <ProductFilterBlock :loaded="loaded" title="Stil" :items="availableFilters.styles" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
+            <ProductFilterBlock :loaded="loaded" title="Bruksområde" :items="availableFilters.applications" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
+            <ProductFilterBlock :loaded="loaded" title="Materiale" :items="availableFilters.materials" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
+            <ProductFilterBlock :loaded="loaded" title="Farger" :items="availableFilters.colors" :activeFilters="selectedFilters" @toggle-filter="toggleFilter">
               <template #box="{ item }">
                 <div :style="`background-color: ${item.color_hex}`" class="w-5 h-5 mr-3 border border-gray-300 rounded-full"></div>
               </template>
@@ -141,12 +141,19 @@
                 </div>
               </div>
             </section>
-            <section v-if="products.length > 0" class="sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-4 lg:gap-1 grid w-full grid-cols-1 gap-6 mt-5">
-              <ProductCard v-for="product in filteredProducts" :key="`${product.id}-${product.name}`" :product="product" />
-            </section>
-            <section v-else class="px-3">
-              <BaseNodata errorMessage="Vi fant dessverre ingen ting..." />
-            </section>
+            <div v-if="loaded">
+              <section v-if="products.length > 0" class="sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-4 lg:gap-1 grid w-full grid-cols-1 gap-6 mt-5">
+                <ProductCard v-for="product in filteredProducts" :key="`${product.id}-${product.name}`" :product="product" />
+              </section>
+              <section v-else class="px-3">
+                <BaseNodata errorMessage="Vi fant dessverre ingen ting..." />
+              </section>
+            </div>
+            <div v-else>
+              <section class="animate-pulse sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-4 lg:gap-1 grid w-full grid-cols-1 gap-6 px-3 mt-5">
+                <div v-for="i in 12" :key="i" style="height: 408px" class="w-full bg-gray-400 rounded" />
+              </section>
+            </div>
           </div>
         </div>
       </div>
@@ -288,23 +295,25 @@ export default {
       category: {},
       filterMenuActive: false,
       search: '',
+      loaded: false,
     }
   },
   methods: {
     fetchProducts() {
-      apiService(`products/${this.currentCategory}/`)
+      apiService(`categories/${this.currentCategory}/products/`)
         .then(products => {
           this.fetchedProducts = products
+          this.loaded = true
         })
     },
-    fetchCategory() {
-      apiService(`categories/category/${this.currentCategory}/`)
+    fetchCategoryImages() {
+      apiService(`categories/${this.currentCategory}/`)
         .then(category => {
           this.category = category
         })
     },
     searchEndpoint() {
-      apiService(`products/${this.currentCategory}/?search=${this.search}`)
+      apiService(`categories/${this.currentCategory}/products/?search=${this.search}`)
         .then(products => {
           this.fetchedProducts = products
         })
@@ -318,7 +327,7 @@ export default {
     },
   },
   created() {
-    this.fetchCategory()
+    this.fetchCategoryImages()
     this.fetchProducts()
   }
 }

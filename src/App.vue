@@ -77,6 +77,18 @@ export default {
      }
    }
 
+   @media (min-width: 1536px) {
+     .image-full-container {
+       height: 800px;
+       width: 100%;
+     }
+
+     .image-half-container {
+       height: 800px;
+       width: 100%;
+     }
+   }
+
    @media (min-width: 2048px) {
      .image-full-container {
        height: 800px;

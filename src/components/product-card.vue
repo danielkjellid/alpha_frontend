@@ -25,7 +25,7 @@
             <span class="text-gray-500">m2</span> - unit
           </p> -->
         </div>
-        <div v-else class="py-y flex items-center" @mouseleave="productImage = product.thumbnail">
+        <div v-else class="flex items-center" @mouseleave="productImage = product.thumbnail">
           <div
             @mouseover="productImage = product.thumbnail"
             class="w-8 h-8 mr-2 overflow-hidden border-2 border-gray-300 rounded-full"
@@ -59,15 +59,6 @@ export default {
     product: {
       type: Object,
       required: true,
-    }
-  },
-  filters: {
-    formatPrice(value) {
-      if (!value) return ''
-
-      value = value.toString()
-      return value.replace(/\./g, ',')
-
     }
   },
 }

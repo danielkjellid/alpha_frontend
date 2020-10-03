@@ -14,8 +14,7 @@
           <ul class="pl-5 list-disc">
             <li v-for="(error, index) in errors" :key="index" class="mt-1">
               <span v-for="(value, name, index) in error" :key="index">
-                {{ error }}
-                {{ name }} ... {{ value }}
+                {{ value }}
               </span>
             </li>
           </ul>

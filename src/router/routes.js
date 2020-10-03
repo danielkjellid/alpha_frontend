@@ -25,7 +25,7 @@ export default [
     }
   },
   {
-    path: '/:category/:id',
+    path: '/:category/:slug',
     name: 'Product',
     component: Product,
     meta: {

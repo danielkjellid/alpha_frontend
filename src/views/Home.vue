@@ -51,7 +51,7 @@
           </p>
         </div>
         <!-- categories -->
-        <section class="sm:grid-cols-2 grid grid-cols-1 gap-0">
+        <section v-if="loaded" class="sm:grid-cols-2 grid grid-cols-1 gap-0">
           <article
             v-for="category in categories" 
             :key="category.id"
@@ -91,6 +91,9 @@
             </div>
           </article>
         </section>
+        <section v-else class="animate-pulse grid grid-cols-1 gap-0">
+          <div v-for="i in 5" :key="i" class="image-full-container bg-gray-400" />
+        </section>
       </div>
     </main>
   </div>
@@ -104,6 +107,7 @@ export default {
   data() {
     return {
       categories: null,
+      loaded: false,
     }
   },
   methods: {
@@ -111,6 +115,7 @@ export default {
       apiService('categories/')
       .then(categories => {
         this.categories = categories
+        this.loaded = true
       })
     }
   },
