@@ -33,7 +33,7 @@ export default {
   props: {
     loaded: {
       type: Boolean,
-      required: true
+      default: false,
     },
     title: {
       type: String,

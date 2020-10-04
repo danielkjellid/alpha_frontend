@@ -75,7 +75,7 @@
               <img
                 v-else
                 :src="category.image_1024x1024" 
-                alt=""
+                :alt="`Placeholder image of the ${category.name} category.`"
                 :srcset="`${category.image_512x512} 512w,
                           ${category.image_1024x1024} 1024w,
                           ${category.image_1536x1536} 1536w`"

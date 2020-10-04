@@ -17,15 +17,16 @@ export default [
     }
   },
   {
-    path: '/:category',
+    path: '/:categorySlug',
     name: 'Category',
     component: Category,
     meta: {
       navbarTransparent: true
-    }
+    },
+    props: route => ({ query: route.query.filter })
   },
   {
-    path: '/:category/:slug',
+    path: '/:categorySlug/:productSlug',
     name: 'Product',
     component: Product,
     meta: {

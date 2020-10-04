@@ -333,15 +333,23 @@ export default {
   },
   methods: {
     next() {
+
+      // show the next image if the current index is within the array
       if (this.showingIndex < this.product.images.length-1) {
         this.showingIndex += 1
+
+      // if not, reset the count
       } else {
         this.showingIndex = 0
       }
     },
     previous() {
+      // if the first image is displayed, set the index to the last
+      // this is to prevent a negative index
       if (this.showingIndex === 0) {
         this.showingIndex = this.product.images.length-1
+      
+      // if not, show the previous image
       } else {
         this.showingIndex -=1
       }
@@ -350,7 +358,9 @@ export default {
       this.order.amount++
     },
     decreseQuantity() {
+      // if the order amount is above 1, decrese amount
       if (this.order.amount > 1) return this.order.amount--
+      // if not, set the amount to 1 to prevent a negative amount
       else return this.order.amount === 1
     },
     selectVariant(variant) {
@@ -360,12 +370,15 @@ export default {
       this.order.selectedSize = size
     },
     fetchProduct() {
-      const category = this.$route.params.category
-      const slug = this.$route.params.slug
+      const category = this.$route.params.categorySlug
+      const slug = this.$route.params.productSlug
 
+      // get products attached to category
       apiService(`categories/${category}/products/${slug}/`)
       .then(product => {
         this.product = product
+
+        // when products are loaded, set loaded to true
         this.loaded = true
       })
     }

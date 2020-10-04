@@ -76,11 +76,11 @@
                             </BaseButton>
                           </div>
                         </div>
-                        <ProductFilterBlock title="Kategorier" :items="availableFilters.categories" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
-                        <ProductFilterBlock title="Stil" :items="availableFilters.styles" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
-                        <ProductFilterBlock title="Bruksområde" :items="availableFilters.applications" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
-                        <ProductFilterBlock title="Materiale" :items="availableFilters.materials" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
-                        <ProductFilterBlock title="Farger" :items="availableFilters.colors" :activeFilters="selectedFilters" @toggle-filter="toggleFilter">
+                        <ProductFilterBlock :loaded="loaded" title="Kategorier" :items="availableFilters.categories" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
+                        <ProductFilterBlock :loaded="loaded" title="Stil" :items="availableFilters.styles" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
+                        <ProductFilterBlock :loaded="loaded" title="Bruksområde" :items="availableFilters.applications" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
+                        <ProductFilterBlock :loaded="loaded" title="Materiale" :items="availableFilters.materials" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
+                        <ProductFilterBlock :loaded="loaded" title="Farger" :items="availableFilters.colors" :activeFilters="selectedFilters" @toggle-filter="toggleFilter">
                           <template #box="{ item }">
                             <div :style="`background-color: ${item.color_hex}`" class="w-5 h-5 mr-3 border border-gray-300 rounded-full"></div>
                           </template>
@@ -185,8 +185,7 @@ export default {
   },
   computed: {
     currentCategory() {
-      let category = this.$route.path
-      return category.replace(/\\|\//g, '')
+      return this.$route.params.categorySlug
     },
     breadcrumbs() {
       return [
@@ -300,22 +299,30 @@ export default {
   },
   methods: {
     fetchProducts() {
-      apiService(`categories/${this.currentCategory}/products/`)
+      const category = this.$route.params.categorySlug
+
+      apiService(`categories/${category}/products/`)
         .then(products => {
           this.fetchedProducts = products
           this.loaded = true
+          this.selectFilterFromQuery()
         })
     },
     fetchCategoryImages() {
-      apiService(`categories/${this.currentCategory}/`)
+      const category = this.$route.params.categorySlug
+
+      apiService(`categories/${category}/`)
         .then(category => {
           this.category = category
         })
     },
     searchEndpoint() {
-      apiService(`categories/${this.currentCategory}/products/?search=${this.search}`)
+      const category = this.$route.params.categorySlug
+
+      apiService(`categories/${category}/products/?search=${this.search}`)
         .then(products => {
           this.fetchedProducts = products
+          this.loaded = true
         })
     },
     toggleFilter(filter) {
@@ -325,6 +332,24 @@ export default {
         this.selectedFilters.push(filter)
       }
     },
+    selectFilterFromQuery() {
+      let routeQuery = this.$route.query.subcategory
+      routeQuery = routeQuery.replace(/-/g, ' ')
+
+      this.availableFilters.categories.filter(category => {
+
+        let name = category.name
+        name = name.replace(/,/g, '')
+        name = name.replace(/æ/g, 'ae')
+        name = name.replace(/ø/g, 'o')
+        name = name.replace(/å/g, 'a')
+        name = name.toLowerCase()
+
+        if (name.includes(routeQuery)) {
+          this.selectedFilters.push(category.name)
+        }
+      })
+    }
   },
   created() {
     this.fetchCategoryImages()
