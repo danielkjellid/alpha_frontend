@@ -14,8 +14,11 @@
             <div class="flex" :class="subtitle ? 'items-start' : 'items-center'">
               <div class="flex-shrink-0">
                 <!-- Heroicon name: check-circle -->
-                <svg class="w-6 h-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg v-if="success" class="w-6 h-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <svg v-else class="w-6 h-6 text-red-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
               <div class="ml-3 w-0 flex-1 pt-0.5">
@@ -46,6 +49,10 @@
 export default {
   name: 'BaseNotification',
   props: {
+    success: {
+      type: Boolean,
+      default: true
+    },
     display: {
       type: Boolean,
       default: false

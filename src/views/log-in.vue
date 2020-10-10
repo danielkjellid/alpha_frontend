@@ -1,6 +1,7 @@
 <template>
   <div>
-    <BaseNotification title="Logget inn suksessfullt!" subtitle="Du blir automatisk sendt tilbake til hjemmesiden" :display="showNotification" @close-notification="showNotification = false" />
+    <BaseNotification v-if="!error" title="Logget inn suksessfullt!" subtitle="Du blir automatisk sendt tilbake til hjemmesiden." :display="showNotification" @close-notification="showNotification = false" />
+    <BaseNotification v-else :success="!error" title="Innlogging feilet" subtitle="Feil brukernavn eller passord. Merk at du må skille mellom store og små bokstaver." :display="showNotification" @close-notification="showNotification = false" />
     <div :style="`background-image: url(${require('../assets/images/auth.jpg')});`">
       <div class="md:bg-transparent bg-white">
         <div class="md:m-0 lg:max-w-md max-w-sm min-h-screen px-5 py-6 m-auto bg-white">
@@ -19,9 +20,9 @@
                   <div class="focus:outline-none focus:text-gray-700 focus:border-gray-700 px-3 py-4 text-sm font-medium leading-5 text-gray-900 whitespace-no-wrap border-b-2 border-gray-900" aria-current="page">
                     Logg inn
                   </div>
-                  <a href="{% url 'user-registration' %}" class="hover:text-gray-900 hover:border-gray-900 focus:outline-none focus:text-gray-700 focus:border-gray-300 px-3 py-4 ml-2 text-sm font-medium leading-5 text-gray-600 whitespace-no-wrap border-b-2 border-transparent">
+                  <router-link to="/konto/registrer/" class="hover:text-gray-900 hover:border-gray-900 focus:outline-none focus:text-gray-700 focus:border-gray-300 px-3 py-4 ml-2 text-sm font-medium leading-5 text-gray-600 whitespace-no-wrap border-b-2 border-transparent">
                     Opprett konto
-                  </a>
+                  </router-link>
                 </nav>
               </div>
             </div>
@@ -36,7 +37,7 @@
             </div>
             <form class="max-w-sm m-auto" @submit.prevent="login">
               <div>
-                <BaseInput v-model="email" id="id_email" label="E-post" block></BaseInput>
+                <BaseInput v-model="email" id="id_email" label="E-post" block type="email"></BaseInput>
               </div>
               <div class="mt-5">
                 <BaseInput v-model="password" id="id_password" label="Passord" block type="password"></BaseInput>
@@ -54,36 +55,48 @@
 </template>
 
 <script>
+import apiService from '@/common/api'
+
 export default {
   name: 'LogIn',
-  computed: {
-    error() {
-      return this.$store.state.auth.authError
-    }
-  }, 
   data() {
     return {
       email: '',
       password: '',
-      showNotification: false
+      showNotification: false,
+      error: false
     }
   },
   methods: {
     login() {
-      const payload = {
-        email: this.email,
-        password: this.password
-      }
+      // get new token pair
+      apiService.post('auth/token/obtain/', {email: this.email, password: this.password})
+        .then(response => {
+          // update localStorage with access and refresh key
+          localStorage.setItem('access_token', response.data.access)
+          localStorage.setItem('refresh_token', response.data.refresh)
+        })
+        .finally(() => {
+          let self = this
 
-      const self = this
+          // set appropriate state
+          this.error = false
+          this.showNotification = true
 
-      this.$store.dispatch('auth/obtainToken', payload)
-        .then(
-          this.showNotification = true,
+          // populate the current user state in the users module once tokens is obtained
+          this.$store.dispatch('auth/fetchCurrentUser')
+
+          // set automatic redirect after login
           setTimeout(function() {
             self.$router.push({name: 'Home'})
           }, 2000)
-        )
+        })
+        .catch(() => {
+          // populate state to display error message in form
+          this.error = true
+          // show an error notification
+          this.showNotification = true
+        })
     }
   }
 }

@@ -12,7 +12,7 @@
         :class="{ 
           'pl-10': icon, 
           'w-full': block,
-          'pr-10 border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red': error
+          'pr-10 border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red': error,
         }"
         :placeholder="placeholder"
         :type="type"

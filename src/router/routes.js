@@ -2,6 +2,7 @@ import Home from '@/views/home.vue'
 import Category from '@/views/category.vue'
 import Product from '@/views/product.vue'
 import LogIn from '@/views/log-in.vue'
+import Register from '@/views/register.vue'
 
 export default [
   {
@@ -15,6 +16,11 @@ export default [
     component: LogIn
   },
   {
+    path: '/konto/registrer',
+    name: 'Register',
+    component: Register
+  },
+  {
     path: '/',
     name: 'Home',
     component: Home,
@@ -23,7 +29,7 @@ export default [
     }
   },
   {
-    path: '/:categorySlug',
+    path: '/kategori/:categorySlug',
     name: 'Category',
     component: Category,
     meta: {
@@ -32,7 +38,7 @@ export default [
     props: route => ({ query: route.query.filter })
   },
   {
-    path: '/:categorySlug/:productSlug',
+    path: '/kategori/:categorySlug/:productSlug',
     name: 'Product',
     component: Product,
     meta: {

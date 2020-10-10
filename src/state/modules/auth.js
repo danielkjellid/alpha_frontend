@@ -1,14 +1,10 @@
 import apiService from '@/common/api'
 
 export const state = {
-  authError: false,
   currentUser: null
 }
 
 export const mutations = {
-  'OBTAIN_TOKEN_ERROR' (state) {
-    state.authError = true
-  },
   'UPDATE_ACCESS_TOKEN' (state, newToken) {
     state.authError = false
     localStorage.setItem('access_token', newToken)
@@ -27,57 +23,54 @@ export const mutations = {
 }
 
 export const actions = {
-  init: () => {
-    //dispatch('fetchCurrentUser')
-    //dispatch('obtainToken')
+  init: ({dispatch}) => {
+    dispatch('fetchCurrentUser')
   },
-  obtainToken: ({ commit }, payload) => {
+  obtainToken: ({ commit, dispatch }, payload) => {
+    // get new token pair
     apiService.post('auth/token/obtain/', payload)
       .then(response => {
-        console.log(response)
+        // update localStorage with access and refresh key
         commit('UPDATE_ACCESS_TOKEN', response.data.access)
         commit('UPDATE_REFRESH_TOKEN', response.data.refresh)
       })
       .finally(() => {
-        // populate the current user state in the users module once a token is obtained
-        apiService.get('user/')
-          .then(user => {
-            console.log(user.data)
-            commit('SET_CURRENT_USER', user.data)
-          })
-      })
-      .catch(error => {
-        console.log(error)
-        commit('OBTAIN_TOKEN_ERROR')
+        // populate the current user state in the users module once tokens is obtained
+        dispatch('fetchCurrentUser')
       })
   },
   logOut: ({ commit }) => {
     
+    // save the refresh token var
     const refreshToken = localStorage.getItem('refresh_token')
 
+    // blacklist token
     apiService.post('auth/token/blacklist/', {'refresh_token': refreshToken})
       .then(() => {
+        // remove token from localstorage
         commit('REMOVE_TOKENS')
+        // set auth headers to null
         apiService.defaults.headers['Authorization'] = null
+        // set current user to null
         commit('SET_CURRENT_USER', null)
       })
       .catch(error => {
         console.log(error)
       })
   },
-  // fetchCurrentUser({commit}, payload) {
-  //   apiService.get('user/')
-  //     .then(user => {
+  fetchCurrentUser: ({commit}) => {
+    const refreshToken = localStorage.getItem('refresh_token')
 
-  //       if (payload === null) {
-  //         commit('SET_CURRENT_USER', null)
-  //       }
-  //       commit('SET_CURRENT_USER', user.data)
-  //     })
-  //     .catch(() => {
-  //       commit('SET_CURRENT_USER', null)
-  //     })
-  // }
+    if (refreshToken) {
+      // populate the current user state in the users module once tokens is obtained
+      return apiService.get('user/')
+        .then(user => {
+          // set the state as the user data
+          console.log(user.data)
+          commit('SET_CURRENT_USER', user.data)
+        })
+    }
+  }
 }
 
 export const getters = {
@@ -95,5 +88,8 @@ export const getters = {
     if (state.currentUser) return state.currentUser.is_staff
 
     return false
+  },
+  getAuthError: (state) => {
+    return state.authError
   }
 }
