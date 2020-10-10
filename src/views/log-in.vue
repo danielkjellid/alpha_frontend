@@ -2,7 +2,7 @@
   <div>
     <BaseNotification v-if="!error" title="Logget inn suksessfullt!" subtitle="Du blir automatisk sendt tilbake til hjemmesiden." :display="showNotification" @close-notification="showNotification = false" />
     <BaseNotification v-else :success="!error" title="Innlogging feilet" subtitle="Feil brukernavn eller passord. Merk at du må skille mellom store og små bokstaver." :display="showNotification" @close-notification="showNotification = false" />
-    <div :style="`background-image: url(${require('../assets/images/auth.jpg')});`">
+    <div :style="`background-image: url(${require('../assets/images/auth.jpg')});`" class="bg-center bg-no-repeat bg-cover">
       <div class="md:bg-transparent bg-white">
         <div class="md:m-0 lg:max-w-md max-w-sm min-h-screen px-5 py-6 m-auto bg-white">
           <nav class="absolute top-0 left-0 mt-5 ml-4">
@@ -29,7 +29,7 @@
             <div class="mb-8 text-center">
               <h1 class="text-xl font-medium text-gray-900">Velkommen tilbake!</h1>
               <div class="flex items-center justify-center mt-1 text-sm text-gray-700">
-                Har du ikke en konto? <a href="{% url 'user-registration' %}" class="ml-1 font-medium text-gray-900 underline">Lag en her</a>
+                Har du ikke en konto? <router-link to="/konto/registrer/" class="ml-1 font-medium text-gray-900 underline">Lag en her</router-link>
               </div>
             </div>
             <div v-if="error" class="mb-8">
@@ -43,7 +43,7 @@
                 <BaseInput v-model="password" id="id_password" label="Passord" block type="password"></BaseInput>
               </div>
               <div class="mt-4 mb-4 text-center">
-                <a href="#" class="text-sm font-medium text-gray-900 underline">Glemt passordet?</a>
+                <span href="#" class="text-sm font-medium text-gray-900 underline">Glemt passordet?</span>
               </div>
               <BaseButton type="submit" class="flex justify-center w-full">Logg inn</BaseButton>
             </form>

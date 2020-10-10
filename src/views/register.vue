@@ -2,7 +2,7 @@
   <div>
     <BaseNotification v-if="!error" title="Oppretting av konto var vellykket" subtitle="Du blir automatisk sendt tilbake til hjemmesiden." :display="showNotification" @close-notification="showNotification = false" />
     <BaseNotification v-else :success="!error" title="Oppretting av konto feilet" :display="showNotification" @close-notification="showNotification = false" />
-    <div :style="`background-image: url(${require('../assets/images/auth.jpg')});`">
+    <div :style="`background-image: url(${require('../assets/images/auth.jpg')});`" class="bg-center bg-no-repeat bg-cover">
       <div class="md:bg-transparent bg-white">
         <div class="md:m-0 lg:max-w-md max-w-sm min-h-screen px-5 py-6 m-auto bg-white">
           <nav class="absolute top-0 left-0 mt-5 ml-4">
@@ -29,7 +29,7 @@
             <div class="mb-8 text-center">
               <h1 class="text-xl font-medium text-gray-900">Kom i gang med å handle</h1>
               <div class="flex items-center justify-center mt-1 text-sm text-gray-700">
-                Har du allerede en konto? <a href="{% url 'user-login' %}" class="ml-1 font-medium text-gray-900 underline">Logg inn her</a>
+                Har du allerede en konto? <router-link to="/konto/logg-inn/" class="ml-1 font-medium text-gray-900 underline">Logg inn her</router-link>
               </div>
             </div>
             <div v-if="error" class="mb-8">
