@@ -60,15 +60,19 @@ export const actions = {
   },
   fetchCurrentUser: ({commit}) => {
     const refreshToken = localStorage.getItem('refresh_token')
+    const accessToken = localStorage.getItem('access_token')
 
-    if (refreshToken) {
+    if (refreshToken && accessToken) {
+      // set auth header for request
+      apiService.defaults.headers['Authorization'] = `JWT  ${accessToken}`
+
       // populate the current user state in the users module once tokens is obtained
       return apiService.get('user/')
         .then(user => {
           // set the state as the user data
           console.log(user.data)
           commit('SET_CURRENT_USER', user.data)
-        })
+        }).catch(e => console.log(e.response.data.code))
     }
   }
 }

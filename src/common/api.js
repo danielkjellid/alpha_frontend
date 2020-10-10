@@ -21,7 +21,6 @@ const apiService = axios.create({
 apiService.interceptors.response.use(
   response => response,
   error => {
-
     // save the original request
     const originalRequest = error.config
 

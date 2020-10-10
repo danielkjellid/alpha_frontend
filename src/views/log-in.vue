@@ -13,7 +13,8 @@
               Tilbake til Flishuset
             </router-link>
           </nav>
-          <div class="pt-20">
+          <p>curr: {{currentUser}}</p>
+          <div v-if="!currentUser" class="pt-20">
             <div class="flex justify-center mb-8">
               <div class="border-b border-gray-200">
                 <nav class="flex -mb-px">
@@ -48,6 +49,14 @@
               <BaseButton type="submit" class="flex justify-center w-full">Logg inn</BaseButton>
             </form>
           </div>
+          <div v-else class="pt-20">
+            <div class="mb-8 text-center">
+              <h1 class="text-xl font-medium text-gray-900">Velkommen tilbake!</h1>
+              <div class="flex items-center justify-center mt-1 text-sm text-gray-700">
+                Du er allerede logget inn som {{ currentUser.full_name }} <button plain @click="logOut" class="ml-1 font-medium text-gray-900 underline">Logg ut?</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -59,6 +68,11 @@ import apiService from '@/common/api'
 
 export default {
   name: 'LogIn',
+  computed: {
+    currentUser() {
+      return this.$store.getters['auth/getCurrentUser']
+    }
+  },
   data() {
     return {
       email: '',
@@ -97,6 +111,10 @@ export default {
           // show an error notification
           this.showNotification = true
         })
+    },
+    logOut() {
+      this.$store.dispatch('auth/logOut')
+      this.$router.push({name: 'Home'})
     }
   }
 }
