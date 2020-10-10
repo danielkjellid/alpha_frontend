@@ -141,7 +141,7 @@
 </template>
 
 <script>
-import { apiService } from '@/common/api.service'
+import apiService from '@/common/api'
 
 import AdminForm from '@/views/templates/admin-form.vue'
 import FormGroup from '@/components/form-group.vue'
@@ -194,7 +194,7 @@ export default {
         })
     },
     saveChanges() {
-      apiService(`users/${this.$route.params.id}/`, 'PATCH', this.user )
+      apiService.patch(`users/${this.$route.params.id}/`, this.user )
         .then(response => {
           if (response) {
               // fetch user again for vue to update instance without reload

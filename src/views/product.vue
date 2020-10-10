@@ -307,7 +307,7 @@
 </template>
 
 <script>
-import { apiService } from '@/common/api.service'
+import apiService from '@/common/api'
 import ProductSpecRow from '@/components/product-spec-row.vue'
 import ImageCarouselControls from '@/components/image-carousel-controls.vue'
 
@@ -374,9 +374,9 @@ export default {
       const slug = this.$route.params.productSlug
 
       // get products attached to category
-      apiService(`categories/${category}/products/${slug}/`)
+      apiService.get(`categories/${category}/products/${slug}/`)
       .then(product => {
-        this.product = product
+        this.product = product.data
 
         // when products are loaded, set loaded to true
         this.loaded = true

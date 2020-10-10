@@ -1,12 +1,18 @@
 import Home from '@/views/home.vue'
 import Category from '@/views/category.vue'
 import Product from '@/views/product.vue'
+import LogIn from '@/views/log-in.vue'
 
 export default [
   {
     path: '/404',
     name: '404',
     component: () => import('@/views/_404.vue'),
+  },
+  {
+    path: '/konto/logg-inn',
+    name: 'LogIn',
+    component: LogIn
   },
   {
     path: '/',

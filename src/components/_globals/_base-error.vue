@@ -12,11 +12,7 @@
         </h3>
         <div v-if="errors" class="mt-2 text-sm leading-5 text-red-700">
           <ul class="pl-5 list-disc">
-            <li v-for="(error, index) in errors" :key="index" class="mt-1">
-              <span v-for="(value, name, index) in error" :key="index">
-                {{ value }}
-              </span>
-            </li>
+            <li v-for="(error, index) in errors" :key="index" class="mt-1">{{ error }}</li>
           </ul>
         </div>
       </div>

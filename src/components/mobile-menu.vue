@@ -95,7 +95,7 @@ export default {
   computed: {
     // property that holds if the user is authenticated
     userIsAuthenticated() {
-      return this.$store.getters['users/getIsAuthenticated']
+      return this.$store.getters['auth/getIsAuthenticated']
     }
   },
   data() {
@@ -112,7 +112,7 @@ export default {
     },
     // redirect user to login page
     redirectToLogin() {
-      window.location.href = '/bruker/logg-inn/'
+      this.$router.push({name: 'LogIn'})
     }
   }
 }

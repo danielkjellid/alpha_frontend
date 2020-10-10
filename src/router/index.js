@@ -30,7 +30,7 @@ router.beforeEach(async (routeTo, routeFrom, next) => {
   const authRequired = routeTo.matched.some((route) => route.meta.authRequired)
   const staffRequired = routeTo.matched.some((route) => route.meta.staffRequired)
   
-  const currentUser = store.state.users.currentUser
+  const currentUser = store.state.auth.currentUser
 
   // if auth isn't required for the route, just continue
   if (!authRequired) return next()
@@ -45,14 +45,14 @@ router.beforeEach(async (routeTo, routeFrom, next) => {
         // if the user is null or the user isn't authenticated
         // run the fetchCurrentUser action in store
         // this is in case of the route being accessed before the init action is run, and the currentUser state is null
-        await store.dispatch('users/fetchCurrentUser')
+        await store.dispatch('auth/fetchCurrentUser')
           .then(() => {
             // when the action is run, get the object through the getCurrentUser getter
-            const user = store.getters['users/getCurrentUser']
+            const user = store.getters['auth/getCurrentUser']
 
             // if the user is fetched from the api, and still not authenticated, redirect to login
             if (!user.is_authenticated) {
-              window.location.href = '/bruker/logg-inn/'
+              this.push({name: 'LogIn'})
             } else {
               // if the user is authenticated, just continue
               next()
@@ -78,14 +78,14 @@ router.beforeEach(async (routeTo, routeFrom, next) => {
       // if the user is null or the user isn't authenticated
       // run the fetchCurrentUser action in store
       // this is in case of the route being accessed before the init action is run, and the currentUser state is null
-      await store.dispatch('users/fetchCurrentUser')
+      await store.dispatch('auth/fetchCurrentUser')
         .then(() => {
           // when the action is run, get the object through the getCurrentUser getter
-          const user = store.getters['users/getCurrentUser']
+          const user = store.getters['auth/getCurrentUser']
 
           // if the user is fetched from the api, and still not authenticated, redirect to login
           if (!user.is_authenticated) {
-            window.location.href = '/bruker/logg-inn/'
+            this.push({name: 'LogIn'})
           // if the user is fetched and authenticated, but not staff, redirect to 404
           } else if (!user.is_staff) {
             next({ path: '/404' })

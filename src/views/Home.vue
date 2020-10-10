@@ -100,7 +100,7 @@
 </template>
 
 <script>
-import { apiService } from '@/common/api.service'
+import apiService from '@/common/api'
 
 export default {
   name: 'Home',
@@ -112,11 +112,11 @@ export default {
   },
   methods: {
     fetchCategories() {
-      apiService('categories/')
-      .then(categories => {
-        this.categories = categories
-        this.loaded = true
-      })
+      apiService.get('categories/')
+        .then(categories => {
+          this.categories = categories.data
+          this.loaded = true
+        })
     }
   },
   created() {

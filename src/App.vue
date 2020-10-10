@@ -12,6 +12,9 @@ export default {
       title: 'Flishuset',
     }
   },
+  // mounted() {
+  //   this.$store.dispatch('users/inspectToken')
+  // }
 }
 </script>
 

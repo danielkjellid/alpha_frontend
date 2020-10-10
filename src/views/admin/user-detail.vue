@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { apiService } from '@/common/api.service'
+import apiService from '@/common/api'
 import AdminDetail from '@/views/templates/admin-detail.vue'
 import Tabs from '@/components/tabs.vue'
 
@@ -115,9 +115,9 @@ export default {
   },
   methods: {
     fetchUser(id) {
-      apiService(`users/${id}/`)
+      apiService.get(`users/${id}/`)
         .then(user => {
-          this.user = user
+          this.user = user.data
         })
     } 
   },

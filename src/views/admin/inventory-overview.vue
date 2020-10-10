@@ -18,7 +18,7 @@
 </template>
 
 <script>
-//import { apiService } from '@/common/api.service'
+//import apiService from '@/common/api'
 import AdminOverviewTemplate from '@/views/templates/admin-overview.vue'
 
 export default {

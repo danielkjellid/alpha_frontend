@@ -162,7 +162,7 @@
 </template>
 
 <script>
-import { apiService } from '@/common/api.service'
+import apiService from '@/common/api'
 import ProductCard from '@/components/product-card.vue'
 import ProductFilterBlock from '@/components/product-filter-block.vue'
 
@@ -301,9 +301,9 @@ export default {
     fetchProducts() {
       const category = this.$route.params.categorySlug
 
-      apiService(`categories/${category}/products/`)
+      apiService.get(`categories/${category}/products/`)
         .then(products => {
-          this.fetchedProducts = products
+          this.fetchedProducts = products.data
           this.loaded = true
           this.selectFilterFromQuery()
         })
@@ -311,17 +311,17 @@ export default {
     fetchCategoryImages() {
       const category = this.$route.params.categorySlug
 
-      apiService(`categories/${category}/`)
+      apiService.get(`categories/${category}/`)
         .then(category => {
-          this.category = category
+          this.category = category.data
         })
     },
     searchEndpoint() {
       const category = this.$route.params.categorySlug
 
-      apiService(`categories/${category}/products/?search=${this.search}`)
+      apiService.get(`categories/${category}/products/?search=${this.search}`)
         .then(products => {
-          this.fetchedProducts = products
+          this.fetchedProducts = products.data
           this.loaded = true
         })
     },
@@ -334,7 +334,8 @@ export default {
     },
     selectFilterFromQuery() {
       let routeQuery = this.$route.query.subcategory
-      routeQuery = routeQuery.replace(/-/g, ' ')
+
+      if (routeQuery) return routeQuery = routeQuery.replace(/-/g, ' ')
 
       this.availableFilters.categories.filter(category => {
 

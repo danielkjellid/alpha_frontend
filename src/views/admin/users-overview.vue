@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { apiService } from '@/common/api.service'
+import apiService from '@/common/api'
 import AdminOverviewTemplate from '@/views/templates/admin-overview.vue'
 
 export default {
@@ -55,9 +55,9 @@ export default {
   },
   methods: {
     fetchUsers() {
-      apiService('users/')
+      apiService.get('users/')
         .then(users => {
-          this.tableItems = users
+          this.tableItems = users.data
         })
     }
   },

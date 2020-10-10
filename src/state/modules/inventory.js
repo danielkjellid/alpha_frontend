@@ -1,4 +1,4 @@
-import { apiService } from '@/common/api.service'
+import apiService from '@/common/api'
 
 export const state = {
   navbarCategories: null
@@ -15,15 +15,14 @@ export const actions = {
     dispatch('fetchNavbarCategories')
   },
   fetchNavbarCategories: ({ commit }) => {
-    return new Promise((resolve, reject) => {
-      apiService('categories/navigation/')
+
+    apiService.get('categories/navigation/')
       .then(categories => {
-        commit('SET_NAVBAR_CATEGORIES', categories)
-        resolve()
-      }).catch(() => {
-        reject()
+        commit('SET_NAVBAR_CATEGORIES', categories.data)
       })
-    })
+      .catch(error => {
+        console.log(error)
+      })
   },
 }
 
