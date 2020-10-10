@@ -10,7 +10,7 @@
           <router-link 
             v-for="child in menuItem.children" 
             :key="child.id" 
-            :to="`/${menuItem.slug}/?subcategory=${child.slug}`" 
+            :to="`/kategori/${menuItem.slug}/?subcategory=${child.slug}`" 
             class="hover:text-gray-600 block py-2 text-sm leading-6 text-gray-700"
           >
             {{ child.name }}

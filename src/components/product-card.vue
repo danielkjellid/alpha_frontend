@@ -32,13 +32,17 @@
           >
             <img :src="product.thumbnail" :alt="`Image of ${product.name}`">
           </div>
-          <div
-            v-for="(variant, index) in product.variants"
-            :key="`${index}-${variant}`"
-            @mouseover="productImage = variant.thumbnail"
-            class="w-8 h-8 mr-2 overflow-hidden border-2 border-gray-300 rounded-full"
-          >
-            <img :src="variant.image" :alt="`Image of ${product.name} variant: ${variant.name}`">
+          <div v-for="(variant, index) in product.variants" :key="`${index}-${variant}`">
+            <div 
+              v-if="index <= 5"
+              @mouseover="productImage = variant.thumbnail"
+              class="w-8 h-8 mr-2 overflow-hidden border-2 border-gray-300 rounded-full"
+            >
+              <img :src="variant.image" :alt="`Image of ${product.name} variant: ${variant.name}`">
+            </div>
+          </div>
+          <div v-if="amountOfVariants > 0" class="text-sm text-gray-500">
+            +{{ amountOfVariants }}
           </div>
         </div>
       </div>
@@ -49,6 +53,11 @@
 <script>
 export default {
   name: 'ProductCard',
+  computed: {
+    amountOfVariants() {
+      return this.product.variants.length-5
+    }
+  },
   data() {
     return {
       showVariants: false,
