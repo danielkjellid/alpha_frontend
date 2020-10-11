@@ -92,7 +92,7 @@
                         <div v-for="i in 5" :key="i" class="h-4 bg-gray-400 rounded" />
                       </div>
                     </div>
-                    <div class="mt-6" v-if="!product.can_be_purchased_online">
+                    <!-- <div class="mt-6" v-if="!product.can_be_purchased_online">
                       <div class="flex items-center justify-between">
                         <div class="w-full">
                           <BaseButton class="flex justify-center w-full">Legg til i handlekurv</BaseButton>
@@ -114,7 +114,7 @@
                     </div>
                     <div class="mt-6" v-else>
                       <BaseButton light class="flex justify-center w-full">Ta kontakt med butikk</BaseButton>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -280,7 +280,7 @@
       </div>
 
       <!-- menu for adding proucts on smaller devices -->
-      <div class="xl:hidden bg-gray-50 sticky bottom-0 left-0 right-0 border-t border-gray-300">
+      <!-- <div class="xl:hidden bg-gray-50 sticky bottom-0 left-0 right-0 border-t border-gray-300">
         <div class="sm:px-16 sm:py-8 max-w-2xl px-5 py-6 mx-auto">
           <div class="flex items-center justify-between">
             <div class="w-full">
@@ -301,7 +301,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </main>
   </div>
 </template>

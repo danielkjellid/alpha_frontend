@@ -11,9 +11,6 @@ import permissionsMixin from '@/mixins/permissions'
 import DetectClickOutside from '@/utils/detect-click-outside'
 import formatPrice from '@/utils/format-price'
 
-// axios.defaults.xsrfHeaderName = "X-CSRFToken"; 
-// axios.defaults.xsrfCookieName = "csrftoken";
-
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
 

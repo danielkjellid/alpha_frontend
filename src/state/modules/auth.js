@@ -70,9 +70,8 @@ export const actions = {
       return apiService.get('user/')
         .then(user => {
           // set the state as the user data
-          console.log(user.data)
           commit('SET_CURRENT_USER', user.data)
-        }).catch(e => console.log(e.response.data.code))
+        })
     }
   }
 }

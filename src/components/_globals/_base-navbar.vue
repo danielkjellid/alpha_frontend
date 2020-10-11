@@ -38,10 +38,12 @@
                     </svg>
                   </transition>
                 </BaseButton>
-                <router-link to="/kjokken" :class="renderNavbarLinkClasses" :active-class="renderNavbarLinkActiveClasses" class="ml-4">Inspirasjon</router-link>
-                <router-link to="/tegnetime" :class="renderNavbarLinkClasses" :active-class="renderNavbarLinkActiveClasses" class="ml-4">Tegnetime</router-link>
-                <router-link to="/om-oss" :class="renderNavbarLinkClasses" :active-class="renderNavbarLinkActiveClasses" class="ml-4">Om oss</router-link>
-                <router-link to="/om-oss" :class="renderNavbarLinkClasses" :active-class="renderNavbarLinkActiveClasses" class="ml-4">Tilbud</router-link>
+                <!-- commented out as the links are not functional yet -->
+                <!-- <router-link to="/kjokken" :class="renderNavbarLinkClasses" :active-class="renderNavbarLinkActiveClasses" class="ml-4">Inspirasjon</router-link> -->
+                <!-- <router-link to="/tegnetime" :class="renderNavbarLinkClasses" :active-class="renderNavbarLinkActiveClasses" class="ml-4">Tegnetime</router-link> -->
+                <a href="https://jke-design.com/no/booking/velg-tidspunkt/?sId=2784" target="_blank" rel="noopener noreferrer" plain :class="renderNavbarLinkClasses" class="ml-4">Tegnetime</a>
+                <!-- <router-link to="/om-oss" :class="renderNavbarLinkClasses" :active-class="renderNavbarLinkActiveClasses" class="ml-4">Om oss</router-link> -->
+                <!-- <router-link to="/tilbud" :class="renderNavbarLinkClasses" :active-class="renderNavbarLinkActiveClasses" class="ml-4">Tilbud</router-link> -->
               </nav>
             </div>
             <div class="flex items-center">
@@ -73,18 +75,19 @@
                       </div>
                     </div>
                     <div class="px-5 py-3" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-                      <router-link to="#" class="hover:text-gray-600 block py-2 text-sm leading-6 text-gray-900">Din konto</router-link>
-                      <router-link to="#" class="hover:text-gray-600 block py-2 text-sm leading-6 text-gray-900">Innstillinger</router-link>
+                      <!-- <router-link to="#" class="hover:text-gray-600 block py-2 text-sm leading-6 text-gray-900">Din konto</router-link>
+                      <router-link to="#" class="hover:text-gray-600 block py-2 text-sm leading-6 text-gray-900">Innstillinger</router-link> -->
                       <button @click="logOut" class="hover:text-gray-600 block py-2 text-sm leading-6 text-gray-900">Logg ut</button>
                     </div>
                   </div>
                 </transition>
               </div>
+              <!-- cart commented out as its not functional yet -->
               <!-- link and icon to cart -->
-              <BaseButton to="/" icon plain :light="renderNavbarIconLight" class="lg:mr-0 flex items-center mr-3">
+              <!-- <BaseButton to="/" icon plain :light="renderNavbarIconLight" class="lg:mr-0 flex items-center mr-3">
                 <BaseIcon name="shopping-bag" height="h-6" width="w-6"/>
                  <span class="ml-1 text-sm font-medium" :class="!renderNavbarTransparent ? 'text-gray-600' : 'text-gray-400'">0</span>
-              </BaseButton>
+              </BaseButton> -->
               <!-- menu button for md screens and bellow -->
               <BaseButton @click="mobileMenuActive = true" icon plain :light="renderNavbarIconLight" class="lg:hidden">
                 <BaseIcon name="menu" height="h-6" width="w-6"/>

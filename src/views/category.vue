@@ -128,17 +128,19 @@
                     <span v-if="selectedFilters.length > 0" class="flex items-center justify-center w-5 h-5 ml-2 text-xs text-gray-700 bg-gray-300 rounded-full">{{ countFiltersActive }}</span>
                   </BaseButton>
                 </div>
-                <div class="flex items-center w-full">
-                  <BaseInput 
-                    v-model="search" 
-                    icon="search" 
-                    placeholder="Søk i hundrevis av varer" 
-                    block 
-                    label="search" 
-                    hiddenLabel
-                  />
-                  <BaseButton @click="searchEndpoint()" class="ml-2">Søk i varer</BaseButton>
-                </div>
+                <form @submit.prevent="searchEndpoint()">
+                  <div class="flex items-center w-full">
+                    <BaseInput 
+                      v-model="search" 
+                      icon="search" 
+                      placeholder="Søk i hundrevis av varer" 
+                      block 
+                      label="search" 
+                      hiddenLabel
+                    />
+                    <BaseButton type="submit" class="ml-2">Søk i varer</BaseButton>
+                  </div>
+                </form>
               </div>
             </section>
             <div v-if="loaded">

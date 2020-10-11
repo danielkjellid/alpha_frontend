@@ -11,27 +11,27 @@
               src="https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/belysning/12dd09e9045b7d0b9a704ea9930122bb.jpg" 
               alt=""
               class="absolute bottom-0 left-0 right-0 w-full h-full"
-              :srcset="`https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/belysning/efd2f12a48eb069752621b400d983518.jpg 512w,
-                        https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/belysning/734a76e4dabe6516991d5fbb76cc44c9.jpg 1024w,
-                        https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/belysning/85d0abe28a8db662b56d4dfd4dfe59c3.jpg 1024w,
-                        https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/belysning/12dd09e9045b7d0b9a704ea9930122bb.jpg 1536w,
-                        https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/belysning/6f8b4f797cade7a3fc042e251fd82d7c.jpg 2048w,
-                        https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/belysning/5fd72d0a6328b5d9f453eaa3216d663b.jpg 2560w,
-                        https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/belysning/1766491d3dd2b83b5c7a17f421c414f6.jpg 3072w`"
+              srcset="https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/test/auth/c95a96ef93109c6546738fdc429bcb8c.jpg 512w,
+                      https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/test/auth/3b181ea54fb5c380b14d957b2764a98c.jpg 1024w,
+                      https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/test/auth/f9501d53983d6e627f73a9b4ee3f87ad.jpg 1024w,
+                      https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/test/auth/189f0b6d44d6e8dada70557aa6e6103a.jpg 1536w,
+                      https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/test/auth/0afee951bb0d570c0249611747f2b64f.jpg 2048w,
+                      https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/test/auth/3ad72ec9f2e2f8596c422c843c52be52.jpg 2560w,
+                      https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/test/auth/d0bd021152e6ee41573939506b9c5102.jpg 3072w"
             >
             <div class="absolute bottom-0 left-0 right-0 flex items-center justify-center h-full px-4">
               <div class="text-center">
-                <h2 class="text-2xl font-medium text-white">Vårkolleksjonen har ankommet</h2>
+                <h2 class="text-2xl font-medium text-white">Velkommen til vår nye nettside</h2>
                 <h3 class="mt-3 text-lg text-white">En verden av ro, ærlige materialer, naturlige farger og bærekraftige design</h3>
-                <BaseButton class="mt-5" outlined to="`/kampanje/`">
+                <!-- <BaseButton class="mt-5" outlined to="`/kampanje/`">
                   Se den her
-                </BaseButton>
+                </BaseButton> -->
               </div>
             </div>
-            <div class="absolute bottom-0 left-0 right-0 mb-8 text-center">
-              <BaseButton icon light plain>
+            <div class="absolute bottom-0 left-0 right-0 flex justify-center mb-8 text-center">
+              <div>
                 <BaseIcon class="animate-bounce-slow" name="chevron-down" fill="text-white hover:text-gray-300" height="h-12" width="w-12" />
-              </BaseButton>
+              </div>
             </div>
           </div>
         </article>

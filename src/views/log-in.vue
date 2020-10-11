@@ -13,7 +13,6 @@
               Tilbake til Flishuset
             </router-link>
           </nav>
-          <p>curr: {{currentUser}}</p>
           <div v-if="!currentUser" class="pt-20">
             <div class="flex justify-center mb-8">
               <div class="border-b border-gray-200">
