@@ -59,7 +59,7 @@
                     </div>
                     <div class="mt-5">
                       <h2 class="text-sm font-medium text-gray-900">Varianter</h2>
-                      <div v-if="loaded" class="flex items-center mt-3 space-x-3">
+                      <div v-if="loaded" class="grid grid-cols-8 gap-3 mt-3">
                         <button v-for="variant in product.variants" :key="variant.id" @click="selectVariant(variant.id)">
                           <div class="relative">
                             <img class="w-8 h-8 border-2 border-gray-300 rounded-full" :src="variant.image" />

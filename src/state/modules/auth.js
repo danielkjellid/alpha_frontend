@@ -1,7 +1,7 @@
 import apiService from '@/common/api'
 
 export const state = {
-  currentUser: null
+  currentUser: null,
 }
 
 export const mutations = {
@@ -19,7 +19,7 @@ export const mutations = {
   },
   'SET_CURRENT_USER' (state, user) {
     state.currentUser = user
-  }
+  },
 }
 
 export const actions = {
@@ -73,7 +73,7 @@ export const actions = {
           commit('SET_CURRENT_USER', user.data)
         })
     }
-  }
+  },
 }
 
 export const getters = {
@@ -94,5 +94,8 @@ export const getters = {
   },
   getAuthError: (state) => {
     return state.authError
+  },
+  getMessage: (state) => {
+    return state.message
   }
 }

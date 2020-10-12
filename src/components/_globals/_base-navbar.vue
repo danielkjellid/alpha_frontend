@@ -127,6 +127,9 @@ export default {
     FlyoutMenu
   },
   computed: {
+    authMessage() {
+      return this.$store.getters['auth/getMessage']
+    },
     // render the navbar background and color of content accordingly based on route meta
     renderNavbarTransparent() {
       if (this.$route.meta.navbarTransparent === undefined || this.$route.meta.navbarTransparent === false) return false
