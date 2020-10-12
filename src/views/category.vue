@@ -172,11 +172,11 @@ export default {
   name: 'Category',
   page() {
     return {
-      title: `Category`,
+      title: `${this.metaTitle}`,
       meta: [
         {
           name: 'description',
-          content: `Products attached to the ${this.currentCategory} category.`
+          content: `Products tilhørende ${this.currentCategory} kategorien.`
         }
       ]
     }
@@ -186,6 +186,10 @@ export default {
     ProductFilterBlock,
   },
   computed: {
+    metaTitle() {
+      // make first letter of category slug capital
+      return this.currentCategory.charAt(0).toUpperCase() + this.currentCategory.slice(1)
+    },
     currentCategory() {
       return this.$route.params.categorySlug
     },
@@ -310,7 +314,7 @@ export default {
           this.selectFilterFromQuery()
         })
     },
-    fetchCategoryImages() {
+    fetchCategory() {
       const category = this.$route.params.categorySlug
 
       apiService.get(`categories/${category}/`)
@@ -355,7 +359,7 @@ export default {
     }
   },
   created() {
-    this.fetchCategoryImages()
+    this.fetchCategory()
     this.fetchProducts()
   }
 }

@@ -67,6 +67,17 @@ import apiService from '@/common/api'
 
 export default {
   name: 'LogIn',
+  page() {
+    return {
+      title: 'Logg inn',
+      meta: [
+        {
+          name: 'description',
+          content: 'Logg inn på flishuset'
+        }
+      ]
+    }
+  },
   computed: {
     currentUser() {
       return this.$store.getters['auth/getCurrentUser']

@@ -40,6 +40,7 @@ export default {
   page() {
     return {
       title: 'Flishuset',
+      titleTemplate: 'Flishuset - %s'
     }
   },
   data() {

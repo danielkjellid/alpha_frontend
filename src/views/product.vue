@@ -313,6 +313,17 @@ import ImageCarouselControls from '@/components/image-carousel-controls.vue'
 
 export default {
   name: 'Product',
+  page() {
+    return {
+      title: `${this.product.name}`,
+      meta: [
+        {
+          name: 'description',
+          content: `Detaljside av produktet ${this.product.name}`
+        }
+      ]
+    }
+  },
   components: {
     ProductSpecRow,
     ImageCarouselControls
