@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-gray-50">
+  <footer class="bg-gray-50 absolute bottom-0 left-0 right-0">
     <div style="max-width: 1700px" class="sm:py-8 sm:px-8 md:flex md:items-center md:justify-between px-5 py-5 mx-auto">
       <div class="md:order-2 flex justify-center space-x-6">
         <a href="mailto:hei@flis.no" class="hover:text-gray-600 text-gray-500">
