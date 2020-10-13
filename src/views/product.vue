@@ -1,7 +1,7 @@
 <template>
   <div>
     <BaseNavbar />
-    <main>
+    <main class="pb-32">
 
       <!-- image header and info box -->
       <section>
@@ -260,7 +260,7 @@
             </article>
             
             <!-- downloads -->
-            <article v-if="product.files" class="mt-12">
+            <article v-if="product.files.length > 0" class="mt-12">
               <h2 class="text-lg font-medium text-gray-900">Nedlastninger</h2>
               <div v-if="loaded" class="mt-6 border border-gray-300 rounded-md">
                 <div v-for="file in product.files" :key="file.name" class="flex items-center justify-between px-4 py-4">
