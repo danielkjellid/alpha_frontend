@@ -34,7 +34,7 @@
           </div>
           <div v-for="(variant, index) in product.variants" :key="`${index}-${variant}`">
             <div 
-              v-if="index <= 5"
+              v-if="index <= indexBasedOnBreakpont"
               @mouseover="productImage = variant.thumbnail"
               class="w-8 h-8 mr-2 overflow-hidden border-2 border-gray-300 rounded-full"
             >
@@ -51,17 +51,31 @@
 </template>
 
 <script>
+import breakpoints from '@/utils/breakpoints'
+
 export default {
   name: 'ProductCard',
   computed: {
     amountOfVariants() {
-      return this.product.variants.length-5
+      return this.product.variants.length-this.indexBasedOnBreakpont
+    },
+    indexBasedOnBreakpont() {
+      if (this.breakpoints.w <= 375) return 6
+      if (this.breakpoints.w <= 640) return 4
+      if (this.breakpoints.w <= 768) return 6
+      if (this.breakpoints.w <= 1024) return 3
+      if (this.breakpoints.w <= 1280) return 3
+      if (this.breakpoints.w <= 1440) return 3
+      if (this.breakpoints.w <= 1920) return 5
+
+      return 3
     }
   },
   data() {
     return {
       showVariants: false,
       productImage: this.product.thumbnail,
+      breakpoints: breakpoints
     }
   },
   props: {

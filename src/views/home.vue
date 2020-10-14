@@ -100,8 +100,6 @@
 </template>
 
 <script>
-import apiService from '@/common/api'
-
 export default {
   name: 'Home',
   page() {
@@ -115,23 +113,15 @@ export default {
       ]
     }
   },
-  data() {
-    return {
-      categories: null,
-      loaded: false,
+  computed: {
+    categories() {
+      return this.$store.getters['inventory/getCategories']
+    },
+    loaded() {
+      if (this.$store.getters['inventory/getCategories']) return true
+
+      return false
     }
   },
-  methods: {
-    fetchCategories() {
-      apiService.get('categories/')
-        .then(categories => {
-          this.categories = categories.data
-          this.loaded = true
-        })
-    }
-  },
-  created() {
-    this.fetchCategories()
-  }
 }
 </script>
