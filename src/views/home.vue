@@ -49,7 +49,6 @@
           <p class="text-sm text-gray-900">
             Vi leverer over hele landet.
           </p>
-          {{loaded}}
         </div>
         <!-- categories -->
         <section v-if="loaded" class="sm:grid-cols-2 grid grid-cols-1 gap-0">
