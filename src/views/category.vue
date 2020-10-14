@@ -160,6 +160,7 @@
         </div>
       </div>
     </main>
+    <BaseFooter />
   </div>
 </template>
 

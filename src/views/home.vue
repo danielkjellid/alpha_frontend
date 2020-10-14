@@ -97,6 +97,7 @@
         </section>
       </div>
     </main>
+    <BaseFooter />
   </div>
 </template>
 
