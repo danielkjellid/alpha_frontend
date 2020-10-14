@@ -106,7 +106,7 @@ export default {
   name: 'Home',
   page() {
     return {
-      title: 'Hjem',
+      title: `Hjem`,
       meta: [
         {
           name: 'description',

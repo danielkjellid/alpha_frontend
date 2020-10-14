@@ -1,7 +1,7 @@
 <template>
   <div>
     <BaseNavbar />
-    <main class="pb-32">
+    <main>
       <!-- main category image -->
       <section>
         <article 
@@ -93,6 +93,7 @@
           </div>
         </div>
         
+        <!-- TODO: Fix "Back" on smaller screens -->
         <BaseBreadcrumbs :breadcrumbs="breadcrumbs" class="lg:px-3"/>
         <div class="flex mt-8">
           <aside class="lg:block hidden w-1/6 mr-4">

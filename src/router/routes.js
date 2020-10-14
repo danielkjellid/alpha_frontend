@@ -9,9 +9,6 @@ export default [
     path: '*',
     name: '404',
     component: () => import('@/views/_404.vue'),
-    meta: {
-      navbarTransparent: false
-    }
   },
   {
     path: '/konto/logg-inn/',

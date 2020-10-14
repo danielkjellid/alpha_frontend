@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BaseNotification v-if="!error" title="Logget inn suksessfullt!" :display="showNotification" @close-notification="showNotification = false" />
+    <BaseNotification v-if="!error" title="Logget inn suksessfullt!" subtitle="Du blir automatisk sendt tilbake til hjemmesiden." :display="showNotification" @close-notification="showNotification = false" />
     <BaseNotification v-else :success="!error" title="Innlogging feilet" subtitle="Feil brukernavn eller passord. Merk at du må skille mellom store og små bokstaver." :display="showNotification" @close-notification="showNotification = false" />
     <div :style="`background-image: url(${require('../assets/images/auth.jpg')});`" class="bg-center bg-no-repeat bg-cover">
       <div class="md:bg-transparent bg-white">
@@ -101,14 +101,19 @@ export default {
           localStorage.setItem('refresh_token', response.data.refresh)
         })
         .finally(() => {
+          let self = this
 
           // set appropriate state
           this.error = false
           this.showNotification = true
 
-          // populate the current user state in the users module once tokens is obtained, and redirects home
+          // populate the current user state in the users module once tokens is obtained
           this.$store.dispatch('auth/fetchCurrentUser')
-          this.$router.push({name: 'Home'})
+
+          // set automatic redirect after login
+          setTimeout(function() {
+            self.$router.push({name: 'Home'})
+          }, 2000)
         })
         .catch(() => {
           // populate state to display error message in form
