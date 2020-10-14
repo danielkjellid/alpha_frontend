@@ -2,7 +2,7 @@ import axios from 'axios'
 import router from '@/router'
 
 // set base URL
-const baseURL = 'http://127.0.0.1:8000/api/'
+const baseURL = process.env.NODE_ENV !== 'production' ? 'http://127.0.0.1:8000/api/' : 'https://flishuset-backend.herokuapp.com/'
 
 // set default axios config
 const apiService = axios.create({

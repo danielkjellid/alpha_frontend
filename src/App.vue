@@ -53,7 +53,7 @@ export default {
       this.showMessage = false
       localStorage.setItem('show_message', false)
     }
-  }
+  },
 }
 </script>
 
