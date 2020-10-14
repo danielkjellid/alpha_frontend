@@ -104,6 +104,17 @@ import apiService from '@/common/api'
 
 export default {
   name: 'Home',
+  page() {
+    return {
+      title: 'Hjem',
+      meta: [
+        {
+          name: 'description',
+          content: 'Velkommen til flishuset sin hjemmeside.'
+        }
+      ]
+    }
+  },
   data() {
     return {
       categories: null,

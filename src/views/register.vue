@@ -161,6 +161,17 @@ import apiService from '@/common/api'
 
 export default {
   name: 'Register',
+  page() {
+    return {
+      title: 'Lag konto',
+      meta: [
+        {
+          name: 'description',
+          content: 'Lag konto hos oss'
+        }
+      ]
+    }
+  },
   data() {
     return {
       user: {

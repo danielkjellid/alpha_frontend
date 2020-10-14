@@ -1,7 +1,7 @@
 <template>
   <div>
     <BaseNavbar />
-    <main>
+    <main class="pb-32">
       <!-- main category image -->
       <section>
         <article 
@@ -93,7 +93,6 @@
           </div>
         </div>
         
-        <!-- TODO: Fix "Back" on smaller screens -->
         <BaseBreadcrumbs :breadcrumbs="breadcrumbs" class="lg:px-3"/>
         <div class="flex mt-8">
           <aside class="lg:block hidden w-1/6 mr-4">
@@ -172,11 +171,11 @@ export default {
   name: 'Category',
   page() {
     return {
-      title: `Category`,
+      title: `${this.metaTitle}`,
       meta: [
         {
           name: 'description',
-          content: `Products attached to the ${this.currentCategory} category.`
+          content: `Products tilhørende ${this.currentCategory} kategorien.`
         }
       ]
     }
@@ -186,6 +185,10 @@ export default {
     ProductFilterBlock,
   },
   computed: {
+    metaTitle() {
+      // make first letter of category slug capital
+      return this.currentCategory.charAt(0).toUpperCase() + this.currentCategory.slice(1)
+    },
     currentCategory() {
       return this.$route.params.categorySlug
     },
@@ -310,7 +313,7 @@ export default {
           this.selectFilterFromQuery()
         })
     },
-    fetchCategoryImages() {
+    fetchCategory() {
       const category = this.$route.params.categorySlug
 
       apiService.get(`categories/${category}/`)
@@ -355,7 +358,7 @@ export default {
     }
   },
   created() {
-    this.fetchCategoryImages()
+    this.fetchCategory()
     this.fetchProducts()
   }
 }

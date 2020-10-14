@@ -6,17 +6,20 @@ import Register from '@/views/register.vue'
 
 export default [
   {
-    path: '/404',
+    path: '*',
     name: '404',
     component: () => import('@/views/_404.vue'),
+    meta: {
+      navbarTransparent: false
+    }
   },
   {
-    path: '/konto/logg-inn',
+    path: '/konto/logg-inn/',
     name: 'LogIn',
     component: LogIn
   },
   {
-    path: '/konto/registrer',
+    path: '/konto/registrer/',
     name: 'Register',
     component: Register
   },
@@ -29,7 +32,7 @@ export default [
     }
   },
   {
-    path: '/kategori/:categorySlug',
+    path: '/kategori/:categorySlug/',
     name: 'Category',
     component: Category,
     meta: {
@@ -38,7 +41,7 @@ export default [
     props: route => ({ query: route.query.filter })
   },
   {
-    path: '/kategori/:categorySlug/:productSlug',
+    path: '/kategori/:categorySlug/:productSlug/',
     name: 'Product',
     component: Product,
     meta: {

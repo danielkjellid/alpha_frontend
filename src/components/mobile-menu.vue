@@ -38,7 +38,8 @@
                   <div>
                     <router-link 
                       v-for="child in menuItem.children" 
-                      :key="child.id" :to="`/kategorier/${menuItem.slug}/${child.slug}`" 
+                      :key="child.id" 
+                      :to="`/kategori/${menuItem.slug}/?subcategory=${child.slug}`"
                       class="hover:text-gray-600 block py-2 text-sm leading-6 text-gray-700"
                     >
                       {{ child.name }}
@@ -48,10 +49,10 @@
               </div>
             </transition>
           </div>  
-          <router-link to="/" class="hover:text-gray-600 block mt-4 text-base leading-7 text-gray-900">Inspirasjon</router-link>
+          <!-- <router-link to="/" class="hover:text-gray-600 block mt-4 text-base leading-7 text-gray-900">Inspirasjon</router-link> -->
           <router-link to="/" class="hover:text-gray-600 block mt-4 text-base leading-7 text-gray-900">Tegnetime</router-link>
-          <router-link to="/" class="hover:text-gray-600 block mt-4 text-base leading-7 text-gray-900">Om oss</router-link>
-          <router-link to="/" class="hover:text-gray-600 block mt-4 text-base leading-7 text-gray-900">Tilbud</router-link>
+          <!-- <router-link to="/" class="hover:text-gray-600 block mt-4 text-base leading-7 text-gray-900">Om oss</router-link>
+          <router-link to="/" class="hover:text-gray-600 block mt-4 text-base leading-7 text-gray-900">Tilbud</router-link> -->
         </nav>
       </div>
       <!-- footer that displays usermenu -->
