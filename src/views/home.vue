@@ -49,6 +49,7 @@
           <p class="text-sm text-gray-900">
             Vi leverer over hele landet.
           </p>
+          {{loaded}}
         </div>
         <!-- categories -->
         <section v-if="loaded" class="sm:grid-cols-2 grid grid-cols-1 gap-0">
@@ -118,7 +119,7 @@ export default {
       return this.$store.getters['inventory/getCategories']
     },
     loaded() {
-      if (this.$store.getters['inventory/getCategories']) return true
+      if (this.categories.length > 0) return true
 
       return false
     }
