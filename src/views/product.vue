@@ -387,11 +387,10 @@ export default {
       this.order.selectedSize = size
     },
     fetchProduct() {
-      const category = this.$route.params.categorySlug
       const slug = this.$route.params.productSlug
 
       // get products attached to category
-      apiService.get(`categories/${category}/products/${slug}/`)
+      apiService.get(`products/${slug}/`)
       .then(product => {
         this.product = product.data
 
