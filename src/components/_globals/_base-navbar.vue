@@ -5,7 +5,7 @@
       <!-- color of navbar content is rended according to route meta -->
       <!-- this is because we want to render a transparent bar and white text over pages where there is an image on top -->
       <div class="relative z-10" :class="!renderNavbarTransparent ? 'bg-white shadow' : ( flyoutMenuActive ? 'bg-white shadow' : 'bg-transparent')">
-        <div style="max-width: 1600px;" class="sm:py-8 sm:px-8 px-5 py-5">
+        <div style="max-width: 1600px;" class="sm:py-8 sm:px-8 px-5 py-5 mx-auto">
           <div class="flex items-center justify-between">
             <div class="flex items-center">
               <div>
