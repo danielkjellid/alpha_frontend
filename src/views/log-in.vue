@@ -99,8 +99,7 @@ export default {
           // update localStorage with access and refresh key
           localStorage.setItem('access_token', response.data.access)
           localStorage.setItem('refresh_token', response.data.refresh)
-        })
-        .finally(() => {
+
           let self = this
 
           // set appropriate state
@@ -113,7 +112,7 @@ export default {
           // set automatic redirect after login
           setTimeout(function() {
             self.$router.push({name: 'Home'})
-          }, 2000)
+          }, 1500)
         })
         .catch(() => {
           // populate state to display error message in form
