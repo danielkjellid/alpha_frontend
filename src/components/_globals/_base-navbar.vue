@@ -1,6 +1,11 @@
 <template>
   <div>
-    <BaseNotification title="Logget ut suksessfullt!" :display="showNotification" @close-notification="showNotification = false" />
+    <BaseNotification 
+      :display="authMessage" 
+      :success="true" 
+      :title="authMessage" 
+      @close-notification="resetAuthMessage"
+    />
     <header :class="!renderNavbarTransparent ? 'relative' : 'absolute left-0 right-0'" v-click-outside="hideFlyoutMenu">
       <!-- color of navbar content is rended according to route meta -->
       <!-- this is because we want to render a transparent bar and white text over pages where there is an image on top -->
@@ -170,13 +175,15 @@ export default {
     userIsAuthenticated() {
       return this.$store.getters['users/getIsAuthenticated']
     },
+    authMessage() {
+      return this.$store.getters['auth/getAuthMessage']
+    }
   },
   data() {
     return {
       mobileMenuActive: false,
       flyoutMenuActive: false,
       userMenuActive: false,
-      showNotification: false
     }
   },
   methods: {
@@ -200,7 +207,12 @@ export default {
     logOut() {
       this.$store.dispatch('auth/logOut')
       this.userMenuActive = false
-      this.showNotification = true
+      this.$store.dispatch('auth/setAuthMessage', 'Logget ut suksessfullt!')
+    },
+    resetAuthMessage() {
+      if (this.authMessage) {
+        this.$store.dispatch('auth/resetAuthMessage')
+      }
     }
   },
 }

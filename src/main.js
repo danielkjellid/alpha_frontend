@@ -7,16 +7,28 @@ import axios from 'axios'
 
 import '@/assets/css/tailwind.css'
 import '@/components/_globals'
+
+// global mixins
 import permissionsMixin from '@/mixins/permissions'
+import errorMixin from '@/mixins/errorMixin'
+import errorMessageMixin from '@/mixins/errorMessageMixin'
+
+Vue.mixin(permissionsMixin)
+Vue.mixin(errorMixin)
+Vue.mixin(errorMessageMixin)
+
+// global directives
 import DetectClickOutside from '@/utils/detect-click-outside'
+
+Vue.directive('click-outside', DetectClickOutside)
+
+// global filters
 import formatPrice from '@/utils/format-price'
+
+Vue.filter('formatPrice', formatPrice)
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
-
-Vue.mixin(permissionsMixin)
-Vue.directive('click-outside', DetectClickOutside)
-Vue.filter('formatPrice', formatPrice)
 
 Vue.use(VueAnalytics, {
   id: 'UA-179947262-1',

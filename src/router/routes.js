@@ -3,6 +3,7 @@ import Category from '@/views/category.vue'
 import Product from '@/views/product.vue'
 import LogIn from '@/views/log-in.vue'
 import Register from '@/views/register.vue'
+import Auth from '@/views/templates/auth.vue'
 
 export default [
   {
@@ -44,6 +45,11 @@ export default [
     meta: {
       navbarTransparent: true
     }
+  },
+  {
+    path: '/test/',
+    name: 'Test',
+    component: Auth
   },
 
   // admin components

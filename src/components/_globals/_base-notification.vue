@@ -13,7 +13,6 @@
           <div class="p-4">
             <div class="flex" :class="subtitle ? 'items-start' : 'items-center'">
               <div class="flex-shrink-0">
-                <!-- Heroicon name: check-circle -->
                 <svg v-if="success" class="w-6 h-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -31,7 +30,6 @@
               </div>
               <div class="flex flex-shrink-0 ml-4">
                 <button @click="closeNotification" class="focus:outline-none focus:text-gray-600 inline-flex text-gray-500 transition duration-150 ease-in-out">
-                  <!-- Heroicon name: x -->
                   <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
                   </svg>
@@ -54,21 +52,21 @@ export default {
       default: true
     },
     display: {
-      type: Boolean,
+      type: [Boolean, String, Array, Object],
       default: false
     },
     title: {
-      type: String,
       required: true
     },
     subtitle: {
-      type: String,
       required: false
     }
   },
-  watch: {
-    display() {
-
+  methods: {
+    closeNotification() {
+      this.$emit('close-notification')
+    },
+    closeAfterThreeSeconds() {
       const self = this
 
       setTimeout(function() {
@@ -76,9 +74,14 @@ export default {
       }, 3000)
     }
   },
-  methods: {
-    closeNotification() {
-      this.$emit('close-notification')
+  mounted() {
+    if (this.success) {
+      this.closeAfterThreeSeconds()
+    }
+  },
+  updated() {
+    if (this.success) {
+      this.closeAfterThreeSeconds()
     }
   }
 }
