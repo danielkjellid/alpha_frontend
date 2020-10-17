@@ -10,11 +10,6 @@
         <h3 class="text-sm font-medium leading-5 text-red-800">
           Oida! Noe gikk galt
         </h3>
-        <div v-if="errors" class="mt-2 text-sm leading-5 text-red-700">
-          <ul class="pl-5 list-disc">
-            <li v-for="(error, index) in errors" :key="index" class="mt-1">{{ error }}</li>
-          </ul>
-        </div>
       </div>
     </div>
   </div>

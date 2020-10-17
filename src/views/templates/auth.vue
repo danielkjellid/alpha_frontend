@@ -4,7 +4,6 @@
       :display="errorMessage" 
       :success="false" 
       title="Oida! Noe gikk galt" 
-      subtitle="Feil brukernavn eller passord. Merk at du må skille mellom store og små bokstaver."
       @close-notification="resetErrorMessage"
     />
     <div :style="`background-image: url(${require('../../assets/images/auth.jpg')});`" class="bg-center bg-no-repeat bg-cover">

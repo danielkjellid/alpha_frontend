@@ -60,9 +60,6 @@ export default {
     AuthTemplate
   },
   computed: {
-    currentUser() {
-      return this.$store.getters['auth/getCurrentUser']
-    },
     errorMessage() {
       return this.$store.getters['auth/getAuthTemplateErrorMessage']
     }
@@ -77,8 +74,11 @@ export default {
   methods: {
     login() {
       // get new token pair
-      apiService.post('auth/token/obtain/', {email: this.email, password: this.password})
+      return apiService.post('auth/token/obtain/', {email: this.email, password: this.password})
         .then(response => {
+          // reset errors object
+          this.errors = {}
+
           // update localStorage with access and refresh key
           localStorage.setItem('access_token', response.data.access)
           localStorage.setItem('refresh_token', response.data.refresh)
