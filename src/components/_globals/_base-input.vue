@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'w-full': block }">
+  <div :class="{ 'w-full': block, 'mb-8' : error }">
     <label :for="id" :class="{ 'sr-only' : hiddenLabel, 'mb-1' : label }" class="block text-sm font-medium leading-5 text-gray-700">{{ label }}</label>
     <div class="relative rounded-md">
       <div v-if="icon" class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">

@@ -8,7 +8,6 @@ export default {
       // is the error is related to a field, 
       // return entire response data object
       return error.response.data
-
     }
   }
 }

@@ -1,9 +1,11 @@
 import Home from '@/views/home.vue'
 import Category from '@/views/category.vue'
 import Product from '@/views/product.vue'
-import LogIn from '@/views/log-in.vue'
-import Register from '@/views/register.vue'
-import Auth from '@/views/templates/auth.vue'
+import LogIn from '@/views/auth-log-in.vue'
+import Register from '@/views/auth-register.vue'
+import ResetPassword from '@/views/auth-reset-password.vue'
+import ResetPasswordConfirm from '@/views/auth-reset-password-confirm.vue'
+import ResetPasswordSetPassword from '@/views/auth-reset-password-set-password.vue'
 
 export default [
   {
@@ -20,6 +22,21 @@ export default [
     path: '/konto/registrer/',
     name: 'Register',
     component: Register
+  },
+  {
+    path: '/konto/nullstill-passord/',
+    name: 'ResetPassword',
+    component: ResetPassword
+  },
+  {
+    path: '/konto/nullstill-passord/sendt/',
+    name: 'ResetPasswordConfirm',
+    component: ResetPasswordConfirm
+  },
+  {
+    path: '/konto/nullstill-passord/:uid/:token/sett-passord/',
+    name: 'ResetPasswordSetPassword',
+    component: ResetPasswordSetPassword
   },
   {
     path: '/',
@@ -45,11 +62,6 @@ export default [
     meta: {
       navbarTransparent: true
     }
-  },
-  {
-    path: '/test/',
-    name: 'Test',
-    component: Auth
   },
 
   // admin components

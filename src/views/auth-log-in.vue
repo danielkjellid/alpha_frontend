@@ -31,7 +31,7 @@
           />
         </div>
         <div class="mt-4 mb-4 text-center">
-          <span href="#" class="text-sm font-medium text-gray-900 underline">Glemt passordet?</span>
+          <router-link to="/konto/nullstill-passord/" class="text-sm font-medium text-gray-900 underline">Glemt passordet?</router-link>
         </div>
         <BaseButton type="submit" class="flex justify-center w-full">Logg inn</BaseButton>
       </form>

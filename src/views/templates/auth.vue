@@ -6,6 +6,12 @@
       title="Oida! Noe gikk galt" 
       @close-notification="resetErrorMessage"
     />
+    <BaseNotification 
+      :display="authMessage" 
+      :success="true" 
+      :title="authMessage" 
+      @close-notification="resetAuthMessage"
+    />
     <div :style="`background-image: url(${require('../../assets/images/auth.jpg')});`" class="bg-center bg-no-repeat bg-cover">
       <div class="md:bg-transparent bg-white">
         <div class="md:m-0 lg:max-w-md max-w-sm min-h-screen px-5 py-6 m-auto bg-white">
@@ -18,7 +24,7 @@
             </router-link>
           </nav>
           <div v-if="!currentUser" class="pt-20">
-            <div class="flex justify-center mb-8">
+            <div v-if="navigableRoute" class="flex justify-center mb-8">
               <Tabs :tabs="tabs" />
             </div>
             <div class="mb-8 text-center">
@@ -62,6 +68,14 @@ export default {
     errorMessage() {
       return this.$store.getters['auth/getAuthTemplateErrorMessage']
     },
+    authMessage() {
+      return this.$store.getters['auth/getAuthMessage']
+    },
+    navigableRoute() {
+      if (this.$route.name === 'LogIn' || this.$route.name === 'Register') return true
+
+      return false
+    }
   },
   data() {
     return {
@@ -81,6 +95,11 @@ export default {
     resetErrorMessage() {
       if (this.errorMessage) {
         this.$store.dispatch('auth/resetAuthTemplateErrorMessage')
+      }
+    },
+    resetAuthMessage() {
+      if (this.authMessage) {
+        this.$store.dispatch('auth/resetAuthMessage')
       }
     }
   }
