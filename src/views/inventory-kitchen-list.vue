@@ -21,7 +21,7 @@
               class="lg:flex lg:items-center lg:mb-5 w-full mb-8" 
               v-for="(kitchen, index) in fetchedKitchens" 
               :key="kitchen.id"
-              :class="index % 2 == 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'"
+              :class="index % 2 == 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'"
             >
               <div class="image-container flex-shrink-0 overflow-hidden">
                 <img 
