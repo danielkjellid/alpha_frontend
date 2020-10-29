@@ -1,18 +1,35 @@
 import Home from '@/views/home.vue'
-import Category from '@/views/category.vue'
-import Product from '@/views/product.vue'
+
+// auth views
 import LogIn from '@/views/auth-log-in.vue'
 import Register from '@/views/auth-register.vue'
 import ResetPassword from '@/views/auth-reset-password.vue'
 import ResetPasswordConfirm from '@/views/auth-reset-password-confirm.vue'
 import ResetPasswordSetPassword from '@/views/auth-reset-password-set-password.vue'
 
+// inventory views
+import ProductList from '@/views/inventory-product-list.vue'
+import ProductDetail from '@/views/inventory-product-detail.vue'
+import KitchenList from '@/views/inventory-kitchen-list.vue'
+import KitchenDetail from '@/views/inventory-kitchen-detail.vue'
+
 export default [
+  // generic paths
   {
     path: '*',
     name: '404',
     component: () => import('@/views/_404.vue'),
   },
+  {
+    path: '/',
+    name: 'Home',
+    component: Home,
+    meta: {
+      navbarTransparent: true
+    }
+  },
+
+  // auth paths
   {
     path: '/konto/logg-inn/',
     name: 'LogIn',
@@ -38,18 +55,12 @@ export default [
     name: 'ResetPasswordSetPassword',
     component: ResetPasswordSetPassword
   },
-  {
-    path: '/',
-    name: 'Home',
-    component: Home,
-    meta: {
-      navbarTransparent: true
-    }
-  },
+
+  // inventory paths
   {
     path: '/kategori/:categorySlug/',
-    name: 'Category',
-    component: Category,
+    name: 'ProductList',
+    component: ProductList,
     meta: {
       navbarTransparent: true
     },
@@ -57,48 +68,64 @@ export default [
   },
   {
     path: '/kategori/:categorySlug/:productSlug/',
-    name: 'Product',
-    component: Product,
+    name: 'ProductDetail',
+    component: ProductDetail,
+    meta: {
+      navbarTransparent: true
+    }
+  },
+  {
+    path: '/kjokken/',
+    name: 'KitchenList',
+    component: KitchenList,
+    meta: {
+      navbarTransparent: true
+    }
+  },
+  {
+    path: '/kjokken/:kitchenSlug/',
+    name: 'KitchenDetail',
+    component: KitchenDetail,
     meta: {
       navbarTransparent: true
     }
   },
 
   // admin components
-  {
-    path: '/backend/inventory',
-    name: 'InventoryOverview',
-    component: () => import('@/views/admin/inventory-overview.vue'),
-    meta: {
-      authRequired: true,
-      staffRequired: true
-    }
-  },
-  {
-    path: '/backend/users',
-    name: 'UsersOverview',
-    component: () => import('@/views/admin/users-overview.vue'),
-    meta: { 
-      authRequired: true, 
-      staffRequired: true 
-    }
-  },
-  {
-    path: '/backend/users/:id',
-    name: 'UserDetail',
-    component: () => import('@/views/admin/user-detail.vue'),
-    meta: { 
-      authRequired: true, 
-      staffRequired: true 
-    }
-  },
-  {
-    path: '/backend/users/:id/edit',
-    name: 'UserEdit',
-    component: () => import('@/views/admin/user-edit.vue'),
-    meta: { 
-      authRequired: true, 
-      staffRequired: true 
-    }
-  },
+  // {
+  //   path: '/backend/inventory',
+  //   name: 'InventoryOverview',
+  //   component: () => import('@/views/admin/inventory-overview.vue'),
+  //   meta: {
+  //     authRequired: true,
+  //     staffRequired: true
+  //   }
+  // },
+  // {
+  //   path: '/backend/users',
+  //   name: 'UsersOverview',
+  //   component: () => import('@/views/admin/users-overview.vue'),
+  //   meta: { 
+  //     authRequired: true, 
+  //     staffRequired: true 
+  //   }
+  // },
+  // {
+  //   path: '/backend/users/:id',
+  //   name: 'UserDetail',
+  //   component: () => import('@/views/admin/user-detail.vue'),
+  //   meta: { 
+  //     authRequired: true, 
+  //     staffRequired: true 
+  //   }
+  // },
+  // {
+  //   path: '/backend/users/:id/edit',
+  //   name: 'UserEdit',
+  //   component: () => import('@/views/admin/user-edit.vue'),
+  //   meta: { 
+  //     authRequired: true, 
+  //     staffRequired: true 
+  //   }
+  // },
 ]

@@ -2,39 +2,7 @@
   <div>
     <BaseNavbar />
     <main>
-      <!-- main category image -->
-      <section>
-        <article 
-          v-for="cat in category"
-          :key="cat.name"
-          class="image-full-container relative overflow-hidden">
-          <div class="table-cell align-middle">
-            <!-- dummy images for the time being -->
-            <img 
-              :src="cat.image_1536x660" 
-              alt=""
-              class="absolute bottom-0 left-0 right-0 w-full h-full"
-              :srcset="`${cat.image_512x512} 512w,
-                        ${cat.image_1024x1024} 1024w,
-                        ${cat.image_1024x480} 1024w,
-                        ${cat.image_1536x660} 1536w,
-                        ${cat.image_2048x800} 2048w,
-                        ${cat.image_2560x940} 2560w,
-                        ${cat.image_3072x940} 3072w`"
-            >
-            <div class="absolute bottom-0 left-0 right-0 flex items-center justify-center h-full px-4">
-              <div class="text-center">
-                <h2 class="text-2xl font-medium text-white">{{ cat.name }}</h2>
-              </div>
-            </div>
-            <div class="absolute bottom-0 left-0 right-0 mb-8 text-center">
-              <BaseButton icon light plain>
-                <BaseIcon class="animate-bounce-slow" name="chevron-down" fill="text-white hover:text-gray-300" height="h-12" width="w-12" />
-              </BaseButton>
-            </div>
-          </div>
-        </article>
-      </section>
+      <BaseImageheader :object="category" />
       <!-- site product content -->
       <div class="container px-5 py-8 mx-auto">
         <!-- filter menu on smaller devices -->
@@ -93,7 +61,6 @@
           </div>
         </div>
         
-        <!-- TODO: Fix "Back" on smaller screens -->
         <BaseBreadcrumbs :breadcrumbs="breadcrumbs" class="lg:px-3"/>
         <div class="flex mt-8">
           <aside class="lg:block hidden w-1/6 mr-4">

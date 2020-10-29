@@ -37,7 +37,7 @@
         </article>
       </section>
       <div>
-        <div class="max-w-3xl px-8 py-8 mx-auto text-center">
+        <section class="max-w-3xl px-8 py-8 mx-auto text-center">
           <p class="text-sm text-gray-900">
             Fliser fra Flishuset er av svært høy kvalitet. Alle våre fliser er gjennomfarget og betegnes som ”full body stone” på fagspråket. Denne type fliser egner seg til alle bruksområder. Flisene er bygget på modul, slik at det vil være mulig å kombinere ulike størrelser med fliser og de vil stemme overens i fuger.
           </p>
@@ -49,7 +49,7 @@
           <p class="text-sm text-gray-900">
             Vi leverer over hele landet.
           </p>
-        </div>
+        </section>
         <!-- categories -->
         <section v-if="loaded" class="sm:grid-cols-2 grid grid-cols-1 gap-0">
           <article
@@ -88,6 +88,28 @@
               <BaseButton outlined :to="`/kategori/${category.slug}/`">
                 {{ category.name }}
               </BaseButton>
+            </div>
+          </article>
+          <article class="image-full-container relative col-span-2 overflow-hidden">
+            <div class="table-cell align-middle">
+              <img
+                src="https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/Kj%C3%B8kken/1705_04_V01/e7c130d30ae92bf328bb61eab2bf8ed5.jpg" 
+                alt=""
+                class="absolute bottom-0 left-0 right-0 w-full h-full"
+                srcset="https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/Kj%C3%B8kken/1705_04_V01/0d5307e3b4ca16d384c773282d1e7114.jpg 512w,
+                        https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/Kj%C3%B8kken/1705_04_V01/394292337828ea7fe28adf4a9c51978a.jpg 1024w,
+                        https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/Kj%C3%B8kken/1705_04_V01/518b54f6c7414123e86d0e1f432e8b08.jpg 1024w,
+                        https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/Kj%C3%B8kken/1705_04_V01/e7c130d30ae92bf328bb61eab2bf8ed5.jpg 1536w,
+                        https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/Kj%C3%B8kken/1705_04_V01/9cbaf426633347e5fbafba90d4c6248c.jpg 2048w,
+                        https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/Kj%C3%B8kken/1705_04_V01/e26a5a8d340848322f1f82cdd65e69c9.jpg 2560w,
+                        https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/Kj%C3%B8kken/1705_04_V01/e996fc38ade70266b71baf0ed4ac8d91.jpg 3072w"
+              >
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 flex items-center justify-center h-full">
+              <h2 class="text-xl text-white">Kjøkken</h2>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 mb-8 text-center">
+              <BaseButton outlined to="/kjokken/">Kjøkken</BaseButton>
             </div>
           </article>
         </section>

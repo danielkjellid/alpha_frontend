@@ -90,7 +90,7 @@ export default {
      }
 
      .image-half-container {
-       height: 362px;
+       height: 366px;
        width: 100%;
      }
    }

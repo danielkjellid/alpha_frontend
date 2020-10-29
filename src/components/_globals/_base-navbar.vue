@@ -43,6 +43,7 @@
                     </svg>
                   </transition>
                 </BaseButton>
+                <router-link to="/kjokken/" :class="renderNavbarLinkClasses" :active-class="renderNavbarLinkActiveClasses" class="ml-4">Kjøkken</router-link> 
                 <!-- commented out as the links are not functional yet -->
                 <!-- <router-link to="/kjokken" :class="renderNavbarLinkClasses" :active-class="renderNavbarLinkActiveClasses" class="ml-4">Inspirasjon</router-link> -->
                 <!-- <router-link to="/tegnetime" :class="renderNavbarLinkClasses" :active-class="renderNavbarLinkActiveClasses" class="ml-4">Tegnetime</router-link> -->
