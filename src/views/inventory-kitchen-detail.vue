@@ -14,23 +14,23 @@
               :text="kitchen.description" 
             />
           </div>
-          <div class="mt-8">
+          <div v-if="kitchen.example_from_price" class="mt-8">
             <div class="bg-gray-50 rounded-md">
               <div class="xl:grid-cols-2 grid grid-cols-1">
                 <div>
                   <img 
                     class="example-image-container rounded-tr-md rounded-tl-md xl:rounded-tr-none xl:rounded-l-md" 
-                    :src="kitchen.kitchen_example.image_550x300" 
+                    src="https://flishuset.s3.amazonaws.com/CACHE/images/media/kitchens/example/pricing/be25ba775bfc67ebf10da79e0e3b61b0.jpg" 
                     alt="Image of example set up"
-                    :srcset="`${kitchen.kitchen_example.image_460x250} 460w,
-                              ${kitchen.kitchen_example.image_550x300} 550w`"
+                    srcset="https://flishuset.s3.amazonaws.com/CACHE/images/media/kitchens/example/pricing/be25ba775bfc67ebf10da79e0e3b61b0.jpg 460w,
+                            https://flishuset.s3.amazonaws.com/CACHE/images/media/kitchens/example/pricing/be25ba775bfc67ebf10da79e0e3b61b0.jpg 550w"
                   >
                 </div>
                 <div class="sm:px-6 xl:px-8 px-5 py-6">
                   <div>
                     <div class="flex items-center justify-between">
                       <h2 class="text-xl font-medium text-gray-900">Priseksempel</h2>
-                      <p class="text-sm font-medium text-gray-800">kr {{ kitchen.kitchen_example.from_price | formatPrice}}</p>
+                      <p class="text-sm font-medium text-gray-800">kr {{ kitchen.example_from_price | formatPrice}}</p>
                     </div>
                     <p class="mt-3 text-sm text-gray-700">Priseksempel for oppsett ekskludert benkeplater, armaturer og hvitevarer. Få et konkret tilbud gjennom en tegnetime.</p>
                     <a href="https://jke-design.com/no/booking/velg-tidspunkt/?sId=2784" target="_blank" rel="noopener noreferrer" class="hover:underline mt-4 text-sm">Bestill tegnetime →</a>
