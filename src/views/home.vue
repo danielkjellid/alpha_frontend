@@ -148,3 +148,99 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+  .image-full-container {
+    height: 375px;
+    width: 100%;
+  }
+
+  .image-half-container {
+    height: 375px;
+    width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .image-full-container {
+      height: 300px;
+      width: 100%;
+    }
+
+    .image-half-container {
+      height: 300px;
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .image-full-container {
+      height: 366px;
+      width: 100%;
+    }
+
+    .image-half-container {
+      height: 366px;
+      width: 100%;
+    }
+  }
+
+  @media (min-width:1024px) {
+    .image-full-container {
+      height: 480px;
+      width: 100%;
+    }
+
+    .image-half-container {
+      height: 480px;
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .image-full-container {
+      height: 660px;
+      width: 100%;
+    }
+
+    .image-half-container {
+      height: 660px;
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .image-full-container {
+      height: 800px;
+      width: 100%;
+    }
+
+    .image-half-container {
+      height: 800px;
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 2048px) {
+    .image-full-container {
+      height: 800px;
+      width: 100%;
+    }
+
+    .image-half-container {
+      height: 800px;
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 3072px) {
+    .image-full-container {
+      height: 940px;
+      width: 100%;
+    }
+
+    .image-half-container {
+      height: 940px;
+      width: 100%;
+    }
+  }
+</style>

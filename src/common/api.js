@@ -32,7 +32,7 @@ apiService.interceptors.response.use(
     }
 
     // check if token is valid and request response is unauthorized
-    if (error.response.data.code === 'token_not_valid' && error.response.status === 401 && error.response.statusText === 'Unauthorized') {
+    if (error.response.status === 401 && error.response.statusText === 'Unauthorized') {
       const refreshToken = localStorage.getItem('refresh_token');
 
       // if refresh token is present
@@ -73,6 +73,10 @@ apiService.interceptors.response.use(
         console.log('Refresh token not available')
         router.push({name: 'LogIn'})
       }
+    }
+
+    if (error.response.status === 404) {
+      router.push({name: '404'})
     }
 
     // specific error handling done elsewhere

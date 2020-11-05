@@ -1,7 +1,7 @@
 <template>
   <div>
     <BaseNavbar />
-    <main>
+    <main class="mx-auto">
       <BaseImageheader :object="kitchenObject" />
       <!-- site product content -->
       <div class="container max-w-screen-xl min-h-screen mx-auto">

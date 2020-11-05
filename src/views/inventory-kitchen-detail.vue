@@ -139,7 +139,14 @@ export default {
   data() {
     return {
       loaded: false,
-      kitchen: {},
+      kitchen: {
+        silk_variants: [],
+        decor_variants: [],
+        plywood_variants: [],
+        laminate_variants: [],
+        exclusive_variants: [],
+        trend_variants: []
+      },
     }
   },
   methods: {
