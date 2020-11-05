@@ -26,61 +26,63 @@ apiService.interceptors.response.use(
 
     // to prevent infinite loops, check status and original request url
     // if response is unauthorized, redirect to login
-    if (error.response.status === 401 && originalRequest.url === baseURL+'auth/token/refresh/') {
-      router.push({name: 'LogIn'})
-      return Promise.reject(error)
-    }
+    if (error.response.status) {
+      if (error.response.status === 401 && originalRequest.url === baseURL+'auth/token/refresh/') {
+        router.push({name: 'LogIn'})
+        return Promise.reject(error)
+      }
+    } else {
+      // check if token is valid and request response is unauthorized
+      if (error.response.status === 401 && error.response.statusText === 'Unauthorized') {
+        const refreshToken = localStorage.getItem('refresh_token');
 
-    // check if token is valid and request response is unauthorized
-    if (error.response.status === 401 && error.response.statusText === 'Unauthorized') {
-      const refreshToken = localStorage.getItem('refresh_token');
+        // if refresh token is present
+        if (refreshToken) {
+          const tokenParts = JSON.parse(atob(refreshToken.split('.')[1]))
 
-      // if refresh token is present
-      if (refreshToken) {
-        const tokenParts = JSON.parse(atob(refreshToken.split('.')[1]))
+          // token exp date is expressed in seconds, while now() returns milliseconds, so convert now() to seconds
+          const now = Math.ceil(Date.now() / 1000)
 
-        // token exp date is expressed in seconds, while now() returns milliseconds, so convert now() to seconds
-        const now = Math.ceil(Date.now() / 1000)
+          // if token refresh token is valid
+          if (tokenParts.exp > now) {
 
-        // if token refresh token is valid
-        if (tokenParts.exp > now) {
+            // fetch new access and refresh token pair
+            return apiService
+              .post('auth/token/refresh/', {refresh: refreshToken})
+              .then(response => {
+                  // set new keys in localstorrage
+                  localStorage.setItem('access_token', response.data.access)
+                  localStorage.setItem('refresh_token', response.data.refresh)
 
-          // fetch new access and refresh token pair
-          return apiService
-            .post('auth/token/refresh/', {refresh: refreshToken})
-            .then(response => {
-                // set new keys in localstorrage
-                localStorage.setItem('access_token', response.data.access)
-                localStorage.setItem('refresh_token', response.data.refresh)
+                  // update the auth header in both the config as well as in the original requst
+                  apiService.defaults.headers['Authorization'] = "JWT " + response.data.access
+                  originalRequest.headers['Authorization'] = "JWT " + response.data.access
 
-                // update the auth header in both the config as well as in the original requst
-                apiService.defaults.headers['Authorization'] = "JWT " + response.data.access
-                originalRequest.headers['Authorization'] = "JWT " + response.data.access
-
-                // rerun original request
-                return apiService(originalRequest)
-            })
-            .catch(error => {
-              console.log(error)
-            })
+                  // rerun original request
+                  return apiService(originalRequest)
+              })
+              .catch(error => {
+                console.log(error)
+              })
+          } else {
+            // is refresh token is expired, redirect to login to obtain new pair
+            console.log("Refresh token is expired", tokenParts.exp, now)
+            router.push({name: 'LogIn'})
+          }
         } else {
-          // is refresh token is expired, redirect to login to obtain new pair
-          console.log("Refresh token is expired", tokenParts.exp, now)
+          // if refresh token is missing, redirect to login to obtain a new pair
+          console.log('Refresh token not available')
           router.push({name: 'LogIn'})
         }
-      } else {
-        // if refresh token is missing, redirect to login to obtain a new pair
-        console.log('Refresh token not available')
-        router.push({name: 'LogIn'})
       }
-    }
 
-    if (error.response.status === 404) {
-      router.push({name: '404'})
-    }
+      if (error.response.status === 404) {
+        router.push({name: '404'})
+      }
 
-    // specific error handling done elsewhere
-    return Promise.reject(error)
+      // specific error handling done elsewhere
+      return Promise.reject(error)
+    }
   }
 )
 
