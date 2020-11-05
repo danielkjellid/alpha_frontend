@@ -11,13 +11,13 @@
               src="https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/belysning/12dd09e9045b7d0b9a704ea9930122bb.jpg" 
               alt=""
               class="absolute bottom-0 left-0 right-0 w-full h-full"
-              srcset="https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/test/auth/c95a96ef93109c6546738fdc429bcb8c.jpg 512w,
-                      https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/test/auth/3b181ea54fb5c380b14d957b2764a98c.jpg 1024w,
-                      https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/test/auth/f9501d53983d6e627f73a9b4ee3f87ad.jpg 1024w,
-                      https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/test/auth/189f0b6d44d6e8dada70557aa6e6103a.jpg 1536w,
-                      https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/test/auth/0afee951bb0d570c0249611747f2b64f.jpg 2048w,
-                      https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/test/auth/3ad72ec9f2e2f8596c422c843c52be52.jpg 2560w,
-                      https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/test/auth/d0bd021152e6ee41573939506b9c5102.jpg 3072w"
+              srcset="https://flishuset.s3.eu-north-1.amazonaws.com/CACHE/images/media/campaigns/default/9291924409e100ff7d8ee709b1a5bb2d.jpg 512w,
+                      https://flishuset.s3.eu-north-1.amazonaws.com/CACHE/images/media/campaigns/default/ba3a431f6a6114ed320e5c2dff3538c8.jpg 1024w,
+                      https://flishuset.s3.eu-north-1.amazonaws.com/CACHE/images/media/campaigns/default/7f7830d5d864ba14800e48fa21a2313f.jpg 1024w,
+                      https://flishuset.s3.eu-north-1.amazonaws.com/CACHE/images/media/campaigns/default/85659844501e51c1dac2994e86a49a94.jpg 1536w,
+                      https://flishuset.s3.eu-north-1.amazonaws.com/CACHE/images/media/campaigns/default/6168a403a25aa457c0eaa8754c6c74f9.jpg 2048w,
+                      https://flishuset.s3.eu-north-1.amazonaws.com/CACHE/images/media/campaigns/default/f242d63021077f0d330df6787d716110.jpg 2560w,
+                      https://flishuset.s3.eu-north-1.amazonaws.com/CACHE/images/media/campaigns/default/94716ad55be0c7aa2d20d06a9409573a.jpg 3072w"
             >
             <div class="absolute bottom-0 left-0 right-0 flex items-center justify-center h-full px-4">
               <div class="text-center">
