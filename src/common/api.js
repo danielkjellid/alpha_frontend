@@ -31,7 +31,7 @@ apiService.interceptors.response.use(
         router.push({name: 'LogIn'})
         return Promise.reject(error)
       }
-    } else {
+
       // check if token is valid and request response is unauthorized
       if (error.response.status === 401 && error.response.statusText === 'Unauthorized') {
         const refreshToken = localStorage.getItem('refresh_token');
