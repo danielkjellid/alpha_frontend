@@ -78,6 +78,17 @@ import apiService from '@/common/api'
 
 export default {
   name: 'KitchenList',
+  page() {
+    return {
+      title: 'Kjøkken',
+      meta: [
+        {
+          name: 'description',
+          content: 'En oversikt over kjøkken vi fører.'
+        }
+      ]
+    }
+  },
   computed: {
     breadcrumbs() {
       return [
@@ -92,13 +103,13 @@ export default {
       category: {},
       kitchenObject: {
         name: 'Kjøkken',
-        image_512x512: 'https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/Kj%C3%B8kken/1705_04_V01/0d5307e3b4ca16d384c773282d1e7114.jpg',
-        image_1024x1024: 'https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/Kj%C3%B8kken/1705_04_V01/394292337828ea7fe28adf4a9c51978a.jpg',
-        image_1024x480: 'https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/Kj%C3%B8kken/1705_04_V01/518b54f6c7414123e86d0e1f432e8b08.jpg',
-        image_1536x660: 'https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/Kj%C3%B8kken/1705_04_V01/e7c130d30ae92bf328bb61eab2bf8ed5.jpg',
-        image_2048x800: 'https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/Kj%C3%B8kken/1705_04_V01/9cbaf426633347e5fbafba90d4c6248c.jpg',
-        image_2560x940: 'https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/Kj%C3%B8kken/1705_04_V01/e26a5a8d340848322f1f82cdd65e69c9.jpg',
-        image_3072x940: 'https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/Kj%C3%B8kken/1705_04_V01/e996fc38ade70266b71baf0ed4ac8d91.jpg',
+        image_512x512: 'https://flishuset.s3.eu-north-1.amazonaws.com/CACHE/images/media/kitchens/default/4327513b303bdda4203fcea3505383bf.jpg',
+        image_1024x1024: 'https://flishuset.s3.eu-north-1.amazonaws.com/CACHE/images/media/kitchens/default/598aac538a099b7a2943731a769abc46.jpg',
+        image_1024x480: 'https://flishuset.s3.eu-north-1.amazonaws.com/CACHE/images/media/kitchens/default/3f6c9bc7b7784b50aced890e0073e1da_YNMYSBh.jpg',
+        image_1536x660: 'https://flishuset.s3.eu-north-1.amazonaws.com/CACHE/images/media/kitchens/default/d1a0f21a4b80fe684fe8ce56abf82bb7_o0VQgFk.jpg',
+        image_2048x800: 'https://flishuset.s3.eu-north-1.amazonaws.com/CACHE/images/media/kitchens/default/aa5c87e019add477da9f674f9213bbaa_SQPv9LT.jpg',
+        image_2560x940: 'https://flishuset.s3.eu-north-1.amazonaws.com/CACHE/images/media/kitchens/default/902a5579ae8dc54d446f20369fbe8783.jpg',
+        image_3072x940: 'https://flishuset.s3.eu-north-1.amazonaws.com/CACHE/images/media/kitchens/default/af0b0547d2eef32a2923f7948116f393.jpg',
       },
       fetchedKitchens: []
     }

@@ -96,13 +96,13 @@
                 src="https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/Kj%C3%B8kken/1705_04_V01/e7c130d30ae92bf328bb61eab2bf8ed5.jpg" 
                 alt=""
                 class="absolute bottom-0 left-0 right-0 w-full h-full"
-                srcset="https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/Kj%C3%B8kken/1705_04_V01/0d5307e3b4ca16d384c773282d1e7114.jpg 512w,
-                        https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/Kj%C3%B8kken/1705_04_V01/394292337828ea7fe28adf4a9c51978a.jpg 1024w,
-                        https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/Kj%C3%B8kken/1705_04_V01/518b54f6c7414123e86d0e1f432e8b08.jpg 1024w,
-                        https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/Kj%C3%B8kken/1705_04_V01/e7c130d30ae92bf328bb61eab2bf8ed5.jpg 1536w,
-                        https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/Kj%C3%B8kken/1705_04_V01/9cbaf426633347e5fbafba90d4c6248c.jpg 2048w,
-                        https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/Kj%C3%B8kken/1705_04_V01/e26a5a8d340848322f1f82cdd65e69c9.jpg 2560w,
-                        https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/Kj%C3%B8kken/1705_04_V01/e996fc38ade70266b71baf0ed4ac8d91.jpg 3072w"
+                srcset="https://flishuset.s3.eu-north-1.amazonaws.com/CACHE/images/media/kitchens/default/4327513b303bdda4203fcea3505383bf.jpg 512w,
+                        https://flishuset.s3.eu-north-1.amazonaws.com/CACHE/images/media/kitchens/default/598aac538a099b7a2943731a769abc46.jpg 1024w,
+                        https://flishuset.s3.eu-north-1.amazonaws.com/CACHE/images/media/kitchens/default/3f6c9bc7b7784b50aced890e0073e1da_YNMYSBh.jpg 1024w,
+                        https://flishuset.s3.eu-north-1.amazonaws.com/CACHE/images/media/kitchens/default/d1a0f21a4b80fe684fe8ce56abf82bb7_o0VQgFk.jpg 1536w,
+                        https://flishuset.s3.eu-north-1.amazonaws.com/CACHE/images/media/kitchens/default/aa5c87e019add477da9f674f9213bbaa_SQPv9LT.jpg 2048w,
+                        https://flishuset.s3.eu-north-1.amazonaws.com/CACHE/images/media/kitchens/default/902a5579ae8dc54d446f20369fbe8783.jpg 2560w,
+                        https://flishuset.s3.eu-north-1.amazonaws.com/CACHE/images/media/kitchens/default/af0b0547d2eef32a2923f7948116f393.jpg 3072w"
               >
             </div>
             <div class="absolute bottom-0 left-0 right-0 flex items-center justify-center h-full">
