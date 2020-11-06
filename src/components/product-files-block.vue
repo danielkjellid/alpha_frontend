@@ -1,5 +1,5 @@
 <template>
-  <article>
+  <article v-if="files.length > 0">
     <h2 class="text-lg font-medium text-gray-900">Nedlastninger</h2>
     <div v-if="loaded" class="mt-6 border border-gray-300 rounded-md">
       <div 

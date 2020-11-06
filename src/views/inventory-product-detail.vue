@@ -243,6 +243,7 @@ export default {
       loaded: false,
       product: {
         images: [],
+        files: [],
       },
       order: {
         selectedVariant: null,

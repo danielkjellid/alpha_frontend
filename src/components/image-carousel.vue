@@ -1,7 +1,7 @@
 <template>
   <section>
     <article class="image-full-container relative overflow-hidden">
-      <div class="relative">
+      <div class="table-cell align-middle">
         <transition-group
           enter-class="translate-x-full"
           enter-active-class="transition-all duration-500 ease-linear transform"
@@ -10,13 +10,12 @@
           leave-active-class="transition-all duration-500 ease-linear transform"
           leave-to-class="-translate-x-full"
           tag="div"
-          class="image-full-container relative"
         >
           <img
             v-for="(image, index) in images" :key="`image-${index}`" v-show="showingIndex === index"
             :src="image.image_1536x660"
             alt="Decorative image"
-            class="absolute bottom-0"
+            class="absolute bottom-0 left-0 right-0 w-full h-full"
             :srcset="`${image.image_512x512} 512w,
                       ${image.image_1024x1024} 1024w,
                       ${image.image_1024x480} 1024w,
@@ -82,3 +81,99 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .image-full-container {
+    height: 375px;
+    width: 100%;
+  }
+
+  .image-half-container {
+    height: 375px;
+    width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .image-full-container {
+      height: 300px;
+      width: 100%;
+    }
+
+    .image-half-container {
+      height: 300px;
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .image-full-container {
+      height: 366px;
+      width: 100%;
+    }
+
+    .image-half-container {
+      height: 366px;
+      width: 100%;
+    }
+  }
+
+  @media (min-width:1024px) {
+    .image-full-container {
+      height: 480px;
+      width: 100%;
+    }
+
+    .image-half-container {
+      height: 480px;
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .image-full-container {
+      height: 660px;
+      width: 100%;
+    }
+
+    .image-half-container {
+      height: 660px;
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .image-full-container {
+      height: 800px;
+      width: 100%;
+    }
+
+    .image-half-container {
+      height: 800px;
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 2048px) {
+    .image-full-container {
+      height: 800px;
+      width: 100%;
+    }
+
+    .image-half-container {
+      height: 800px;
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 3072px) {
+    .image-full-container {
+      height: 940px;
+      width: 100%;
+    }
+
+    .image-half-container {
+      height: 940px;
+      width: 100%;
+    }
+  }
+</style>

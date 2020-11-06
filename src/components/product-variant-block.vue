@@ -44,7 +44,7 @@ export default {
       required: true
     },
     order: {
-      type: Array,
+      type: Object,
       required: false
     },
     canBeSelected: {
