@@ -12,6 +12,7 @@
             :key="child.id" 
             :to="`/kategori/${menuItem.slug}/?subcategory=${child.slug}`" 
             class="hover:text-gray-600 block py-2 text-sm leading-6 text-gray-700"
+            @click.native="closeFlyoutMenu"
           >
             {{ child.name }}
           </router-link>
@@ -28,5 +29,10 @@ export default {
       required: true,
     }
   },
+  methods: {
+    closeFlyoutMenu() {
+      this.$emit('close-menu')
+    },
+  }
 }
 </script>

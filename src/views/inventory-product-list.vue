@@ -259,6 +259,13 @@ export default {
 
       // return available fitlers
       return filters
+    },
+    routeQuery() {
+      let routeQuery = this.$route.query.subcategory
+
+      if (routeQuery) return routeQuery = routeQuery.replace(/-/g, ' ')
+
+      return null
     }
   },
   data() {
@@ -269,6 +276,13 @@ export default {
       filterMenuActive: false,
       search: '',
       loaded: false,
+    }
+  },
+  watch: {
+    // "refresh" selected filters on query change
+    '$route.query.subcategory': function() {
+      this.selectedFilters = []
+      this.selectFilterFromQuery()
     }
   },
   methods: {
@@ -307,10 +321,7 @@ export default {
       }
     },
     selectFilterFromQuery() {
-      let routeQuery = this.$route.query.subcategory
-
-      if (routeQuery) return routeQuery = routeQuery.replace(/-/g, ' ')
-
+    
       this.availableFilters.categories.filter(category => {
 
         let name = category.name
@@ -320,7 +331,7 @@ export default {
         name = name.replace(/å/g, 'a')
         name = name.toLowerCase()
 
-        if (name.includes(routeQuery)) {
+        if (name.includes(this.routeQuery)) {
           this.selectedFilters.push(category.name)
         }
       })
