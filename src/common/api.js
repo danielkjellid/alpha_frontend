@@ -26,7 +26,7 @@ apiService.interceptors.response.use(
 
     // to prevent infinite loops, check status and original request url
     // if response is unauthorized, redirect to login
-    if (error.response.status) {
+    if (error.response.status !== undefined) {
       if (error.response.status === 401 && originalRequest.url === baseURL+'auth/token/refresh/') {
         router.push({name: 'LogIn'})
         return Promise.reject(error)
