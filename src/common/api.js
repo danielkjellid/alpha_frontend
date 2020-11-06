@@ -7,7 +7,7 @@ const baseURL = process.env.NODE_ENV !== 'production' ? 'http://127.0.0.1:8000/a
 // set default axios config
 const apiService = axios.create({
   baseURL: baseURL,
-  timeout: 5000,
+  timeout: 30000,
   headers: {
     'Authorization': `JWT  ${localStorage.getItem('access_token')}`,
     'Content-Type': 'application/json',
