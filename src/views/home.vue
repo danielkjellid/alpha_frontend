@@ -77,8 +77,7 @@
                 :src="category.image_1024x1024" 
                 :alt="`Placeholder image of the ${category.name} category.`"
                 :srcset="`${category.image_512x512} 512w,
-                          ${category.image_1024x1024} 1024w,
-                          ${category.image_1536x1536} 1536w`"
+                          ${category.image_1024x1024} 1024w`"
               >
             </div>
             <div class="absolute bottom-0 left-0 right-0 flex items-center justify-center h-full">
