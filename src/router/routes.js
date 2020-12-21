@@ -90,6 +90,11 @@ export default [
       navbarTransparent: true
     }
   },
+  {
+    path: '/test/',
+    name: 'Test',
+    component: () => import('@/views/admin/marketing-page-builder.vue'),
+  }
 
   // admin components
   // {
