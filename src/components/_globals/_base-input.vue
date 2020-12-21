@@ -16,7 +16,7 @@
         }"
         :placeholder="placeholder"
         :type="type"
-        class="block text-sm leading-5 border-gray-200 rounded" 
+        class="block text-sm leading-5 border-gray-200 rounded-md" 
       />
       <div v-if="error" class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
         <BaseIcon name="exclemation-circle" solid fill="text-red-500" />
