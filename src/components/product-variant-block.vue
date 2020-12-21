@@ -10,8 +10,8 @@
         class="mx-auto text-center"
       >
         <div class="relative">
-          <img v-if="variant.image" class="w-20 h-20 border-2 border-gray-300 rounded-full" :src="variant.image" />
-          <div v-else-if="variant.color_hex" :style="`background-color: ${variant.color_hex }`" class="w-20 h-20 mx-auto border-2 border-gray-300 rounded-full" />
+          <img v-if="variant.image" class="w-20 h-20 border-2 border-gray-200 rounded-full" :src="variant.image" />
+          <div v-else-if="variant.color_hex" :style="`background-color: ${variant.color_hex }`" class="w-20 h-20 mx-auto border-2 border-gray-200 rounded-full" />
           
           <div v-if="isSelected(variant.id)" class="absolute inset-0 flex items-center justify-center">
             <BaseIcon solid name="check" fill="text-white" height="h-8" width="w-8" />

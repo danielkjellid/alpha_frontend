@@ -19,7 +19,7 @@
           </svg>
         </template>
         <template v-else>
-          <span class="text-gray-500">{{ breadcrumb.text }}</span>
+          <span class="text-gray-400">{{ breadcrumb.text }}</span>
         </template>
       </div>
     </nav>

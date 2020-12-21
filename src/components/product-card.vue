@@ -28,7 +28,7 @@
         <div v-else class="flex items-center" @mouseleave="productImage = product.thumbnail">
           <div
             @mouseover="productImage = product.thumbnail"
-            class="w-8 h-8 mr-2 overflow-hidden border-2 border-gray-300 rounded-full"
+            class="w-8 h-8 mr-2 overflow-hidden border-2 border-gray-200 rounded-full"
           >
             <img :src="product.thumbnail" :alt="`Image of ${product.name}`">
           </div>
@@ -36,7 +36,7 @@
             <div 
               v-if="index <= indexBasedOnBreakpont"
               @mouseover="productImage = variant.thumbnail"
-              class="w-8 h-8 mr-2 overflow-hidden border-2 border-gray-300 rounded-full"
+              class="w-8 h-8 mr-2 overflow-hidden border-2 border-gray-200 rounded-full"
             >
               <img :src="variant.image" :alt="`Image of ${product.name} variant: ${variant.name}`">
             </div>

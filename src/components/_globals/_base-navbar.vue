@@ -69,7 +69,7 @@
                   leave-to-class="transform scale-95 opacity-0"
                 >
                   <div v-show="userMenuActive" class="absolute right-0 min-w-full mt-2 origin-top-right bg-white rounded shadow">
-                    <div class="w-full px-5 py-5 border-b border-gray-300">
+                    <div class="w-full px-5 py-5 border-b border-gray-200">
                       <div class="flex items-center">
                         <div class="flex items-center justify-center flex-shrink-0 w-10 h-10 border border-gray-400 rounded-full">
                           <BaseIcon name="user" fill="text-gray-500" />

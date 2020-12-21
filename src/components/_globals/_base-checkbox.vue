@@ -5,7 +5,7 @@
         @change="$emit('input', $event.target.checked)"
         type="checkbox"
         :checked="checked"
-        class="form-checkbox w-5 h-5 text-gray-800"
+        class="w-5 h-5 text-gray-800 rounded"
       >
       <div v-if="!hiddenLabel" class="ml-3 -mt-px text-sm">
         <span class="block font-medium text-gray-800">{{ label }}</span>

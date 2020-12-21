@@ -3,7 +3,7 @@
     <div>
       <slot name="errors"></slot>
     </div>
-    <div v-for="(group, index) in groups" :key="index" class="flex items-start border-b border-gray-300">
+    <div v-for="(group, index) in groups" :key="index" class="flex items-start border-b border-gray-200">
       <div class="w-1/3 py-6 pr-5 mr-5">
         <h2 class="text-base font-medium text-gray-900">{{ group.title }}</h2>
         <p class="mt-1 text-sm text-gray-600">{{ group.text }}</p>

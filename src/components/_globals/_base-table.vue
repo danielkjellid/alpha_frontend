@@ -30,14 +30,14 @@
         <tbody v-if="items && items.length > 0" class="bg-white">
           <!-- loop through items in the row items array -->
           <tr v-for="(item, index) in items" :key="index">
-            <td v-for="(value, property, index) in item" :key="index" class="px-5 py-5 text-sm leading-5 text-gray-900 whitespace-no-wrap border-b border-gray-300">
+            <td v-for="(value, property, index) in item" :key="index" class="px-5 py-5 text-sm leading-5 text-gray-900 whitespace-nowrap border-b border-gray-200">
               <!-- add slot to be able to style/edit each column according to content presented -->
               <slot :name="property" :item="item">
                 {{ value }}
               </slot>
             </td>
             <!-- icon to go to the detail of the data presented -->
-            <td v-if="hasActions" class="px-5 py-5 text-right whitespace-no-wrap border-b border-gray-300">
+            <td v-if="hasActions" class="px-5 py-5 text-right whitespace-nowrap border-b border-gray-200">
               <BaseButton icon light :to="typeof item.id !== undefined ? `${detailBase}${item.id}` : `${detailbase}${item.slug}`">
                 <BaseIcon name="eye" />
               </BaseButton>

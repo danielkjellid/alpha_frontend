@@ -56,7 +56,7 @@
       </div>
       <!-- footer that displays usermenu -->
       <!-- if the user is not authenticated, they will be redirected to login upon click -->
-      <div v-if="userIsAuthenticated" @click="collapsedUserMenuActive = !collapsedUserMenuActive" class="absolute bottom-0 left-0 right-0 px-5 py-5 bg-white border-t border-gray-300">
+      <div v-if="userIsAuthenticated" @click="collapsedUserMenuActive = !collapsedUserMenuActive" class="absolute bottom-0 left-0 right-0 px-5 py-5 bg-white border-t border-gray-200">
         <BaseButton plain class="hover:text-gray-600 flex items-center justify-between w-full text-left text-gray-500">
           <div class="flex items-center">
             <div class="flex items-center justify-center w-10 h-10 border border-gray-400 rounded-full">
@@ -75,7 +75,7 @@
           <router-link to="/" class="hover:text-gray-600 block mt-4 text-base leading-7 text-gray-900">Logg ut</router-link>
         </div>
       </div>
-      <div v-else class="absolute bottom-0 left-0 right-0 px-5 py-5 bg-white border-t border-gray-300">
+      <div v-else class="absolute bottom-0 left-0 right-0 px-5 py-5 bg-white border-t border-gray-200">
         <BaseButton @click="redirectToLogin" plain class="hover:text-gray-600 flex items-center text-base leading-7 text-gray-900">
           <BaseIcon name="user" class="mr-2" />
           Logg inn

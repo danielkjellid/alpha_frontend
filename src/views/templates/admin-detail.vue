@@ -15,7 +15,7 @@
       </AdminDetailHeader>
       <div class="h-min-screen flex items-start w-full">
         <!-- the left part of the screen is important information about the detail instance -->
-        <div class="w-1/4 py-5 pr-5 border-r border-gray-300">
+        <div class="w-1/4 py-5 pr-5 border-r border-gray-200">
           <!-- in the parent component there is a defined a list which lables the data -->
           <!-- the loops bellow attaches each field to its label based on the fields pulled from api -->
           <div v-for="(data, index) in wrapperData" :key="index">

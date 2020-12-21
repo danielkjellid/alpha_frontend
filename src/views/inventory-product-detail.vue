@@ -31,7 +31,7 @@
                   <div v-if="loaded" class="grid grid-cols-8 gap-3 mt-3">
                     <button v-for="variant in product.variants" :key="variant.id" @click="selectVariant(variant.id)">
                       <div class="relative">
-                        <img class="w-8 h-8 border-2 border-gray-300 rounded-full" :src="variant.image" />
+                        <img class="w-8 h-8 border-2 border-gray-200 rounded-full" :src="variant.image" />
                         <div v-if="order.selectedVariant === variant.id" class="absolute inset-0 flex items-center justify-center">
                           <BaseIcon solid name="check" fill="text-white" />
                         </div>
@@ -183,7 +183,7 @@
       </div>
 
       <!-- menu for adding proucts on smaller devices -->
-      <!-- <div class="xl:hidden bg-gray-50 sticky bottom-0 left-0 right-0 border-t border-gray-300">
+      <!-- <div class="xl:hidden bg-gray-50 sticky bottom-0 left-0 right-0 border-t border-gray-200">
         <div class="sm:px-16 sm:py-8 max-w-2xl px-5 py-6 mx-auto">
           <div class="flex items-center justify-between">
             <div class="w-full">
