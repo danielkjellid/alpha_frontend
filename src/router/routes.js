@@ -79,7 +79,8 @@ export default [
     name: 'KitchenList',
     component: KitchenList,
     meta: {
-      navbarTransparent: true
+      navbarTransparent: true,
+      authRequired: false
     }
   },
   {

@@ -141,7 +141,7 @@ export default {
     },
     // render classes of links according to the route meta
     renderNavbarLinkClasses() {
-      if (!this.renderNavbarTransparent || this.flyoutMenuActive) return 'hover:text-gray-600 leading-8 text-gray-700 transition duration-150 ease-in-out'
+      if (!this.renderNavbarTransparent || this.flyoutMenuActive) return 'hover:text-gray-600 leading-8 text-gray-800 transition duration-150 ease-in-out'
 
       return 'hover:text-white leading-8 text-gray-300 transition duration-150 ease-in-out'
     },

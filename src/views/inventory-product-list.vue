@@ -1,6 +1,9 @@
 <template>
   <div>
     <BaseNavbar />
+    <div class="relative">
+      
+    </div>
     <main>
       <BaseImageheader :object="category" />
       <!-- site product content -->
@@ -127,7 +130,7 @@
         </div>
       </div>
     </main>
-    <BaseFooter />
+    <BaseFooter />    
   </div>
 </template>
 
