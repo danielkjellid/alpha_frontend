@@ -1,22 +1,15 @@
 <template>
-  <div>
-    <AdminOverviewTemplate title="Brukere" subtitle="En oversikt over alle registrerte brukere">
-      <template #overview-content>
-        <BaseTable showTableActions :headers="tableHeaders" :items="tableItems" detailBase="/backend/users/">
-          <template #table-actions>
-            <BaseInput label="Search" icon="search" placeholder="Søk etter brukere..." block hiddenLabel />
-            <div class="flex items-center flex-shrink-0 ml-3">
-              <BaseButton v-if="$perm('has_users_export')" light>Eksporter</BaseButton>
-            </div>
-          </template>
-          <template #is_active="{ item }">
-            <BaseIcon v-if="item.is_active" name="check-circle" solid fill="text-green-400" class="mx-auto" />
-            <BaseIcon v-else name="x-circle" solid fill="text-red-400" class="mx-auto" />
-          </template>
-        </BaseTable>
+  <AdminOverviewTemplate>
+    <template #page-action>
+      <BaseButton>Opprett bruker</BaseButton>
+    </template>
+    <BaseTable :headers="tableHeaders" :items="tableItems" detailBase="/backend/users/">
+      <template #is_active="{ item }">
+        <BaseIcon v-if="item.is_active" name="check-circle" solid fill="text-green-400" class="mx-auto" />
+        <BaseIcon v-else name="x-circle" solid fill="text-red-400" class="mx-auto" />
       </template>
-    </AdminOverviewTemplate>
-  </div>
+    </BaseTable>
+  </AdminOverviewTemplate>
 </template>
 
 <script>
@@ -24,20 +17,8 @@ import apiService from '@/common/api'
 import AdminOverviewTemplate from '@/views/templates/admin-overview.vue'
 
 export default {
-  name: 'UsersOverview',
-  page() {
-    return {
-      title: 'Backend: Users',
-      meta: [
-        {
-          name: 'description',
-          content: 'An overview of registered users.'
-        }
-      ]
-    }
-  },
   components: {
-    AdminOverviewTemplate,
+    AdminOverviewTemplate
   },
   data() {
     return {

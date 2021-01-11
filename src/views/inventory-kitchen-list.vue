@@ -15,7 +15,19 @@
             <a href="https://jke-design.com/no/booking/velg-tidspunkt/?sId=2784" target="_blank" rel="noopener noreferrer" class="hover:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring-gray active:bg-gray-900 inline-flex items-center flex-shrink-0 px-4 py-2 mt-8 text-sm font-medium leading-5 text-white transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md">Bestill tegnetime hos oss i dag!</a>
           </div>
         </div>
-        <section class="lg:mt-5 mt-0">
+        <section class="px-5 mt-5">
+          <video
+            controls
+            height="2000" 
+            src="https://flishuset.s3.eu-north-1.amazonaws.com/media/kitchens/videos/JKE-Design-production.mp4"
+            class="mt-4"
+          >
+            Sorry, your browser doesn't support embedded videos,
+            but don't worry, you can <a href="https://flishuset.s3.eu-north-1.amazonaws.com/media/kitchens/videos/JKE-Design-production.mp4">download it</a>
+            and watch it with your favorite video player!
+          </video>
+        </section>
+        <section class="mt-5">
           <div v-if="loaded">
             <div 
               class="lg:flex lg:items-center lg:mb-5 w-full mb-8" 

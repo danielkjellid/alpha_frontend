@@ -1,11 +1,5 @@
 <template>
   <div>
-    <!-- table actions consits of an input field and action buttons -->
-    <div v-if="showTableActions" class="flex items-center justify-between mb-5">
-      <slot name="table-actions">
-        <!-- table actions -->
-      </slot>
-    </div>
     <div class="overflow-x-auto">
       <table class="min-w-full">
         <thead>
@@ -15,29 +9,27 @@
               v-for="(header, index) in headers" 
               :key="index"
               :class="{
-                'rounded-l-lg': index === 0, 
-                'rounded-r-lg': index === headers.length -1,
                 'text-left': header.align === undefined || 'left',
                 'text-center': header.align === 'center',
                 'text-right': header.align === 'right',
               }"
-              class="bg-blue-50 px-5 py-5 text-sm font-medium leading-5 tracking-wider text-gray-600 uppercase"
+              class="bg-gray-50 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase border-b border-gray-200"
             >
               {{ header.text }}
             </th>
           </tr>
         </thead>
-        <tbody v-if="items && items.length > 0" class="bg-white">
+        <tbody v-if="items && items.length > 0" class="bg-white divide-y divide-gray-100">
           <!-- loop through items in the row items array -->
           <tr v-for="(item, index) in items" :key="index">
-            <td v-for="(value, property, index) in item" :key="index" class="px-5 py-5 text-sm leading-5 text-gray-900 whitespace-nowrap border-b border-gray-200">
+            <td v-for="(value, property, index) in item" :key="index" class="whitespace-nowrap px-6 py-3 text-sm leading-5 text-gray-900 border-b border-gray-200">
               <!-- add slot to be able to style/edit each column according to content presented -->
               <slot :name="property" :item="item">
                 {{ value }}
               </slot>
             </td>
             <!-- icon to go to the detail of the data presented -->
-            <td v-if="hasActions" class="px-5 py-5 text-right whitespace-nowrap border-b border-gray-200">
+            <td v-if="hasActions" class="whitespace-nowrap px-6 py-3 text-right border-b border-gray-200">
               <BaseButton icon light :to="typeof item.id !== undefined ? `${detailBase}${item.id}` : `${detailbase}${item.slug}`">
                 <BaseIcon name="eye" />
               </BaseButton>
@@ -46,7 +38,7 @@
         </tbody>
         <tbody v-else>
           <tr>
-            <td :colspan="headers.length">
+            <td :colspan="headers.length" class="px-5">
               <BaseNodata></BaseNodata>
             </td>
           </tr>

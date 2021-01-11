@@ -1,9 +1,7 @@
 <template>
   <div class="relative min-h-screen">
-    <div v-if="isDevEnvironment">
-      <div class="dev-env-warning py-1 text-center">
-        <span class="text-sm font-semibold text-yellow-900">Development environment</span>
-      </div>
+    <div v-if="isDevEnvironment" class="dev-env-warning sticky top-0 left-0 right-0 z-50 py-1 text-center">
+      <span class="z-50 text-sm font-semibold text-yellow-900">Development environment</span>
     </div>
     <router-view/>
     <div v-if="showMessage" class="sm:pb-5 fixed inset-x-0 bottom-0 pb-2">

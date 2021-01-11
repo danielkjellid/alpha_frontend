@@ -94,6 +94,16 @@ export default [
     path: '/test/',
     name: 'Test',
     component: () => import('@/views/admin/marketing-page-builder.vue'),
+  },
+  {
+    path: '/overview/',
+    name: 'Overview',
+    component: () => import('@/views/admin/users-overview.vue'),
+  },
+  {
+    path: '/detail/',
+    name: 'Detail',
+    component: () => import('@/views/admin/users-detail.vue'),
   }
 
   // admin components

@@ -2,7 +2,7 @@ export default {
   methods: {
     $perm(permission) {
 
-      let currentUser = this.$store.state.users.currentUser
+      let currentUser = this.$store.state.auth.currentUser
 
       if (currentUser) {
         if (
