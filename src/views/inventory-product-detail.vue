@@ -107,7 +107,7 @@
               :text="product.description" 
             />
           </div>
-          <div class="mt-12">
+          <div v-if="product.variants.lenght > 0" class="mt-12">
             <ProductVariantBlock 
               title="Varianter" 
               :loaded="loaded" 
@@ -116,7 +116,7 @@
               @on-select="selectVariant"
             />
           </div>
-          <div class="mt-12">
+          <div v-if="product.sizes.lenght > 0" class="mt-12">
             <article>
               <h2 class="text-lg font-medium text-gray-900">Størrelser <span class="text-gray-600">oppgitt i cm</span></h2>
               <div class="mt-6">
@@ -157,7 +157,7 @@
                 <ProductSpecRow title="Stil" :fields="product.styles" />
                 <ProductSpecRow title="Bruksområde" :fields="product.applications" />
                 <ProductSpecRow title="Materiale" :fields="product.materials" />
-                <tr>
+                <tr v-if="product.absorption">
                   <td class="text-sm text-gray-700">Vannoppsug</td>
                   <td class="text-sm text-gray-900">&lt;{{ product.absorption | formatPrice }}%</td>
                 </tr>
