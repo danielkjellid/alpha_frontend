@@ -31,7 +31,7 @@
                 leave-active-class="transition duration-150 ease-in"
                 leave-to-class="-translate-y-1 opacity-0"
               >
-                <svg viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6 mt-px ml-1" :class="{'text-gray-500 hover:fill-current' : !renderNavbarTransparent}">
+                <svg viewBox="0 0 20 20" fill="currentColor" class=" w-6 h-6 mt-px ml-1'text-gray-500 hover:fill-current">
                   <path fill-rule="evenodd" :d="renderChevronPath" clip-rule="evenodd"></path>
                 </svg>
               </transition>

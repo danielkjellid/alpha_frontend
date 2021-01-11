@@ -26,7 +26,7 @@
                 <div v-else class="animate-pulse mt-5">
                   <div class="w-2/3 h-8 bg-gray-400 rounded" />
                 </div>
-                <div class="mt-5">
+                <div v-if="product.variants" class="mt-5">
                   <h2 class="text-sm font-medium text-gray-900">Varianter</h2>
                   <div v-if="loaded" class="grid grid-cols-8 gap-3 mt-3">
                     <button v-for="variant in product.variants" :key="variant.id" @click="selectVariant(variant.id)">
@@ -42,7 +42,7 @@
                     <div v-for="i in 5" :key="i" class="w-8 h-8 bg-gray-400 rounded-full" />
                   </div>
                 </div>
-                <div class="mt-5">
+                <div v-if="product.sizes" class="mt-5">
                   <h2 class="text-sm font-medium text-gray-900">Størrelser</h2>
                   <div v-if="loaded" class="gap-y-3 grid grid-cols-3 gap-6 mt-3">
                     <BaseButton 
@@ -107,7 +107,7 @@
               :text="product.description" 
             />
           </div>
-          <div v-if="product.variants.lenght > 0" class="mt-12">
+          <div v-if="product.variants.length > 0" class="mt-12">
             <ProductVariantBlock 
               title="Varianter" 
               :loaded="loaded" 
@@ -116,7 +116,7 @@
               @on-select="selectVariant"
             />
           </div>
-          <div v-if="product.sizes.lenght > 0" class="mt-12">
+          <div v-if="product.sizes.length > 0" class="mt-12">
             <article>
               <h2 class="text-lg font-medium text-gray-900">Størrelser <span class="text-gray-600">oppgitt i cm</span></h2>
               <div class="mt-6">
@@ -242,6 +242,8 @@ export default {
     return {
       loaded: false,
       product: {
+        variants: [],
+        sizes: [],
         images: [],
         files: [],
       },
