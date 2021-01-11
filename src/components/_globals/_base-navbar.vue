@@ -141,13 +141,13 @@ export default {
     },
     // render classes of links according to the route meta
     renderNavbarLinkClasses() {
-      if (!this.renderNavbarTransparent || this.flyoutMenuActive) return 'hover:text-gray-600 leading-8 text-gray-900 transition duration-150 ease-in-out'
+      if (!this.renderNavbarTransparent || this.flyoutMenuActive) return 'hover:text-gray-600 leading-8 text-gray-700 transition duration-150 ease-in-out'
 
       return 'hover:text-white leading-8 text-gray-300 transition duration-150 ease-in-out'
     },
     // set active links according to route meta
     renderNavbarLinkActiveClasses() {
-      if (!this.renderNavbarTransparent) return 'text-gray-900'
+      if (!this.renderNavbarTransparent || this.flyoutMenuActive) return 'text-gray-900'
 
       return 'active-pale-link'
     },
