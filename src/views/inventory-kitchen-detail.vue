@@ -32,7 +32,7 @@
                       <h2 class="text-xl font-medium text-gray-900">Priseksempel</h2>
                       <p class="text-sm font-medium text-gray-800">kr {{ kitchen.example_from_price | formatPrice}}</p>
                     </div>
-                    <p class="mt-3 text-sm text-gray-700">Priseksempel for oppsett ekskludert benkeplater, armaturer og hvitevarer. Få et konkret tilbud gjennom en tegnetime.</p>
+                    <p class="mt-3 text-sm text-gray-700">Priseksempel for oppsett ekskludert benkeplater, armatur og hvitevarer. Få et konkret tilbud gjennom en tegnetime.</p>
                     <a href="https://jke-design.com/no/booking/velg-tidspunkt/?sId=2784" target="_blank" rel="noopener noreferrer" class="hover:underline mt-4 text-sm">Bestill tegnetime →</a>
                   </div>
                 </div>
