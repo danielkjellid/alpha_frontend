@@ -31,9 +31,13 @@
                   <div v-if="loaded" class="grid grid-cols-8 gap-3 mt-3">
                     <button v-for="variant in product.variants" :key="variant.id" @click="selectVariant(variant.id)">
                       <div class="relative">
-                        <img class="w-8 h-8 border-2 border-gray-200 rounded-full" :src="variant.image" />
+                        <img 
+                          class="w-8 h-8 border-2 border-gray-200 rounded-full" 
+                          :src="variant.image"
+                          :class="{'border-green-400': order.selectedVariant === variant.id}"  
+                        />
                         <div v-if="order.selectedVariant === variant.id" class="absolute inset-0 flex items-center justify-center">
-                          <BaseIcon solid name="check" fill="text-white" />
+                          <BaseIcon solid name="check" fill="text-green-400" />
                         </div>
                       </div>
                     </button>
@@ -51,6 +55,7 @@
                       @click="selectSize(size.id)" 
                       plain 
                       class="hover:underline text-sm"
+                      :class="{'text-green-500 font-medium': order.selectedSize === size.id}"
                     >
                       <BaseIcon v-if="order.selectedSize === size.id" solid name="check" height="h-4" width="w-4" class="mr-1" />
                       {{ size.name }}
@@ -128,6 +133,7 @@
                     @click="selectSize(size.id)" 
                     plain 
                     class="hover:underline text-sm"
+                    :class="{'text-green-500 font-medium': order.selectedSize === size.id}"
                   >
                     <BaseIcon v-if="order.selectedSize === size.id" solid name="check" height="h-4" width="w-4" class="mr-1" />
                     {{ size.name }}

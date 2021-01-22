@@ -11,11 +11,16 @@
       >
         <div>
           <div class="relative">
-            <img v-if="variant.image" class="w-20 h-20 mx-auto border-2 border-gray-200 rounded-full" :src="variant.image" />
+            <img 
+              v-if="variant.image" 
+              class="w-20 h-20 mx-auto border-2 border-gray-200 rounded-full" 
+              :src="variant.image"
+              :class="{'border-green-300': isSelected(variant.id)}" 
+            />
             <div v-else-if="variant.color_hex" :style="`background-color: ${variant.color_hex }`" class="w-20 h-20 mx-auto border-2 border-gray-200 rounded-full" />
 
             <div v-if="isSelected(variant.id)" class="absolute inset-0 flex items-center justify-center">
-              <BaseIcon solid name="check" fill="text-white" height="h-8" width="w-8" />
+              <BaseIcon solid name="check" fill="text-green-500" height="h-8" width="w-8" />
             </div>
           </div>
           <h3 class="mt-3 text-sm font-medium text-gray-900">{{ variant.name }}</h3>
