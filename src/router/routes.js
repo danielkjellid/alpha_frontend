@@ -105,6 +105,10 @@ export default [
     path: '/detail/',
     name: 'Detail',
     component: () => import('@/views/admin/users-detail.vue'),
+    meta: { 
+      authRequired: true, 
+      staffRequired: true 
+    }
   }
 
   // admin components

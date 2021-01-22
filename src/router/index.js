@@ -38,9 +38,9 @@ router.beforeEach(async (routeTo, routeFrom, next) => {
   // if the user has to be authenticated
   if (authRequired) {
     // check is user is not null and that the user is authenticated
-    if (currentUser && currentUser.is_authenticated) {
+    if (currentUser) {
       // if everything passes, just continue
-      next()
+      if (currentUser.is_authenticated) return next()
     } else {
         // if the user is null or the user isn't authenticated
         // run the fetchCurrentUser action in store
@@ -51,8 +51,8 @@ router.beforeEach(async (routeTo, routeFrom, next) => {
             const user = store.getters['auth/getCurrentUser']
 
             // if the user is fetched from the api, and still not authenticated, redirect to login
-            if (!user.is_authenticated) {
-              this.push({name: 'LogIn'})
+            if (user === null) {
+              router.push({name: 'LogIn'})
             } else {
               // if the user is authenticated, just continue
               next()
@@ -84,8 +84,8 @@ router.beforeEach(async (routeTo, routeFrom, next) => {
           const user = store.getters['auth/getCurrentUser']
 
           // if the user is fetched from the api, and still not authenticated, redirect to login
-          if (!user.is_authenticated) {
-            this.push({name: 'LogIn'})
+          if (user === null) {
+            router.push({name: 'LogIn'})
           // if the user is fetched and authenticated, but not staff, redirect to 404
           } else if (!user.is_staff) {
             next({ path: '/404' })
