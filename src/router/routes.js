@@ -92,17 +92,25 @@ export default [
     }
   },
   {
-    path: '/test/',
+    path: '/backend/test/',
     name: 'Test',
     component: () => import('@/views/admin/marketing-page-builder.vue'),
+    meta: { 
+      authRequired: true, 
+      staffRequired: true 
+    }
   },
   {
-    path: '/overview/',
+    path: '/backend/users/overview/',
     name: 'Overview',
     component: () => import('@/views/admin/users-overview.vue'),
+    meta: { 
+      authRequired: true, 
+      staffRequired: true 
+    }
   },
   {
-    path: '/detail/',
+    path: '/backend/users/detail/',
     name: 'Detail',
     component: () => import('@/views/admin/users-detail.vue'),
     meta: { 
