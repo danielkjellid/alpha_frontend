@@ -8,12 +8,12 @@
         <BaseBreadcrumbs :breadcrumbs="breadcrumbs" class="xl:px-0 px-4 py-8" />
         <div class="xl:px-0 px-4">
           <div class="bg-gray-50 relative w-full">
-            <div class="sm:h-72 md:absolute md:right-0 md:h-full md:w-1/2 md:top-0 h-56">
+            <div class="sm:h-72 md:absolute md:right-0 md:h-full md:w-1/2 md:top-0 z-10 h-56">
               <video
                 controls
                 height="2000" 
                 src="https://flishuset.s3.eu-north-1.amazonaws.com/media/kitchens/videos/JKE-Design-production.mp4"
-                class="object-cover w-full h-full"
+                class="z-25 object-cover w-full h-full"
               >
                 Sorry, your browser doesn't support embedded videos,
                 but don't worry, you can <a href="https://flishuset.s3.eu-north-1.amazonaws.com/media/kitchens/videos/JKE-Design-production.mp4">download it</a>
