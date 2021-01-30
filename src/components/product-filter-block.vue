@@ -9,7 +9,7 @@
         :key="`${item}-${index}`" 
         plain
         class="hover:bg-gray-100 justify-between w-full px-3 py-2 mb-1 text-sm leading-6 text-gray-700 rounded"
-        :class="{'border border-gray-300 bg-gray-50' : filterActive(item.name)}"
+        :class="{'border border-gray-200 bg-gray-50' : filterActive(item.name)}"
         @click="() => toggleFilter(item)"
       > 
         <div class="flex items-center justify-start text-left">

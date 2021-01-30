@@ -1,47 +1,30 @@
 <template>
-  <div>
-    <AdminNav />
-    <AdminOverviewHeader :title="title" :subtitle="subtitle" />
-    <div class="container max-w-6xl px-8 pt-12 mx-auto">
-      <div v-if="tabs" class="mb-8">
-        <Tabs :tabs="tabs" />
-      </div>
-      <div>
-        <slot name="overview-content">
-          <!-- page content -->
-        </slot>
-      </div>
-    </div>
-  </div>
+  <AdminLayout>
+    <template #page-action>
+      <slot name="page-action"></slot>
+    </template>
+    <Tabs v-if="tabs" :tabs="tabs" class="mt-2" />
+    <slot>
+  
+    </slot>
+  </AdminLayout>
 </template>
 
 <script>
-import AdminNav from '@/components/admin-nav.vue'
-import AdminOverviewHeader from '@/components/admin-overview-header.vue'
-import Tabs from '@/components/tabs'
+import AdminLayout from '@/components/admin-layout.vue'
+import Tabs from '@/components/tabs.vue'
+
 
 export default {
-  name: 'AdminOverview',
+  name: 'AdminOverviewTemplate',
   components: {
-    AdminNav,
-    AdminOverviewHeader,
+    AdminLayout,
     Tabs
   },
   props: {
-    // title of page
-    title: {
-      type: String,
-      required: true
-    },
-    // subtitle of page
-    subtitle: {
-      type: String,
-      required: true
-    },
-    // navigational tabs
     tabs: {
       type: Array,
-      required: false
+      required: false,
     }
   }
 }

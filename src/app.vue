@@ -1,5 +1,8 @@
 <template>
   <div class="relative min-h-screen">
+    <div v-if="isDevEnvironment" class="dev-env-warning z-50 py-1 text-center">
+      <span class="z-50 text-sm font-semibold text-yellow-900">Development environment</span>
+    </div>
     <router-view/>
     <div v-if="showMessage" class="sm:pb-5 fixed inset-x-0 bottom-0 pb-2">
       <div class="sm:px-6 lg:px-8 max-w-screen-xl px-2 mx-auto">
@@ -43,6 +46,13 @@ export default {
       titleTemplate: 'Flishuset - %s'
     }
   },
+  computed: {
+    isDevEnvironment() {
+      if (process.env.NODE_ENV !== 'production') return true
+
+      return false
+    }
+  },
   data() {
     return {
       showMessage: localStorage.getItem('show_message') ? JSON.parse(localStorage.getItem('show_message')) : true
@@ -60,4 +70,16 @@ export default {
 <style>
    @import url('https://rsms.me/inter/inter.css');
    html { font-family: 'Inter', sans-serif; }
+</style>
+
+<style scoped>
+  .dev-env-warning {
+    background: repeating-linear-gradient(
+      45deg,
+      #FBBF24,
+      #FBBF24 10px,
+      #F59E0B 10px,
+      #F59E0B 20px
+    );
+  }
 </style>

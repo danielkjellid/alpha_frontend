@@ -1,5 +1,5 @@
 <template>
-  <div class="pb-8 border-b border-gray-300">
+  <div class="pb-8 border-b border-gray-200">
     <BaseBreadcrumbs :breadcrumbs="breadcrumbs" />
     <div class="flex items-center justify-between">
       <div class="mt-6">

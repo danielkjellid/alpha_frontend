@@ -9,19 +9,19 @@
             </svg>
           </div>
           <div class="flex ml-6">
-            <a href="#" class="hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-600 transition duration-150 ease-in-out">
+            <a href="#" class="hover:text-gray-700 hover:border-gray-200 focus:outline-none focus:text-gray-700 focus:border-gray-200 inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-600 transition duration-150 ease-in-out">
               Brukere
             </a>
-            <a href="#" class="hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 inline-flex items-center px-1 pt-1 ml-8 text-sm font-medium leading-5 text-gray-600 transition duration-150 ease-in-out">
+            <a href="#" class="hover:text-gray-700 hover:border-gray-200 focus:outline-none focus:text-gray-700 focus:border-gray-200 inline-flex items-center px-1 pt-1 ml-8 text-sm font-medium leading-5 text-gray-600 transition duration-150 ease-in-out">
               Forespørsler
             </a>
-            <a href="#" class="hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 inline-flex items-center px-1 pt-1 ml-8 text-sm font-medium leading-5 text-gray-600 transition duration-150 ease-in-out">
+            <a href="#" class="hover:text-gray-700 hover:border-gray-200 focus:outline-none focus:text-gray-700 focus:border-gray-200 inline-flex items-center px-1 pt-1 ml-8 text-sm font-medium leading-5 text-gray-600 transition duration-150 ease-in-out">
               Inventar
             </a>
-            <a href="#" class="hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 inline-flex items-center px-1 pt-1 ml-8 text-sm font-medium leading-5 text-gray-600 transition duration-150 ease-in-out">
+            <a href="#" class="hover:text-gray-700 hover:border-gray-200 focus:outline-none focus:text-gray-700 focus:border-gray-200 inline-flex items-center px-1 pt-1 ml-8 text-sm font-medium leading-5 text-gray-600 transition duration-150 ease-in-out">
               Markedsføring
             </a>
-            <a href="#" class="hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 inline-flex items-center px-1 pt-1 ml-8 text-sm font-medium leading-5 text-gray-600 transition duration-150 ease-in-out">
+            <a href="#" class="hover:text-gray-700 hover:border-gray-200 focus:outline-none focus:text-gray-700 focus:border-gray-200 inline-flex items-center px-1 pt-1 ml-8 text-sm font-medium leading-5 text-gray-600 transition duration-150 ease-in-out">
               Administrativt
             </a>
           </div>
@@ -36,7 +36,7 @@
           <!-- Profile dropdown -->
           <div class="relative ml-3">
             <div>
-              <button @click="showUserMenu = !showUserMenu" class="focus:outline-none focus:border-gray-300 flex text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full" id="user-menu" aria-label="User menu" aria-haspopup="true">
+              <button @click="showUserMenu = !showUserMenu" class="focus:outline-none focus:border-gray-200 flex text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full" id="user-menu" aria-label="User menu" aria-haspopup="true">
                 <img class="w-8 h-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
               </button>
             </div>

@@ -69,7 +69,7 @@
                   leave-to-class="transform scale-95 opacity-0"
                 >
                   <div v-show="userMenuActive" class="absolute right-0 min-w-full mt-2 origin-top-right bg-white rounded shadow">
-                    <div class="w-full px-5 py-5 border-b border-gray-300">
+                    <div class="w-full px-5 py-5 border-b border-gray-200">
                       <div class="flex items-center">
                         <div class="flex items-center justify-center flex-shrink-0 w-10 h-10 border border-gray-400 rounded-full">
                           <BaseIcon name="user" fill="text-gray-500" />
@@ -141,13 +141,13 @@ export default {
     },
     // render classes of links according to the route meta
     renderNavbarLinkClasses() {
-      if (!this.renderNavbarTransparent || this.flyoutMenuActive) return 'hover:text-gray-600 leading-8 text-gray-900 transition duration-150 ease-in-out'
+      if (!this.renderNavbarTransparent || this.flyoutMenuActive) return 'hover:text-gray-600 leading-8 text-gray-800 transition duration-150 ease-in-out'
 
-      return 'hover:text-white leading-8 text-gray-300 transition duration-150 ease-in-out'
+      return 'text-white leading-8 transition duration-150 ease-in-out hover:text-gray-300'
     },
     // set active links according to route meta
     renderNavbarLinkActiveClasses() {
-      if (!this.renderNavbarTransparent) return 'text-gray-900'
+      if (!this.renderNavbarTransparent || this.flyoutMenuActive) return 'text-gray-900'
 
       return 'active-pale-link'
     },

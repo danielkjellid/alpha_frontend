@@ -16,8 +16,8 @@
       </div>
       <div class="product-info pt-4 pb-1">
         <div v-if="!showVariants" class="flex items-center justify-between">
-          <p class="text-base font-medium text-gray-900">{{ product.name }}</p>
-          <p class="text-sm font-medium text-gray-900">kr {{ product.gross_price | formatPrice }} <span class="text-gray-500">per {{ product.unit }}</span></p>
+          <p class="w-1/2 text-base font-medium text-gray-900 truncate">{{ product.name }}</p>
+          <p class="w-1/2 text-sm font-medium text-gray-900">fra {{ product.gross_price | formatPrice }} <span class="text-gray-500">{{ product.unit }}</span></p>
           <!-- TODO: add logic for discounted products -->
           <!-- <p class="text-sm font-medium text-gray-900">
             <span class="text-gray-500"><strike>kr 499,00</strike></span> - old price
@@ -28,7 +28,7 @@
         <div v-else class="flex items-center" @mouseleave="productImage = product.thumbnail">
           <div
             @mouseover="productImage = product.thumbnail"
-            class="w-8 h-8 mr-2 overflow-hidden border-2 border-gray-300 rounded-full"
+            class="w-8 h-8 mr-2 overflow-hidden border-2 border-gray-200 rounded-full"
           >
             <img :src="product.thumbnail" :alt="`Image of ${product.name}`">
           </div>
@@ -36,7 +36,7 @@
             <div 
               v-if="index <= indexBasedOnBreakpont"
               @mouseover="productImage = variant.thumbnail"
-              class="w-8 h-8 mr-2 overflow-hidden border-2 border-gray-300 rounded-full"
+              class="w-8 h-8 mr-2 overflow-hidden border-2 border-gray-200 rounded-full"
             >
               <img :src="variant.image" :alt="`Image of ${product.name} variant: ${variant.name}`">
             </div>

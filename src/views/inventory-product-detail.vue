@@ -26,14 +26,18 @@
                 <div v-else class="animate-pulse mt-5">
                   <div class="w-2/3 h-8 bg-gray-400 rounded" />
                 </div>
-                <div class="mt-5">
+                <div v-if="product.variants" class="mt-5">
                   <h2 class="text-sm font-medium text-gray-900">Varianter</h2>
                   <div v-if="loaded" class="grid grid-cols-8 gap-3 mt-3">
                     <button v-for="variant in product.variants" :key="variant.id" @click="selectVariant(variant.id)">
                       <div class="relative">
-                        <img class="w-8 h-8 border-2 border-gray-300 rounded-full" :src="variant.image" />
+                        <img 
+                          class="w-8 h-8 border-2 border-gray-200 rounded-full" 
+                          :src="variant.image"
+                          :class="{'border-green-400': order.selectedVariant === variant.id}"  
+                        />
                         <div v-if="order.selectedVariant === variant.id" class="absolute inset-0 flex items-center justify-center">
-                          <BaseIcon solid name="check" fill="text-white" />
+                          <BaseIcon solid name="check" fill="text-green-400" />
                         </div>
                       </div>
                     </button>
@@ -42,7 +46,7 @@
                     <div v-for="i in 5" :key="i" class="w-8 h-8 bg-gray-400 rounded-full" />
                   </div>
                 </div>
-                <div class="mt-5">
+                <div v-if="product.sizes" class="mt-5">
                   <h2 class="text-sm font-medium text-gray-900">Størrelser</h2>
                   <div v-if="loaded" class="gap-y-3 grid grid-cols-3 gap-6 mt-3">
                     <BaseButton 
@@ -51,6 +55,7 @@
                       @click="selectSize(size.id)" 
                       plain 
                       class="hover:underline text-sm"
+                      :class="{'text-green-500 font-medium': order.selectedSize === size.id}"
                     >
                       <BaseIcon v-if="order.selectedSize === size.id" solid name="check" height="h-4" width="w-4" class="mr-1" />
                       {{ size.name }}
@@ -107,7 +112,7 @@
               :text="product.description" 
             />
           </div>
-          <div class="mt-12">
+          <div v-if="product.variants.length > 0" class="mt-12">
             <ProductVariantBlock 
               title="Varianter" 
               :loaded="loaded" 
@@ -116,7 +121,7 @@
               @on-select="selectVariant"
             />
           </div>
-          <div class="mt-12">
+          <div v-if="product.sizes.length > 0" class="mt-12">
             <article>
               <h2 class="text-lg font-medium text-gray-900">Størrelser <span class="text-gray-600">oppgitt i cm</span></h2>
               <div class="mt-6">
@@ -128,6 +133,7 @@
                     @click="selectSize(size.id)" 
                     plain 
                     class="hover:underline text-sm"
+                    :class="{'text-green-500 font-medium': order.selectedSize === size.id}"
                   >
                     <BaseIcon v-if="order.selectedSize === size.id" solid name="check" height="h-4" width="w-4" class="mr-1" />
                     {{ size.name }}
@@ -157,7 +163,7 @@
                 <ProductSpecRow title="Stil" :fields="product.styles" />
                 <ProductSpecRow title="Bruksområde" :fields="product.applications" />
                 <ProductSpecRow title="Materiale" :fields="product.materials" />
-                <tr>
+                <tr v-if="product.absorption">
                   <td class="text-sm text-gray-700">Vannoppsug</td>
                   <td class="text-sm text-gray-900">&lt;{{ product.absorption | formatPrice }}%</td>
                 </tr>
@@ -183,7 +189,7 @@
       </div>
 
       <!-- menu for adding proucts on smaller devices -->
-      <!-- <div class="xl:hidden bg-gray-50 sticky bottom-0 left-0 right-0 border-t border-gray-300">
+      <!-- <div class="xl:hidden bg-gray-50 sticky bottom-0 left-0 right-0 border-t border-gray-200">
         <div class="sm:px-16 sm:py-8 max-w-2xl px-5 py-6 mx-auto">
           <div class="flex items-center justify-between">
             <div class="w-full">
@@ -242,6 +248,8 @@ export default {
     return {
       loaded: false,
       product: {
+        variants: [],
+        sizes: [],
         images: [],
         files: [],
       },

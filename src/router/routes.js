@@ -79,7 +79,8 @@ export default [
     name: 'KitchenList',
     component: KitchenList,
     meta: {
-      navbarTransparent: true
+      navbarTransparent: true,
+      authRequired: false
     }
   },
   {
@@ -91,9 +92,31 @@ export default [
     }
   },
   {
-    path: '/test/',
+    path: '/backend/test/',
     name: 'Test',
     component: () => import('@/views/admin/marketing-page-builder.vue'),
+    meta: { 
+      authRequired: true, 
+      staffRequired: true 
+    }
+  },
+  {
+    path: '/backend/users/overview/',
+    name: 'Overview',
+    component: () => import('@/views/admin/users-overview.vue'),
+    meta: { 
+      authRequired: true, 
+      staffRequired: true 
+    }
+  },
+  {
+    path: '/backend/users/detail/',
+    name: 'Detail',
+    component: () => import('@/views/admin/users-detail.vue'),
+    meta: { 
+      authRequired: true, 
+      staffRequired: true 
+    }
   }
 
   // admin components

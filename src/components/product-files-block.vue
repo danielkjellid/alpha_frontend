@@ -1,12 +1,12 @@
 <template>
   <article v-if="files.length > 0">
     <h2 class="text-lg font-medium text-gray-900">Nedlastninger</h2>
-    <div v-if="loaded" class="mt-6 border border-gray-300 rounded-md">
+    <div v-if="loaded" class="mt-6 border border-gray-200 rounded-md">
       <div 
         v-for="(file, index) in files" 
         :key="`${index}-${file.name}`" 
         class="flex items-center justify-between px-4 py-4"
-        :class="{'border-t border-gray-300' : index <= files.length && index != 0}"
+        :class="{'border-t border-gray-200' : index <= files.length && index != 0}"
       >
         <div class="flex items-center text-sm">
           <BaseIcon name="paper-clip" solid class="mr-2" fill="text-gray-500" />

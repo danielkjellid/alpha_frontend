@@ -8,7 +8,7 @@
         :value="value"
         :class="{ 
           'w-full': block,
-          'pr-10 border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red': error,
+          'pr-10 border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red': error,
         }"
         :placeholder="placeholder"
         class="form-input block text-sm leading-5"

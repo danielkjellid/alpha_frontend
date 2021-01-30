@@ -1,6 +1,9 @@
 <template>
   <div>
     <BaseNavbar />
+    <div class="relative">
+      
+    </div>
     <main>
       <BaseImageheader :object="category" />
       <!-- site product content -->
@@ -33,10 +36,10 @@
                         </div>
                       </header>
                       <div class="relative flex-1 px-3">
-                        <div class="mb-5" v-if="selectedFilters.length > 0">
+                        <div class="mb-5" v-if="filters.length > 0">
                           <h3 class="px-3 text-xs font-medium leading-4 tracking-wide text-gray-500 uppercase">Valgte filtre</h3>
                           <div class="mt-2">
-                            <BaseButton v-for="(filter, index) in selectedFilters" :key="`${filter}-${index}`" plain class="hover:bg-gray-100 bg-gray-50 w-full px-2 py-2 mb-1 text-sm leading-6 text-gray-500 border border-gray-300 rounded" @click="() => toggleFilter(filter)">
+                            <BaseButton v-for="(filter, index) in filters" :key="`${filter}-${index}`" plain class="hover:bg-gray-100 bg-gray-50 w-full px-2 py-2 mb-1 text-sm leading-6 text-gray-500 border border-gray-200 rounded" @click="() => toggleFilter(filter)">
                               <div class="flex items-center">
                                 <BaseIcon name="x" solid height="h-4" width="w-4" />
                                 <span class="ml-3 text-gray-700">{{ filter }}</span>
@@ -44,13 +47,13 @@
                             </BaseButton>
                           </div>
                         </div>
-                        <ProductFilterBlock :loaded="loaded" title="Kategorier" :items="availableFilters.categories" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
-                        <ProductFilterBlock :loaded="loaded" title="Stil" :items="availableFilters.styles" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
-                        <ProductFilterBlock :loaded="loaded" title="Bruksområde" :items="availableFilters.applications" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
-                        <ProductFilterBlock :loaded="loaded" title="Materiale" :items="availableFilters.materials" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
-                        <ProductFilterBlock :loaded="loaded" title="Farger" :items="availableFilters.colors" :activeFilters="selectedFilters" @toggle-filter="toggleFilter">
+                        <ProductFilterBlock :loaded="loaded" title="Kategorier" :items="availableFilters.categories" :activeFilters="filters" @toggle-filter="toggleFilter" />
+                        <ProductFilterBlock :loaded="loaded" title="Stil" :items="availableFilters.styles" :activeFilters="filters" @toggle-filter="toggleFilter" />
+                        <ProductFilterBlock :loaded="loaded" title="Bruksområde" :items="availableFilters.applications" :activeFilters="filters" @toggle-filter="toggleFilter" />
+                        <ProductFilterBlock :loaded="loaded" title="Materiale" :items="availableFilters.materials" :activeFilters="filters" @toggle-filter="toggleFilter" />
+                        <ProductFilterBlock :loaded="loaded" title="Farger" :items="availableFilters.colors" :activeFilters="filters" @toggle-filter="toggleFilter">
                           <template #box="{ item }">
-                            <div :style="`background-color: ${item.color_hex}`" class="w-5 h-5 mr-3 border border-gray-300 rounded-full"></div>
+                            <div :style="`background-color: ${item.color_hex}`" class="w-5 h-5 mr-3 border border-gray-200 rounded-full"></div>
                           </template>
                         </ProductFilterBlock>
                       </div>
@@ -64,10 +67,10 @@
         <BaseBreadcrumbs :breadcrumbs="breadcrumbs" class="lg:px-3"/>
         <div class="flex mt-8">
           <aside class="lg:block hidden w-1/6 mr-4">
-            <div class="mb-5" v-if="selectedFilters.length > 0">
+            <div class="mb-5" v-if="filters.length > 0">
               <h3 class="px-3 text-xs font-medium leading-4 tracking-wide text-gray-500 uppercase">Valgte filtre</h3>
               <div class="mt-2">
-                <BaseButton v-for="(filter, index) in selectedFilters" :key="`${filter}-${index}`" plain class="hover:bg-gray-100 bg-gray-50 w-full px-2 py-2 mb-1 text-sm leading-6 text-gray-500 border border-gray-300 rounded" @click="() => toggleFilter(filter)">
+                <BaseButton v-for="(filter, index) in filters" :key="`${filter}-${index}`" plain class="hover:bg-gray-100 bg-gray-50 w-full px-2 py-2 mb-1 text-sm leading-6 text-gray-500 border border-gray-200 rounded" @click="() => toggleFilter(filter)">
                   <div class="flex items-center">
                     <BaseIcon name="x" solid height="h-4" width="w-4" />
                     <span class="ml-3 text-gray-700">{{ filter }}</span>
@@ -75,13 +78,13 @@
                 </BaseButton>
               </div>
             </div>
-            <ProductFilterBlock :loaded="loaded" title="Kategorier" :items="availableFilters.categories" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
-            <ProductFilterBlock :loaded="loaded" title="Stil" :items="availableFilters.styles" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
-            <ProductFilterBlock :loaded="loaded" title="Bruksområde" :items="availableFilters.applications" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
-            <ProductFilterBlock :loaded="loaded" title="Materiale" :items="availableFilters.materials" :activeFilters="selectedFilters" @toggle-filter="toggleFilter" />
-            <ProductFilterBlock :loaded="loaded" title="Farger" :items="availableFilters.colors" :activeFilters="selectedFilters" @toggle-filter="toggleFilter">
+            <ProductFilterBlock :loaded="loaded" title="Kategorier" :items="availableFilters.categories" :activeFilters="filters" @toggle-filter="toggleFilter" />
+            <ProductFilterBlock :loaded="loaded" title="Stil" :items="availableFilters.styles" :activeFilters="filters" @toggle-filter="toggleFilter" />
+            <ProductFilterBlock :loaded="loaded" title="Bruksområde" :items="availableFilters.applications" :activeFilters="filters" @toggle-filter="toggleFilter" />
+            <ProductFilterBlock :loaded="loaded" title="Materiale" :items="availableFilters.materials" :activeFilters="filters" @toggle-filter="toggleFilter" />
+            <ProductFilterBlock :loaded="loaded" title="Farger" :items="availableFilters.colors" :activeFilters="filters" @toggle-filter="toggleFilter">
               <template #box="{ item }">
-                <div :style="`background-color: ${item.color_hex}`" class="w-5 h-5 mr-3 border border-gray-300 rounded-full"></div>
+                <div :style="`background-color: ${item.color_hex}`" class="w-5 h-5 mr-3 border border-gray-200 rounded-full"></div>
               </template>
             </ProductFilterBlock>
           </aside>
@@ -92,7 +95,7 @@
                   <BaseButton @click="filterMenuActive = true" light class="lg:hidden flex items-center justify-center w-full mr-3">
                     <BaseIcon name="filter" class="mr-2" fill="text-gray-500" />
                     Filter
-                    <span v-if="selectedFilters.length > 0" class="flex items-center justify-center w-5 h-5 ml-2 text-xs text-gray-700 bg-gray-300 rounded-full">{{ countFiltersActive }}</span>
+                    <span v-if="filters.length > 0" class="flex items-center justify-center w-5 h-5 ml-2 text-xs text-gray-700 bg-gray-300 rounded-full">{{ countFiltersActive }}</span>
                   </BaseButton>
                 </div>
                 <form @submit.prevent="searchEndpoint()">
@@ -127,7 +130,7 @@
         </div>
       </div>
     </main>
-    <BaseFooter />
+    <BaseFooter />    
   </div>
 </template>
 
@@ -173,11 +176,14 @@ export default {
     countFiltersActive() {
       return this.selectedFilters.length
     },
+    filters() {
+      return this.selectedFilters
+    },
     filteredProducts() {
 
       // check each product filter if any values is inside the selectedFilter array
       const productList = this.products.filter(product => 
-        this.selectedFilters.every(filter => 
+        this.filters.every(filter => 
           product.categories.some(category => category.name === filter) ||
           product.styles.some(style => style.name === filter) ||
           product.applications.some(application => application.name === filter) ||
@@ -281,6 +287,8 @@ export default {
   watch: {
     // "refresh" selected filters on query change
     '$route.query.subcategory': function() {
+      this.fetchCategory()
+      this.fetchProducts()
       this.selectedFilters = []
       this.selectFilterFromQuery()
     }

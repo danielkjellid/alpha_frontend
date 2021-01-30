@@ -1,10 +1,7 @@
 const { colors } = require('tailwindcss/defaultTheme')
 
 module.exports = {
-  future: {
-    removeDeprecatedGapUtilities: true,
-  },
-  purge: [],
+  purge: ['./public/**/*.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
@@ -28,6 +25,6 @@ module.exports = {
   },
   variants: {},
   plugins: [
-    require('@tailwindcss/custom-forms')
+    require('@tailwindcss/forms')
   ],
 }

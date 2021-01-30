@@ -3,7 +3,7 @@
     <label :for="id" :class="{ 'sr-only' : hiddenLabel, 'mb-1' : label }" class="block text-sm font-medium leading-5 text-gray-700">{{ label }}</label>
     <div class="relative rounded-md">
       <div v-if="icon" class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-        <BaseIcon :name="icon" fill="text-gray-500"/>
+        <BaseIcon :name="icon" fill="text-gray-400"/>
       </div>
       <input
         @input="$emit('input', $event.target.value)" 
@@ -12,11 +12,11 @@
         :class="{ 
           'pl-10': icon, 
           'w-full': block,
-          'pr-10 border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red': error,
+          'pr-10 border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red': error,
         }"
         :placeholder="placeholder"
         :type="type"
-        class="form-input block text-sm leading-5" 
+        class="block text-sm leading-5 border-gray-200 rounded-md" 
       />
       <div v-if="error" class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
         <BaseIcon name="exclemation-circle" solid fill="text-red-500" />

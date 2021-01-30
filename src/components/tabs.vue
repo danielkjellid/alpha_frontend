@@ -7,7 +7,7 @@
         :to="tab.to"
         exact
         exact-active-class="focus:border-gray-700 text-gray-900 border-gray-900"
-        class="hover:text-gray-900 hover:border-gray-900 focus:outline-none focus:text-gray-700 focus:border-gray-300 px-3 py-4 ml-2 text-sm font-medium leading-5 text-gray-600 whitespace-no-wrap border-b-2 border-transparent"
+        class="hover:text-gray-900 hover:border-gray-900 focus:outline-none focus:text-gray-700 focus:border-gray-200 px-3 py-4 ml-2 text-sm font-medium leading-5 text-gray-600 whitespace-nowrap border-b-2 border-transparent"
       >
         {{ tab.text }}
       </router-link>

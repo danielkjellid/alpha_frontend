@@ -1,5 +1,5 @@
 <template>
-  <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium leading-5 bg-white border border-gray-300 text-gray-900">
+  <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium leading-5 bg-white border border-gray-200 text-gray-900">
     <svg 
       :class="renderDotColor" 
       class="-ml-1 mr-2 h-2 w-2" 
