@@ -1,16 +1,17 @@
 <template>
   <AdminDetailTemplate>
     <template #title>
-      <div class="flex items-center justify-center w-10 h-10 mr-3 bg-purple-400 rounded-full">
-        <span class="text-sm text-white">D</span>
+      <div :style="`background-color: ${user.profile.avatar_color}`" class="flex items-center justify-center w-10 h-10 mr-3 rounded-full">
+        <span class="text-sm text-white">{{ user.profile.initial }}</span>
       </div>
-      <h1 class="text-2xl font-semibold text-gray-900">Daniel Kjellid</h1>
+      <h1 class="text-2xl font-semibold text-gray-900">{{ user.profile.full_name }}</h1>
     </template>
     <template #actions>
       <BaseButton light>
         Rediger bruker
       </BaseButton>
     </template>
+
     <div class="grid grid-cols-3 gap-6 mt-6">
       <div class="col-span-2">
         <AdminSection title="Brukerinformasjon">
@@ -138,108 +139,7 @@
       </div>
       <div class="col-span-1">
         <AdminSection title="Aktivitet">
-          <ul>
-            <li>
-              <div class="relative flex items-start pb-6">
-                <span class="absolute top-4 bottom-4 left-2 ml-px h-auto w-0.5 bg-gray-200 mt-4" aria-hidden="true"></span>
-                <svg class="w-5 h-5 mr-5 text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                </svg>
-                <div class="relative w-full text-sm">
-                  <div class="flex items-center justify-between">
-                    <p class="font-medium text-gray-900">Konto redigert</p>
-                    <p class="text-gray-400">27 sept 2020, 22:46</p>
-                  </div>
-                  <div class="mt-3">
-                    <p class="text-gray-500">Emma Jahr endret <span class="font-medium text-gray-800">first_name</span> fra <span class="font-medium text-gray-800">Danil</span> til <span class="font-medium text-gray-800">Daniel</span></p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="relative flex items-start pb-6">
-                <span class="absolute top-4 bottom-4 left-2 ml-px h-auto w-0.5 bg-gray-200 mt-4" aria-hidden="true"></span>
-                <svg class="w-5 h-5 mr-5 text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                </svg>
-                <div class="relative w-full text-sm">
-                  <div class="flex items-center justify-between">
-                    <p class="font-medium text-gray-900">Konto redigert</p>
-                    <p class="text-gray-400">27 sept 2020, 22:46</p>
-                  </div>
-                  <div class="mt-3">
-                    <p class="text-gray-500">Emma Jahr endret <span class="font-medium text-gray-800">first_name</span> fra <span class="font-medium text-gray-800">Danil</span> til <span class="font-medium text-gray-800">Daniel</span></p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="relative flex items-start pb-6">
-                <span class="absolute top-4 bottom-4 left-2 ml-px h-auto w-0.5 bg-gray-200 mt-4" aria-hidden="true"></span>
-                <svg class="w-5 h-5 mr-5 text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                </svg>
-                <div class="relative w-full text-sm">
-                  <div class="flex items-center justify-between">
-                    <p class="font-medium text-gray-900">Konto redigert</p>
-                    <p class="text-gray-400">27 sept 2020, 22:46</p>
-                  </div>
-                  <div class="mt-3">
-                    <p class="text-gray-500">Emma Jahr endret <span class="font-medium text-gray-800">first_name</span> fra <span class="font-medium text-gray-800">Danil</span> til <span class="font-medium text-gray-800">Daniel</span></p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="relative flex items-start pb-6">
-                <span class="absolute top-4 bottom-4 left-2 ml-px h-auto w-0.5 bg-gray-200 mt-4" aria-hidden="true"></span>
-                <svg class="w-5 h-5 mr-5 text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                </svg>
-                <div class="relative w-full text-sm">
-                  <div class="flex items-center justify-between">
-                    <p class="font-medium text-gray-900">Konto redigert</p>
-                    <p class="text-gray-400">27 sept 2020, 22:46</p>
-                  </div>
-                  <div class="mt-3">
-                    <p class="text-gray-500">Emma Jahr endret <span class="font-medium text-gray-800">first_name</span> fra <span class="font-medium text-gray-800">Danil</span> til <span class="font-medium text-gray-800">Daniel</span></p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="relative flex items-start pb-6">
-                <span class="absolute top-4 bottom-4 left-2 ml-px h-auto w-0.5 bg-gray-200 mt-4" aria-hidden="true"></span>
-                <svg class="w-5 h-5 mr-5 text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                </svg>
-                <div class="relative w-full text-sm">
-                  <div class="flex items-center justify-between">
-                    <p class="font-medium text-gray-900">Konto redigert</p>
-                    <p class="text-gray-400">27 sept 2020, 22:46</p>
-                  </div>
-                  <div class="mt-3">
-                    <p class="text-gray-500">Emma Jahr endret <span class="font-medium text-gray-800">first_name</span> fra <span class="font-medium text-gray-800">Danil</span> til <span class="font-medium text-gray-800">Daniel</span></p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="relative flex items-start pb-6">
-                <!-- <span class="absolute left-2 ml-px h-5 w-0.5 bg-gray-200 my-8" aria-hidden="true"></span> -->
-                <BaseIcon name="check-circle" fill="text-green-400 mr-4" />
-                <div class="w-full text-sm">
-                  <div class="flex items-center justify-between">
-                    <p class="font-medium text-gray-900">Konto opprettet</p>
-                    <p class="text-gray-400">27 sept 2020, 22:46</p>
-                  </div>
-                  <!-- <div class="mt-3">
-                    <p class="text-gray-500"><span class="font-medium text-gray-800">first_name</span> endret fra <span class="font-medium text-gray-800">Danil</span> til <span class="font-medium text-gray-800">Daniel</span></p>
-                  </div> -->
-                </div>
-              </div>
-            </li>
-          </ul>
+          <AdminAuditLog :logs="user.audit_logs" :creationDate="user.date_joined" />
         </AdminSection>
       </div>
     </div>
@@ -250,6 +150,7 @@
 import AdminDetailTemplate from '@/views/templates/admin-detail.vue'
 import DescriptionList from '@/components/description-list.vue'
 import AdminSection from '@/components/admin-section.vue'
+import AdminAuditLog from '@/components/admin-audit-log.vue'
 
 import apiService from '@/common/api'
 
@@ -258,7 +159,8 @@ export default {
   components: {
     AdminDetailTemplate,
     DescriptionList,
-    AdminSection
+    AdminSection,
+    AdminAuditLog
   },
   data() {
     return {
@@ -306,7 +208,7 @@ export default {
     } 
   },
   created() {
-    this.fetchUser(1)
+    this.fetchUser(2)
   }
 }
 </script>

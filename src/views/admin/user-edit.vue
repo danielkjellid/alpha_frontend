@@ -188,13 +188,14 @@ export default {
   },
   methods: {
     fetchUser(id) {
-      apiService(`users/${id}/`)
+      apiService.get(`users/${id}/`)
         .then(user => {
-          this.user = user
+          this.user = user.data
+          console.log(user)
         })
     },
     saveChanges() {
-      apiService.patch(`users/${this.$route.params.id}/`, this.user )
+      apiService.put(`users/${this.$route.params.id}/`, this.user )
         .then(response => {
           if (response) {
               // fetch user again for vue to update instance without reload
@@ -219,6 +220,7 @@ export default {
   },
   created() {
     this.fetchUser(this.$route.params.id)
+    console.log(this.user)
   },
 }
 </script>

@@ -1,12 +1,7 @@
 <template>
   <div>
-    <AdminNav />
     <div class="container max-w-6xl px-8 pt-8 mx-auto">
-      <AdminDetailHeader :title='title' :subtitle="subtitle" :breadcrumbs="breadcrumbs">
-        <template v-if="$slots['header-append']" #header-append>
-          <slot name="header-append"></slot>
-        </template>
-      </AdminDetailHeader>
+      
       <div class="w-full">
         <slot name="content"></slot>
       </div>
@@ -15,14 +10,10 @@
 </template>
 
 <script>
-import AdminNav from '@/components/admin-nav.vue'
-import AdminDetailHeader from '@/components/admin-detail-header.vue'
 
 export default {
   name: 'AdminEdit',
   components: {
-    AdminNav,
-    AdminDetailHeader,
   },
   props: {
     title: {

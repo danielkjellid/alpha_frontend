@@ -128,6 +128,16 @@ export default [
     }
   },
 
+  {
+    path: '/backend/edit/:id',
+    name: 'Edit',
+    component: () => import('@/views/admin/user-edit.vue'),
+    meta: { 
+      authRequired: true, 
+      staffRequired: true 
+    }
+  },
+
   // admin components
   // {
   //   path: '/backend/inventory',
