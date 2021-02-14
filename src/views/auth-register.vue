@@ -128,7 +128,7 @@
             class="mt-5"
           />
         </div>
-        <BaseButton type="submit" class="flex justify-center w-full mt-5">Logg inn</BaseButton>
+        <BaseButton type="submit" class="flex justify-center w-full mt-5">Opprett konto</BaseButton>
       </form>
     </template>
   </AuthTemplate>

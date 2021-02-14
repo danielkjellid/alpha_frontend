@@ -1,9 +1,14 @@
 <template>
   <div :class="{ 'w-full': block, 'mb-8' : error }">
-    <label :for="id" :class="{ 'sr-only' : hiddenLabel, 'mb-1' : label }" class="block text-sm font-medium leading-5 text-gray-700">{{ label }}</label>
+    <label 
+      :for="id" :class="{ 'sr-only' : hiddenLabel, 'mb-1' : label }" 
+      class="block text-sm font-medium leading-5 text-gray-700"
+    >
+      {{ label }}
+    </label>
     <div class="relative rounded-md">
       <div v-if="icon" class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-        <BaseIcon :name="icon" fill="text-gray-400"/>
+        <BaseIcon :name="icon" :fill="iconColor"/>
       </div>
       <input
         @input="$emit('input', $event.target.value)" 
@@ -13,6 +18,7 @@
           'pl-10': icon, 
           'w-full': block,
           'pr-10 border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red': error,
+          'border-0 focus:ring-transparent' : plain, 
         }"
         :placeholder="placeholder"
         :type="type"
@@ -66,6 +72,12 @@ export default {
       required: false,
       default: null
     },
+    // sets color of icon if default is not prefered
+    iconColor: {
+      type: String,
+      required: false,
+      default: 'text-gray-400'
+    },
     // expands input to 100% av available space
     block: {
       type: Boolean,
@@ -75,6 +87,11 @@ export default {
     error: {
       type: [Array, String],
       required: false
+    },
+    plain: {
+      type: Boolean,
+      required: false,
+      default: false,
     }
   }
 }

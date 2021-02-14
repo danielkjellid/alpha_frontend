@@ -111,13 +111,22 @@ export default [
   },
   {
     path: '/backend/users/detail/',
-    name: 'Detail',
-    component: () => import('@/views/admin/users-detail.vue'),
+    name: 'Overview',
+    component: () => import('@/views/admin/user-detail.vue'),
     meta: { 
       authRequired: true, 
       staffRequired: true 
     }
-  }
+  },
+  {
+    path: '/backend/detail/',
+    name: 'Overview',
+    component: () => import('@/views/templates/admin-detail.vue'),
+    meta: { 
+      authRequired: true, 
+      staffRequired: true 
+    }
+  },
 
   // admin components
   // {
