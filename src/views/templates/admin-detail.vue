@@ -1,5 +1,17 @@
 <template>
   <div class="relative flex flex-none bg-white">
+    <BaseNotification 
+      :display="errorMessage" 
+      :success="false" 
+      title="Oida! Noe gikk galt" 
+      @close-notification="resetErrorMessage"
+    />
+    <BaseNotification 
+      :display="notification" 
+      :success="true" 
+      :title="notification" 
+      @close-notification="resetNotification"
+    />
     <AdminSidebar />
     <div class="max-w-screen-2xl flex flex-col flex-1 w-0 px-12 py-8 mx-auto">
       <main class="focus:outline-none relative flex-1" tabindex="0">
@@ -36,6 +48,26 @@ export default {
   components: {
     AdminSidebar,
     Tabs
+  },
+  computed: {
+    errorMessage() {
+      return this.$store.getters['common/getErrorNotification']
+    },
+    notification() {
+      return this.$store.getters['common/getNotification']
+    },
+  },
+  methods: {
+    resetErrorMessage() {
+      if (this.errorMessage) {
+        this.$store.dispatch('common/resetErrorNotification')
+      }
+    },
+    resetNotification() {
+      if (this.notification) {
+        this.$store.dispatch('common/resetNotification')
+      }
+    }
   }
 }
 </script>

@@ -124,20 +124,32 @@ export default {
     addNote(note) {
       apiService.post(`users/2/notes/`, {note: note})
         .then(
+          this.$store.dispatch('common/setNotification', 'Notat opprettet!'),
           this.fetchUser(2)
         )
+        .catch(error => {
+          this.$store.dispatch('common/setErrorNotification', this.$catchError(error))
+        })
     },
     editNote(note) {
       apiService.put(`users/2/notes/`, {id: note.id, note: note.note})
         .then(
+          this.$store.dispatch('common/setNotification', 'Notat oppdatert'),
           this.fetchUser(2)
         )
+        .catch(error => {
+          this.$store.dispatch('common/setErrorNotification', this.$catchError(error))
+        })
     },
     deleteNote(id) {
       apiService.delete(`utils/notes/${id}/delete/`)
         .then(
+          this.$store.dispatch('common/setNotification', 'Notat slettet'),
           this.fetchUser(2)
         )
+        .catch(error => {
+          this.$store.dispatch('common/setErrorNotification', this.$catchError(error))
+        })
     }
   },
   created() {
