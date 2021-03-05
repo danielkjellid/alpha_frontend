@@ -2,8 +2,6 @@ import apiService from '@/common/api'
 
 export const state = {
   currentUser: null,
-  authTemplateErrorMessage: null,
-  authMessage: null,
 }
 
 export const mutations = {
@@ -22,12 +20,6 @@ export const mutations = {
   'SET_CURRENT_USER' (state, user) {
     state.currentUser = user
   },
-  'SET_AUTH_TEMPLATE_ERROR_MESSAGE' (state, message) {
-    state.authTemplateErrorMessage = message
-  },
-  'SET_AUTH_MESSAGE' (state, message) {
-    state.authMessage = message
-  }
 }
 
 export const actions = {
@@ -82,18 +74,6 @@ export const actions = {
         })
     }
   },
-  setAuthTemplateErrorMessage({commit}, message) {
-    commit('SET_AUTH_TEMPLATE_ERROR_MESSAGE', message)
-  },
-  resetAuthTemplateErrorMessage({commit}) {
-    commit('SET_AUTH_TEMPLATE_ERROR_MESSAGE', null)
-  },
-  setAuthMessage({commit}, message) {
-    commit('SET_AUTH_MESSAGE', message)
-  },
-  resetAuthMessage({commit}) {
-    commit('SET_AUTH_MESSAGE', null)
-  },
 }
 
 export const getters = {
@@ -112,10 +92,4 @@ export const getters = {
 
     return false
   },
-  getAuthTemplateErrorMessage: (state) => {
-    return state.authTemplateErrorMessage
-  },
-  getAuthMessage: (state) => {
-    return state.authMessage
-  }
 }

@@ -191,14 +191,14 @@ export default {
           // get tokens and fetch user
           this.$store.dispatch('auth/obtainToken', {email: this.user.email, password: this.user.password})
           this.$store.dispatch('auth/fetchCurrentUser')
-          this.$store.dispatch('auth/setAuthMessage', 'Konto opprettet suksessfullt!')
+          this.$store.dispatch('common/setNotification', 'Konto opprettet suksessfullt!')
 
           // redirect to home
           this.$router.push({name: 'Home'})
         })
         .catch(error => {
           this.errors = this.$catchError(error)
-          this.$store.dispatch('auth/setAuthTemplateErrorMessage', this.$catchError(error))
+          this.$store.dispatch('common/setErrorNotification', this.$catchError(error))
 
           // reset text fields
           this.user = {
@@ -219,7 +219,7 @@ export default {
     },
     resetErrorMessage() {
       if (this.errorMessage) {
-        this.$store.dispatch('auth/resetAuthTemplateErrorMessage')
+        this.$store.dispatch('common/resetErrorNoification')
       }
 
       if (this.errors) {

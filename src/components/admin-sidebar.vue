@@ -179,7 +179,7 @@ export default {
       this.$store.dispatch('auth/logOut')
       // redirect to home
       this.$router.push({name: 'Home'})
-      this.$store.dispatch('auth/setAuthMessage', 'Logget ut suksessfullt!')
+      this.$store.dispatch('common/setNotification', 'Logget ut suksessfullt!')
     },
   }
 }
