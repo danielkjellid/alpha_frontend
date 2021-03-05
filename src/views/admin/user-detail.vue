@@ -1,5 +1,5 @@
 <template>
-  <AdminDetailTemplate>
+  <AdminDetailTemplate v-if="user.profile">
     <template #title>
       <div :style="`background-color: ${user.profile.avatar_color}`" class="flex items-center justify-center w-10 h-10 mr-3 rounded-full">
         <span class="text-sm text-white">{{ user.profile.initial }}</span>
@@ -59,82 +59,12 @@
           </DescriptionList>
         </AdminSection>
         <AdminSection title="Notater">
-          <div class="flex items-start justify-between my-6">
-            <div class="flex items-start">
-              <div class="flex items-center justify-center flex-none w-6 h-6 mr-4 text-xs text-white bg-blue-400 rounded-full">D</div>
-              <div>
-                <div class="flex items-center">
-                  <p class="mr-2 text-sm font-medium text-gray-900">Daniel Kjellid</p>
-                  <span class="text-sm text-gray-500">28 Sept 2020, 16:19</span>
-                </div>
-                <p class="mt-2 text-sm text-gray-800">
-                  What happened with the refund?
-                </p>
-              </div>
-            </div>
-            <button class="hover:text-gray-900 text-gray-800">
-              <svg class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-              </svg>
-            </button>
-          </div>
-          <div class="flex items-start justify-between my-6">
-            <div class="flex items-start">
-              <div class="flex items-center justify-center flex-none w-6 h-6 mr-4 text-xs text-white bg-purple-400 rounded-full">E</div>
-              <div>
-                <div class="flex items-center">
-                  <p class="mr-2 text-sm font-medium text-gray-900">Emma Jahr</p>
-                  <span class="text-sm text-gray-500">28 Sept 2020, 16:19</span>
-                </div>
-                <p class="mt-2 text-sm text-gray-800">
-                  Eva decided she didn't want the unlimited license. We agreed to switch her to the 5 seat license and refund the difference.
-                </p>
-              </div>
-            </div>
-            <button class="hover:text-gray-900 text-gray-800">
-              <svg class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-              </svg>
-            </button>
-          </div>
-          <div class="flex items-start justify-between my-6">
-            <div class="flex items-start">
-              <div class="flex items-center justify-center flex-none w-6 h-6 mr-4 text-xs text-white bg-purple-400 rounded-full">E</div>
-              <div>
-                <div class="flex items-center">
-                  <p class="mr-2 text-sm font-medium text-gray-900">Emma Jahr</p>
-                  <span class="text-sm text-gray-500">28 Sept 2020, 16:19</span>
-                </div>
-                <p class="mt-2 text-sm text-gray-800">
-                  You should check out her site too btw, some awesome stuff. The link is in her custom profile.
-                </p>
-              </div>
-            </div>
-            <button class="hover:text-gray-900 text-gray-800">
-              <svg class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-              </svg>
-            </button>
-          </div>
-          <div class="flex items-start justify-between my-6">
-            <div class="flex items-start">
-              <div class="flex items-center justify-center flex-none w-6 h-6 mr-4 text-xs text-white bg-blue-400 rounded-full">D</div>
-              <div>
-                <div class="flex items-center">
-                  <p class="mr-2 text-sm font-medium text-gray-900">Daniel Kjellid</p>
-                  <span class="text-sm text-gray-500">28 Sept 2020, 16:19</span>
-                </div>
-                <p class="mt-2 text-sm text-gray-800">
-                  Gotcha.
-                </p>
-              </div>
-            </div>
-            <button class="hover:text-gray-900 text-gray-800">
-              <svg class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-              </svg>
-            </button>
-          </div>
+          <AdminNotes 
+            :notes="user.notes"
+            @add-note="addNote"
+            @edit-note="editNote"
+            @delete-note="deleteNote"
+          />
         </AdminSection>
       </div>
       <div class="col-span-1">
@@ -151,6 +81,7 @@ import AdminDetailTemplate from '@/views/templates/admin-detail.vue'
 import DescriptionList from '@/components/description-list.vue'
 import AdminSection from '@/components/admin-section.vue'
 import AdminAuditLog from '@/components/admin-audit-log.vue'
+import AdminNotes from '@/components/admin-notes.vue'
 
 import apiService from '@/common/api'
 
@@ -160,11 +91,15 @@ export default {
     AdminDetailTemplate,
     DescriptionList,
     AdminSection,
-    AdminAuditLog
+    AdminAuditLog,
+    AdminNotes,
   },
   data() {
     return {
-      user: {},
+      user: {
+        notes: [],
+        audit_logs: [],
+      },
       fields: [
         { name: 'email', text: 'E-post' },
         { name: 'phone_number', text: 'Telefon' },
@@ -177,26 +112,6 @@ export default {
         { name: 'allow_personalization', text: 'Personalisering' },
         { name: 'allow_third_party_personalization', text: 'Tredjepartspersonalisering' },
       ],
-      items: [ 
-        { id: 1, profile: { full_name: "Daniel Kjellid", initial: "D", avatar_color: "#A78BFA" }, email: "daniel@kjellid.no", is_active: true, date_joined: "16. June 2020 00:29" }, 
-        { id: 2, profile: { full_name: "Test 12345 User", initial: "T", avatar_color: "#F87171" }, email: "daniel@test.no", is_active: true, date_joined: "16. June 2020 00:32" }, 
-        { id: 6, profile: { full_name: "Test Bruker", initial: "T", avatar_color: "#F87171" }, email: "testbruker@example.com", is_active: true, date_joined: "17. June 2020 15:47" }, 
-        { id: 8, profile: { full_name: "Emma Jahr", initial: "E", avatar_color: "#F87171" }, email: "emma.jahr@gmail.com", is_active: true, date_joined: "07. October 2020 17:20" }, 
-        { id: 9, profile: { full_name: "Emma Jahr", initial: "E", avatar_color: "#F87171" }, email: "emma.jahr+1@gmail.com", is_active: true, date_joined: "07. October 2020 17:21" }, 
-        { id: 10, profile: { full_name: "Emma Jahr", initial: "E", avatar_color: "#F87171" }, email: "emma.jahr+2@gmail.com", is_active: true, date_joined: "07. October 2020 17:21" }, 
-        { id: 11, profile: { full_name: "Emma Jahr", initial: "E", avatar_color: "#F472B6" }, email: "emma.jahr+3@gmail.com", is_active: true, date_joined: "07. October 2020 17:22" }, 
-        { id: 12, profile: { full_name: "Testing 1234 1234345", initial: "T", avatar_color: "#F87171" }, email: "test+8@bruker.no", is_active: true, date_joined: "07. October 2020 17:27" }, 
-        { id: 13, profile: { full_name: "Ragnhild Kjellid", initial: "R", avatar_color: "#F87171" }, email: "ragnhild@flis.no", is_active: true, date_joined: "09. October 2020 16:22" }, 
-        { id: 14, profile: { full_name: "Finn Kjellid", initial: "F", avatar_color: "#F87171" }, email: "finn@flis.no", is_active: true, date_joined: "10. October 2020 22:48" }, 
-        { id: 15, profile: { full_name: "Daniel Test", initial: "D", avatar_color: "#60A5FA" }, email: "finn+1@flis.no", is_active: false, date_joined: "10. October 2020 22:55" }, 
-        { id: 16, profile: { full_name: "Daniel Test 2", initial: "D", avatar_color: "#34D399" }, email: "finn+2@flis.no", is_active: true, date_joined: "10. October 2020 22:58" }, 
-        { id: 17, profile: { full_name: "Test 6", initial: "T", avatar_color: "#F87171" }, email: "6@test.com", is_active: true, date_joined: "10. October 2020 22:59" }, 
-        { id: 18, profile: { full_name: "Daniel Gmail", initial: "D", avatar_color: "#FBBF24" }, email: "daniel.kjellid@gmail.com", is_active: true, date_joined: "16. October 2020 22:47" }, 
-        { id: 19, profile: { full_name: "Hanne Dalen", initial: "H", avatar_color: "#F87171" }, email: "hanne@dalen.no", is_active: false, date_joined: "17. October 2020 18:47" }, 
-        { id: 21, profile: { full_name: "Avatar Tester", initial: "A", avatar_color: "#60A5FA" }, email: "avatar@test.com", is_active: true, date_joined: "06. February 2021 14:11" }, 
-        { id: 22, profile: { full_name: "Avatar 2", initial: "A", avatar_color: "#F472B6" }, email: "avatar@test2.com", is_active: true, date_joined: "06. February 2021 14:13" }, 
-        { id: 23, profile: { full_name: "Avtar 3", initial: "A", avatar_color: "#34D399" }, email: "test@avatar.com", is_active: true, date_joined: "06. February 2021 14:16" } 
-      ]
     }
   },
   methods: {
@@ -205,7 +120,25 @@ export default {
         .then(user => {
           this.user = user.data
         })
-    } 
+    },
+    addNote(note) {
+      apiService.post(`users/2/notes/`, {note: note})
+        .then(
+          this.fetchUser(2)
+        )
+    },
+    editNote(note) {
+      apiService.put(`users/2/notes/`, {id: note.id, note: note.note})
+        .then(
+          this.fetchUser(2)
+        )
+    },
+    deleteNote(id) {
+      apiService.delete(`utils/notes/${id}/delete/`)
+        .then(
+          this.fetchUser(2)
+        )
+    }
   },
   created() {
     this.fetchUser(2)

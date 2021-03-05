@@ -119,7 +119,7 @@
           </div>
         </nav>
       </div>
-      <button v-click-outside="hideRequestUserMenu" @click="requestUserMenuOpen = !requestUserMenuOpen" class="hover:bg-gray-200 absolute bottom-0 left-0 right-0 w-full px-10 py-3 mb-16">
+      <button v-if="currentUser && currentUser != undefined" v-click-outside="hideRequestUserMenu" @click="requestUserMenuOpen = !requestUserMenuOpen" class="hover:bg-gray-200 absolute bottom-0 left-0 right-0 w-full px-10 py-3 mb-16">
         <div class="flex items-center justify-between">
           <div class="flex items-center">
             <div :style="`background-color: ${currentUser.avatar_color}`" class="flex items-center justify-center w-10 h-10 rounded-full">

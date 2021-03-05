@@ -7,8 +7,8 @@
       {{ label }}
     </label>
     <div class="relative rounded-md">
-      <div v-if="icon" class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-        <BaseIcon :name="icon" :fill="iconColor"/>
+      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <BaseIcon v-if="icon" :name="icon" :fill="iconColor"/>
       </div>
       <input
         @input="$emit('input', $event.target.value)" 
