@@ -22,7 +22,7 @@
         }"
         :placeholder="placeholder"
         :type="type"
-        class="block text-sm leading-5 border-gray-200 rounded-md" 
+        class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 focus:border-transparent block text-sm leading-5 border-gray-200 rounded-md" 
       />
       <div v-if="error" class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
         <BaseIcon name="exclemation-circle" solid fill="text-red-500" />

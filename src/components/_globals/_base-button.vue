@@ -80,7 +80,7 @@ export default {
       }
 
       // button is styled as a normal button
-      if (this.plain) return 'appearance-none '
+      if (this.plain) return 'appearance-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 focus:border-transparent rounded-sm'
       if (this.light) return 'appearance-none  hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm'
       if (this.outlined) return 'text-sm appearance-none font-medium leading-5 rounded-md px-4 py-2 text-white bg-transparent border border-white hover:bg-black hover:bg-opacity-25 focus:outline-none focus:bg-opacity-25 focus:bg-black focus:shaow-outline-gray active:bg-black active:bg-opacity-25'
 

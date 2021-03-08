@@ -118,42 +118,4 @@ export default [
       staffRequired: true 
     }
   },
-
-  // admin components
-  // {
-  //   path: '/backend/inventory',
-  //   name: 'InventoryOverview',
-  //   component: () => import('@/views/admin/inventory-overview.vue'),
-  //   meta: {
-  //     authRequired: true,
-  //     staffRequired: true
-  //   }
-  // },
-  // {
-  //   path: '/backend/users',
-  //   name: 'UsersOverview',
-  //   component: () => import('@/views/admin/users-overview.vue'),
-  //   meta: { 
-  //     authRequired: true, 
-  //     staffRequired: true 
-  //   }
-  // },
-  // {
-  //   path: '/backend/users/:id',
-  //   name: 'UserDetail',
-  //   component: () => import('@/views/admin/user-detail.vue'),
-  //   meta: { 
-  //     authRequired: true, 
-  //     staffRequired: true 
-  //   }
-  // },
-  // {
-  //   path: '/backend/users/:id/edit',
-  //   name: 'UserEdit',
-  //   component: () => import('@/views/admin/user-edit.vue'),
-  //   meta: { 
-  //     authRequired: true, 
-  //     staffRequired: true 
-  //   }
-  // },
 ]

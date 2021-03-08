@@ -29,7 +29,7 @@
           <div class="absolute bottom-0 left-0 right-0">
             <div class="px-16 py-5 bg-white border-t border-gray-200">
               <div class="w-full">
-                <BaseButton @click="saveEdit" class="w-full">Lagre</BaseButton>
+                <BaseButton @click="saveEdit" class="w-full">{{ buttonText }}</BaseButton>
               </div>
             </div>
           </div>
@@ -58,6 +58,10 @@ export default {
     title: {
       type: String,
       required: true
+    },
+    buttonText: {
+      type: String,
+      default: 'Lagre'
     }
   },
   computed: {
