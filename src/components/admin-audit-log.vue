@@ -1,6 +1,6 @@
 <template>
-  <div v-if="logs.length > 0">
-    <ul>
+  <div>
+    <ul v-if="logs.length > 0">
       <li v-for="(log, index) in logs" :key="index">
         <div class="relative flex items-start pb-6">
           <span class="absolute top-4 bottom-4 left-2 ml-px h-auto w-0.5 bg-gray-200 mt-4" aria-hidden="true"></span>
@@ -30,9 +30,19 @@
         </div>
       </li>
     </ul>
-  </div>
-  <div v-else>
-    <BaseNodata />
+    <ul v-else>
+      <li>
+        <div class="relative flex items-start pb-6">
+          <BaseIcon name="check-circle" fill="text-green-400 mr-4" />
+          <div class="w-full text-sm">
+            <div class="flex items-center justify-between">
+              <p class="font-medium text-gray-900">Opprettet</p>
+              <p class="text-gray-400">{{ creationDate }}</p>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 

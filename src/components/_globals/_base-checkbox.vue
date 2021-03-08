@@ -9,7 +9,7 @@
       >
       <div v-if="!hiddenLabel" class="ml-3 -mt-px text-sm">
         <span class="block font-medium text-gray-800">{{ label }}</span>
-        <span v-if="helpText" class="block text-gray-600">{{ helpText }}</span>
+        <span v-if="helpText" class="block text-gray-500">{{ helpText }}</span>
       </div>
     </label>
   </div>

@@ -14,7 +14,6 @@ export const mutations = {
 
 export const actions = {
   setNotification({commit}, message) {
-    console.log('fired')
     commit('SET_NOTIFICATION', message)
   },
   resetNotification({commit}) {

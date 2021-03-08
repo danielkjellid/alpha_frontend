@@ -101,8 +101,8 @@ export default [
     }
   },
   {
-    path: '/backend/users/overview/',
-    name: 'Overview',
+    path: '/backend/users/',
+    name: 'UsersOverview',
     component: () => import('@/views/admin/users-overview.vue'),
     meta: { 
       authRequired: true, 
@@ -110,18 +110,9 @@ export default [
     }
   },
   {
-    path: '/backend/users/detail/',
-    name: 'Overview',
+    path: '/backend/users/:id/',
+    name: 'UserDetail',
     component: () => import('@/views/admin/user-detail.vue'),
-    meta: { 
-      authRequired: true, 
-      staffRequired: true 
-    }
-  },
-  {
-    path: '/backend/detail/',
-    name: 'Overview',
-    component: () => import('@/views/templates/admin-detail.vue'),
     meta: { 
       authRequired: true, 
       staffRequired: true 
