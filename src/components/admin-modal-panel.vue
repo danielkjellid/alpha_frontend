@@ -4,8 +4,8 @@
       <div v-show="active" @click="closeModal" class="absolute inset-0 transition-opacity bg-black bg-opacity-25" aria-hidden="true"></div>
     </TransformFadeIn>
     <TransformSlideFromRight>
-      <div v-show="active" class="fixed top-0 bottom-0 right-0 z-20">
-        <div class="relative z-40 bg-white">
+      <div v-show="active" class="lg:w-5/12 fixed top-0 bottom-0 right-0 w-2/5">
+        <div class="relative bg-white">
           <div class="h-screen px-12 py-8 overflow-y-auto">
             <div class="flex items-center justify-between px-4">
               <div class="flex items-center">
