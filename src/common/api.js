@@ -52,16 +52,20 @@ apiService.interceptors.response.use(
             return apiService
               .post('auth/token/refresh/', {refresh: refreshToken})
               .then(response => {
-                  // set new keys in localstorrage
-                  localStorage.setItem('access_token', response.data.access)
-                  localStorage.setItem('refresh_token', response.data.refresh)
+                  if (response) {
+                    // set new keys in localstorrage
+                    localStorage.setItem('access_token', response.data.access)
+                    localStorage.setItem('refresh_token', response.data.refresh)
 
-                  // update the auth header in both the config as well as in the original requst
-                  apiService.defaults.headers['Authorization'] = "JWT " + response.data.access
-                  originalRequest.headers['Authorization'] = "JWT " + response.data.access
-
-                  // rerun original request
-                  return apiService(originalRequest)
+                    // update the auth header in both the config as well as in the original requst
+                    apiService.defaults.headers['Authorization'] = "JWT " + response.data.access
+                    originalRequest.headers['Authorization'] = "JWT " + response.data.access
+                    
+                    if (refreshToken) {
+                      // rerun original request
+                      return apiService(originalRequest)
+                    }
+                  }
               })
               .catch(error => {
                 console.log(error)

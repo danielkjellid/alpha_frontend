@@ -23,9 +23,9 @@
             <h1 class="text-2xl font-semibold text-gray-900">{{title}}</h1>
           </div>
           <div class="flex items-center">
-            <BaseButton light>
-              Ny bruker
-            </BaseButton>
+            <slot name="action">
+
+            </slot>
           </div>
         </div>
         <div class="mt-10">

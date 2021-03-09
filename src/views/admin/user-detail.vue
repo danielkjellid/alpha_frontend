@@ -8,7 +8,7 @@
         <h1 class="text-2xl font-semibold text-gray-900">{{ user.profile.full_name ? user.profile.full_name : undefined }}</h1>
       </template>
       <template #actions>
-        <BaseButton class="" @click="editModalActive = true" light>
+        <BaseButton @click="editModalActive = true" light>
           Rediger bruker
         </BaseButton>
       </template>
@@ -296,7 +296,7 @@ export default {
 
     // note methods for adding, editing and deleting
     addNote(note) {
-      apiService.post(`users/2/notes/`, {note: note})
+      apiService.post(`users/${this.$route.params.id}/notes/`, {note: note})
         .then(
           this.$store.dispatch('common/setNotification', 'Notat opprettet!'),
           this.fetchUser(this.$route.params.id)
@@ -306,7 +306,7 @@ export default {
         })
     },
     editNote(note) {
-      apiService.put(`users/2/notes/`, {id: note.id, note: note.note})
+      apiService.put(`users/${this.$route.params.id}/notes/`, {id: note.id, note: note.note})
         .then(
           this.$store.dispatch('common/setNotification', 'Notat oppdatert'),
           this.fetchUser(this.$route.params.id)

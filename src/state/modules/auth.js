@@ -69,8 +69,10 @@ export const actions = {
       // populate the current user state in the users module once tokens is obtained
       return apiService.get('user/')
         .then(user => {
-          // set the state as the user data
-          commit('SET_CURRENT_USER', user.data)
+          if (user) {
+            // set the state as the user data
+            commit('SET_CURRENT_USER', user.data)
+          }
         })
     }
   },

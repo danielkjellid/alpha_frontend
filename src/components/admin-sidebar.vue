@@ -21,7 +21,7 @@
           </div>
           <div class="space-y-1">
             <router-link
-              to="/backend/overview"
+              to="/backend/users"
               class="hover:bg-gray-200 flex items-center justify-between w-full px-10 py-2 text-sm font-medium text-gray-800"
             >
               Brukere
