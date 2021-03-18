@@ -8,7 +8,7 @@
         block
         icon="search" 
         iconColor="text-gray-800"
-        placeholder="Søk etter navn, e-post eller telefonnummer"
+        :placeholder="searchbarPlaceholder"
         v-model="query"
       />
     </form>
@@ -125,6 +125,12 @@ export default {
       type: Boolean,
       required: false,
       default: false,
+    },
+    // string to display placeholder in search input
+    // searchBar needs to be displayed
+    searchbarPlaceholder: {
+      type: String,
+      required: false
     },
     // boolean to display pagination bellow table
     showPagination: {

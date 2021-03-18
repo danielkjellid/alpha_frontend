@@ -73,12 +73,16 @@ apiService.interceptors.response.use(
           } else {
             // is refresh token is expired, redirect to login to obtain new pair if route requires auth
             console.log("Refresh token is expired", tokenParts.exp, now)
-            router.push({name: 'LogIn'})
+            if (router.history.current.meta.authRequired || router.history.current.meta.staffRequired) {
+              router.push({name: 'LogIn'})
+            }
           }
         } else {
           // if refresh token is missing, redirect to login to obtain a new pair if route requires auth
           console.log('Refresh token not available')
-          router.push({name: 'LogIn'})
+          if (router.history.current.meta.authRequired || router.history.current.meta.staffRequired) {
+            router.push({name: 'LogIn'})
+          }
         }
       }
 

@@ -40,7 +40,7 @@
             </button>
             <div v-show="inventoryMenuOpen" class="space-y-1">
               <router-link 
-                to="/backend/overview/1" 
+                to="/backend/inventory/products/" 
                 class="hover:bg-gray-200 group flex items-center w-full px-10 py-2 text-sm text-gray-700"
                 active-class="font-medium text-blue-600 bg-gray-200"
               >Produkter
@@ -69,7 +69,7 @@
             </button>
             <div v-show="marketingMenuOpen" class="space-y-1">
               <router-link 
-                to="/backend/overview/1" 
+                to="/backend/inventory/products/" 
                 class="hover:bg-gray-200 group flex items-center w-full px-10 py-2 text-sm text-gray-700"
                 active-class="font-medium text-blue-600 bg-gray-200"
               >Produkter
@@ -98,7 +98,7 @@
             </button>
             <div v-show="administrativeMenuOpen" class="space-y-1">
               <router-link 
-                to="/backend/overview/1" 
+                to="/backend/inventory/products/" 
                 class="hover:bg-gray-200 group flex items-center w-full px-10 py-2 text-sm text-gray-700"
                 active-class="font-medium text-blue-600 bg-gray-200"
               >Produkter
@@ -134,38 +134,45 @@
           </button>
         </div>
       </button>
-      <div v-show="requestUserMenuOpen" class="absolute bottom-0 left-0 right-0 px-5 mb-32">
-        <div class="py-2 bg-white rounded-md shadow">
-          <router-link to="/" class="hover:bg-gray-200 flex items-center px-4 py-3 text-sm text-gray-700">
-            <svg class="w-5 h-5 mr-3 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-            </svg>
-            Gå til front
-          </router-link>
-          <button @click="logOut" class="hover:bg-gray-200 flex items-center w-full px-4 py-3 text-sm text-red-600">
-            <svg class="w-5 h-5 mr-3 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-            </svg>
-            Logg ut
-          </button>
+      <TransformFadeIn>
+        <div v-show="requestUserMenuOpen" class="absolute bottom-0 left-0 right-0 px-5 mb-32">
+          <div class="py-2 bg-white rounded-md shadow">
+            <router-link to="/" class="hover:bg-gray-200 flex items-center px-4 py-3 text-sm text-gray-700">
+              <svg class="w-5 h-5 mr-3 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+              Gå til front
+            </router-link>
+            <button @click="logOut" class="hover:bg-gray-200 flex items-center w-full px-4 py-3 text-sm text-red-600">
+              <svg class="w-5 h-5 mr-3 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+              Logg ut
+            </button>
+          </div>
         </div>
-      </div>
+      </TransformFadeIn>
     </div>
   </div>
 </template>
 
 <script>
+import TransformFadeIn from '@/components/transform-fade-in.vue'
+
 export default {
   name: 'AdminSidebar',
+  components: {
+    TransformFadeIn
+  },
   computed: {
     currentUser() {
       return this.$store.getters['auth/getCurrentUser']
-    }
+    },
   },
   data() {
     return {
-      inventoryMenuOpen: false,
+      inventoryMenuOpen: this.$route.fullPath.includes('inventory'),
       marketingMenuOpen: false,
       administrativeMenuOpen: false,
       requestUserMenuOpen: false,
@@ -181,6 +188,6 @@ export default {
       this.$router.push({name: 'Home'})
       this.$store.dispatch('common/setNotification', 'Logget ut suksessfullt!')
     },
-  }
+  },
 }
 </script>

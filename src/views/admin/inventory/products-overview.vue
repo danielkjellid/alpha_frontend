@@ -1,15 +1,16 @@
 <template>
   <div class="relative">
-    <AdminOverviewTemplateNew title="Brukere">
+    <AdminOverviewTemplateNew title="Produkter">
       <template #action>
         <BaseButton light @click="addModalActive = true" >
-          Ny bruker
+          Nytt produkt
         </BaseButton>
       </template>
       <BaseTable 
         showSearchbar
         showPagination
-        @onSearch="queryUsers"
+        searchbarPlaceholder="Søk etter navn, leverandør eller status"
+        @onSearch="queryProducts"
         @onPrevious="previousPage"
         @onNext="nextPage"
         :headers="tableHeaders" 
@@ -19,20 +20,48 @@
         :currentPage="currentPageDisplayed"
         :totalPages="totalPagesFetched"
       >
-        <template #profile="{ item }">
+        <template #product="{ item }">
           <div class="flex items-center">
-            <div :style="`background-color: ${item.profile.avatar_color}`" class="flex items-center justify-center w-6 h-6 mr-2 text-xs text-white rounded-full">{{item.profile.initial}}</div>
-            {{ item.profile.full_name }}
+            <img :src="item.product.thumbnail" class="object-cover w-10 h-8 mr-3 bg-gray-200 rounded-md" />
+            {{ item.product.name }}
           </div>
         </template>
-        <template #is_active="{ item }">
-          <div v-if="item.is_active" class="flex items-center">
-            <BaseIcon v-if="item.is_active" name="check-circle" fill="text-green-400" class="mr-2" />
-            Aktiv
+        <template #gross_price="{ item }">
+          {{ item.gross_price | formatPrice }}kr
+        </template>
+        <template #status="{ item }">
+          <div v-if="item.status == 'Draft'" class="flex items-center">
+            <div class="flex items-center text-gray-800">
+              <span class="mr-2 w-1.5 h-1.5 bg-gray-300 rounded-full" />
+              Kladd
+            </div>
           </div>
-          <div v-else class="flex items-center">
-            <BaseIcon v-if="!item.is_active" name="x-circle" fill="text-red-400" class="mr-2" />
-            Inaktiv
+          <div v-else-if="item.status == 'Hidden'" class="flex items-center">
+            <div class="flex items-center text-gray-800">
+              <span class="mr-2 w-1.5 h-1.5 bg-yellow-400 rounded-full"></span>
+              Skjult
+            </div>
+          </div>
+          <div v-else-if="item.status == 'Available'" class="flex items-center">
+            <div class="flex items-center text-gray-800">
+              <span class="mr-2 w-1.5 h-1.5 bg-green-400 rounded-full"></span>
+              Tilgjengelig
+            </div>
+          </div>
+          <div v-else-if="item.status == 'Discontinued'" class="flex items-center">
+            <div class="flex items-center text-gray-800">
+              <span class="mr-2 w-1.5 h-1.5 bg-red-400 rounded-full"></span>
+              Utgått
+            </div>
+          </div>
+        </template>
+        <template #variants="{ item }">
+          <div class="flex items-center -space-x-5">
+            <div v-for="(variant, index) in item.variants" :key="`${index}-${variant}`">
+              <div class="w-8 h-8 mr-2 overflow-hidden border-2 border-gray-200 rounded-full">
+                <img :src="variant.image" :alt="`Image of ${item.product.name} variant: ${variant.name}`">
+              </div>
+            </div>
           </div>
         </template>
         <template #action="{ item }">
@@ -230,9 +259,10 @@ export default {
       tableHeaders: [
         { text: 'Id', value: 'id' },
         { text: 'Navn', value: 'name' },
-        { text: 'E-post', value: 'email' },
-        { text: 'Aktiv', value: 'active' },
-        { text: 'Registrert', value: 'dateJoined' },
+        { text: 'Pris', value: 'gross_price' },
+        { text: 'Enhet', value: 'unit' },
+        { text: 'Status', value: 'status' },
+        { text: 'Varianter', value: 'variants' },
         { text: '', value: 'actions' },
       ],
       addModalActive: false,
@@ -256,7 +286,7 @@ export default {
     }
   },
   methods: {
-    fetchUsers(endpoint) {
+    fetchProducts(endpoint) {
       apiService.get(endpoint)
         .then(response => {
           this.previousPath = response.data.links.previous
@@ -269,8 +299,8 @@ export default {
   
         })
     },
-    queryUsers(query) {
-      this.fetchUsers(`users/?search=${query}`)
+    queryProducts(query) {
+      this.fetchUsers(`products/?search=${query}`)
     },
     nextPage() {
       this.fetchUsers(this.nextPath)
@@ -282,27 +312,27 @@ export default {
       if (message !== undefined) return message.toString()
     },
     addUser() {
-      apiService.post('users/', this.formData)
-        .then(response => {
-          if (response) {
-            // close modal
-            this.addModalActive = false
-            // notify user that edit was successful
-            this.$store.dispatch('common/setNotification', 'Bruker opprettet')
-            // fetch user again for vue to update instance without reload
-            this.fetchUsers()
-          }
-        })
-        .catch(error => {
-          if (error.response) {
-            let errorMessage = error.response.data
-            this.errors = errorMessage
-          }
-        })
+      // apiService.post('users/', this.formData)
+      //   .then(response => {
+      //     if (response) {
+      //       // close modal
+      //       this.addModalActive = false
+      //       // notify user that edit was successful
+      //       this.$store.dispatch('common/setNotification', 'Bruker opprettet')
+      //       // fetch user again for vue to update instance without reload
+      //       this.fetchProducts('products/')
+      //     }
+      //   })
+      //   .catch(error => {
+      //     if (error.response) {
+      //       let errorMessage = error.response.data
+      //       this.errors = errorMessage
+      //     }
+      //   })
     }
   },
   created() {
-    this.fetchUsers('users/')
+    this.fetchProducts('products/')
   }
 }
 </script>

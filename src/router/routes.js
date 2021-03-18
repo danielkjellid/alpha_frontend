@@ -103,7 +103,7 @@ export default [
   {
     path: '/backend/users/',
     name: 'UsersOverview',
-    component: () => import('@/views/admin/users-overview.vue'),
+    component: () => import('@/views/admin/users/users-overview.vue'),
     meta: { 
       authRequired: true, 
       staffRequired: true 
@@ -112,7 +112,16 @@ export default [
   {
     path: '/backend/users/:id/',
     name: 'UserDetail',
-    component: () => import('@/views/admin/user-detail.vue'),
+    component: () => import('@/views/admin/users/user-detail.vue'),
+    meta: { 
+      authRequired: true, 
+      staffRequired: true 
+    }
+  },
+  {
+    path: '/backend/inventory/products/',
+    name: 'ProductsOverview',
+    component: () => import('@/views/admin/inventory/products-overview.vue'),
     meta: { 
       authRequired: true, 
       staffRequired: true 
