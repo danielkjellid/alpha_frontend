@@ -74,7 +74,7 @@ export default {
   methods: {
     login() {
       // get new token pair
-      return apiService.post('auth/token/obtain/', {email: this.email, password: this.password})
+      return apiService.post('auth/token/obtain/', {username: this.email, password: this.password})
         .then(response => {
           // reset errors object
           this.errors = {}

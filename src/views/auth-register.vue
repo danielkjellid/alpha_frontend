@@ -189,7 +189,7 @@ export default {
           this.errors = {}
 
           // get tokens and fetch user
-          this.$store.dispatch('auth/obtainToken', {email: this.user.email, password: this.user.password})
+          this.$store.dispatch('auth/obtainToken', {username: this.user.email, password: this.user.password})
           this.$store.dispatch('auth/fetchCurrentUser')
           this.$store.dispatch('common/setNotification', 'Konto opprettet suksessfullt!')
 

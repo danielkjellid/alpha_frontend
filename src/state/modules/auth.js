@@ -40,7 +40,7 @@ export const actions = {
       })
   },
   logOut: ({ commit }) => {
-    
+
     // save the refresh token var
     const refreshToken = localStorage.getItem('refresh_token')
 

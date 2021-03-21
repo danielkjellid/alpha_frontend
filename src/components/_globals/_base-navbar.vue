@@ -206,6 +206,8 @@ export default {
       }
     },
     logOut() {
+      this.$store.dispatch('common/resetNotification')
+      this.$store.dispatch('common/resetErrorNotification')
       this.$store.dispatch('auth/logOut')
       this.userMenuActive = false
       this.$store.dispatch('auth/setAuthMessage', 'Logget ut suksessfullt!')
