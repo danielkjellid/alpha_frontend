@@ -101,59 +101,30 @@ export default [
     }
   },
   {
-    path: '/backend/users/overview/',
-    name: 'Overview',
-    component: () => import('@/views/admin/users-overview.vue'),
+    path: '/backend/users/',
+    name: 'UsersOverview',
+    component: () => import('@/views/admin/users/users-overview.vue'),
     meta: { 
       authRequired: true, 
       staffRequired: true 
     }
   },
   {
-    path: '/backend/users/detail/',
-    name: 'Detail',
-    component: () => import('@/views/admin/users-detail.vue'),
+    path: '/backend/users/:id/',
+    name: 'UserDetail',
+    component: () => import('@/views/admin/users/user-detail.vue'),
     meta: { 
       authRequired: true, 
       staffRequired: true 
     }
-  }
-
-  // admin components
-  // {
-  //   path: '/backend/inventory',
-  //   name: 'InventoryOverview',
-  //   component: () => import('@/views/admin/inventory-overview.vue'),
-  //   meta: {
-  //     authRequired: true,
-  //     staffRequired: true
-  //   }
-  // },
-  // {
-  //   path: '/backend/users',
-  //   name: 'UsersOverview',
-  //   component: () => import('@/views/admin/users-overview.vue'),
-  //   meta: { 
-  //     authRequired: true, 
-  //     staffRequired: true 
-  //   }
-  // },
-  // {
-  //   path: '/backend/users/:id',
-  //   name: 'UserDetail',
-  //   component: () => import('@/views/admin/user-detail.vue'),
-  //   meta: { 
-  //     authRequired: true, 
-  //     staffRequired: true 
-  //   }
-  // },
-  // {
-  //   path: '/backend/users/:id/edit',
-  //   name: 'UserEdit',
-  //   component: () => import('@/views/admin/user-edit.vue'),
-  //   meta: { 
-  //     authRequired: true, 
-  //     staffRequired: true 
-  //   }
-  // },
+  },
+  {
+    path: '/backend/inventory/products/',
+    name: 'ProductsOverview',
+    component: () => import('@/views/admin/inventory/products-overview.vue'),
+    meta: { 
+      authRequired: true, 
+      staffRequired: true 
+    }
+  },
 ]

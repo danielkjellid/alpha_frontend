@@ -88,13 +88,13 @@ export default {
           this.errors = {}
 
           // confirm change success to user and redirect to login
-          this.$store.dispatch('auth/setAuthMessage', 'Nytt passord satt! Du kan nå logge inn.')
+          this.$store.dispatch('common/setNotification', 'Nytt passord satt! Du kan nå logge inn.')
           this.$router.push({name: 'LogIn'})
         })
         .catch(error => {
           // set errors for fields and notify user
           this.errors = this.$catchError(error)
-          this.$store.dispatch('auth/setAuthTemplateErrorMessage', this.$catchError(error))
+          this.$store.dispatch('common/setErrorNotification', this.$catchError(error))
 
           // reset variables
           this.new_password1 = ''
@@ -103,7 +103,7 @@ export default {
     },
     resetErrorMessage() {
       if (this.errorMessage) {
-        this.$store.dispatch('auth/resetAuthTemplateErrorMessage')
+        this.$store.dispatch('common/resetErrorNotification')
       }
 
       if (this.errors) {

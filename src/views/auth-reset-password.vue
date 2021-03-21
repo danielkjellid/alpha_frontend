@@ -62,12 +62,12 @@ export default {
         .then(() => {
           // reset previous errors
           this.errors = {}
-          this.$store.dispatch('auth/setAuthMessage', 'E-post med nullstilling av passord sendt!')
+          this.$store.dispatch('common/setNotification', 'E-post med nullstilling av passord sendt!')
           this.$router.push({name: 'ResetPasswordConfirm'})
         })
         .catch(error => {
           this.errors = this.$catchError(error)
-          this.$store.dispatch('auth/setAuthTemplateErrorMessage', this.$catchError(error))
+          this.$store.dispatch('common/setErrorNotification', this.$catchError(error))
 
           // reset variables
           this.email = ''
@@ -75,7 +75,7 @@ export default {
     },
     resetErrorMessage() {
       if (this.errorMessage) {
-        this.$store.dispatch('auth/resetAuthTemplateErrorMessage')
+        this.$store.dispatch('common/resetErrorNotification')
       }
 
       if (this.errors) {

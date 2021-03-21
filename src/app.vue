@@ -3,7 +3,7 @@
     <div v-if="isDevEnvironment" class="dev-env-warning z-50 py-1 text-center">
       <span class="z-50 text-sm font-semibold text-yellow-900">Development environment</span>
     </div>
-    <router-view/>
+    <router-view class="relative" />
     <div v-if="showMessage" class="sm:pb-5 fixed inset-x-0 bottom-0 pb-2">
       <div class="sm:px-6 lg:px-8 max-w-screen-xl px-2 mx-auto">
         <div class="sm:p-3 p-2 bg-white rounded-lg shadow-lg">

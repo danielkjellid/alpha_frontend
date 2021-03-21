@@ -17,7 +17,7 @@
       <div class="product-info pt-4 pb-1">
         <div v-if="!showVariants" class="flex items-center justify-between">
           <p class="w-1/2 text-base font-medium text-gray-900 truncate">{{ product.name }}</p>
-          <p class="w-1/2 text-sm font-medium text-gray-900">fra {{ product.gross_price | formatPrice }} <span class="text-gray-500">{{ product.unit }}</span></p>
+          <p class="w-1/2 text-sm font-medium text-right text-gray-900">fra {{ product.gross_price | formatPrice }} <span class="text-gray-500">{{ product.unit }}</span></p>
           <!-- TODO: add logic for discounted products -->
           <!-- <p class="text-sm font-medium text-gray-900">
             <span class="text-gray-500"><strike>kr 499,00</strike></span> - old price

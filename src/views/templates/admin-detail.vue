@@ -1,172 +1,84 @@
 <template>
-  <AdminLayout>
-    <slot>
-      <div class="px-6 py-10">
-        <div class="grid max-w-5xl grid-cols-3 px-8 mx-auto">
-          <div class="col-span-2 pr-8 border-r border-gray-200">
-            <!-- main content -->
-            <div class="max-w-5xl mx-auto">
-              <div class="flex items-center justify-between">
-                <h1 class="text-2xl font-bold text-gray-900 truncate">
-                  {{ title }}
-                </h1>
-                <div class="flex items-center space-x-5">
-                  <slot name="actions">
-                    <!-- page actions if default template is used -->
-                  </slot>
-                </div>
+  <div class="relative">
+      <div class="relative flex flex-none bg-white">
+        <BaseNotification 
+          :display="errorMessage" 
+          :success="false" 
+          title="Oida! Noe gikk galt" 
+          @close-notification="resetErrorMessage"
+        />
+        <BaseNotification 
+          :display="notification" 
+          :success="true" 
+          :title="notification" 
+          @close-notification="resetNotification"
+        />
+        <AdminSidebar />
+        <div class="max-w-screen-2xl flex flex-col flex-1 w-0 px-12 py-8 mx-auto">
+          <main class="focus:outline-none relative flex-1" tabindex="0">
+            <div class="flex items-center justify-between px-4">
+              <div class="flex items-center">
+                <slot name="title">
+                  <h1 class="text-2xl font-semibold text-gray-900">Detail</h1>
+                </slot>
               </div>
-              <Tabs class="mt-4" :tabs="[{text: 'Konto', to: '/detail'}, {text: 'Forespørsler', to: '/'}]"/>
-              <slot name="instance-content">
-                <!-- page content if default template is used -->
+              <div class="flex items-center">
+                <slot name="actions">
+                  <BaseButton light>
+                    Action
+                  </BaseButton>
+                </slot>
+              </div>
+            </div>
+            <div class="mt-10">
+              <div class="mx-4">
+                <Tabs :tabs="tabs" />
+              </div>
+              <slot>
+                <div class="h-96 border-4 border-gray-200 border-dashed rounded-lg"></div>
               </slot>
             </div>
-          </div>
-          <aside class="block pl-8">
-            <div class="flow-root">
-              <ul class="-mb-8">
-                <li>
-                  <div class="relative pb-8">
-                    <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
-                    <div class="relative flex space-x-3">
-                      <div>
-                        <span class="ring-8 ring-white flex items-center justify-center w-8 h-8 bg-gray-400 rounded-full">
-                          <!-- Heroicon name: user -->
-                          <svg class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-                          </svg>
-                        </span>
-                      </div>
-                      <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
-                        <div>
-                          <p class="text-sm text-gray-500">Applied to <a href="#" class="font-medium text-gray-900">Front End Developer</a></p>
-                        </div>
-                        <div class="whitespace-nowrap text-sm text-right text-gray-500">
-                          <time datetime="2020-09-20">Sep 20</time>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-
-                <li>
-                  <div class="relative pb-8">
-                    <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
-                    <div class="relative flex space-x-3">
-                      <div>
-                        <span class="ring-8 ring-white flex items-center justify-center w-8 h-8 bg-blue-500 rounded-full">
-                          <!-- Heroicon name: thumb-up -->
-                          <svg class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
-                          </svg>
-                        </span>
-                      </div>
-                      <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
-                        <div>
-                          <p class="text-sm text-gray-500">Advanced to phone screening by <a href="#" class="font-medium text-gray-900">Bethany Blake</a></p>
-                        </div>
-                        <div class="whitespace-nowrap text-sm text-right text-gray-500">
-                          <time datetime="2020-09-22">Sep 22</time>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-
-                <li>
-                  <div class="relative pb-8">
-                    <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
-                    <div class="relative flex space-x-3">
-                      <div>
-                        <span class="ring-8 ring-white flex items-center justify-center w-8 h-8 bg-green-500 rounded-full">
-                          <!-- Heroicon name: check -->
-                          <svg class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                          </svg>
-                        </span>
-                      </div>
-                      <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
-                        <div>
-                          <p class="text-sm text-gray-500">Completed phone screening with <a href="#" class="font-medium text-gray-900">Martha Gardner</a></p>
-                        </div>
-                        <div class="whitespace-nowrap text-sm text-right text-gray-500">
-                          <time datetime="2020-09-28">Sep 28</time>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-
-                <li>
-                  <div class="relative pb-8">
-                    <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
-                    <div class="relative flex space-x-3">
-                      <div>
-                        <span class="ring-8 ring-white flex items-center justify-center w-8 h-8 bg-blue-500 rounded-full">
-                          <!-- Heroicon name: thumb-up -->
-                          <svg class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
-                          </svg>
-                        </span>
-                      </div>
-                      <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
-                        <div>
-                          <p class="text-sm text-gray-500">Advanced to interview by <a href="#" class="font-medium text-gray-900">Bethany Blake</a></p>
-                        </div>
-                        <div class="whitespace-nowrap text-sm text-right text-gray-500">
-                          <time datetime="2020-09-30">Sep 30</time>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-
-                <li>
-                  <div class="relative pb-8">
-                    <div class="relative flex space-x-3">
-                      <div>
-                        <span class="ring-8 ring-white flex items-center justify-center w-8 h-8 bg-green-500 rounded-full">
-                          <!-- Heroicon name: check -->
-                          <svg class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                          </svg>
-                        </span>
-                      </div>
-                      <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
-                        <div>
-                          <p class="text-sm text-gray-500">Completed interview with <a href="#" class="font-medium text-gray-900">Katherine Snyder</a></p>
-                        </div>
-                        <div class="whitespace-nowrap text-sm text-right text-gray-500">
-                          <time datetime="2020-10-04">Oct 4</time>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </aside>
+          </main>
         </div>
       </div>
-    </slot>
-  </AdminLayout>
+  </div>
 </template>
 
 <script>
-import AdminLayout from '@/components/admin-layout.vue'
+import AdminSidebar from '@/components/admin-sidebar.vue'
 import Tabs from '@/components/tabs.vue'
 
 export default {
-  name: 'AdminDetailTemplate',
+  name: 'AdminDetail',
   components: {
-    AdminLayout,
+    AdminSidebar,
     Tabs,
   },
   props: {
-    // title of page
-    title: {
+    tabs: {
+      type: Array,
       required: true
+    }
+  },
+  computed: {
+    errorMessage() {
+      return this.$store.getters['common/getErrorNotification']
     },
+    notification() {
+      return this.$store.getters['common/getNotification']
+    },
+  },
+  methods: {
+    resetErrorMessage() {
+      if (this.errorMessage) {
+        this.$store.dispatch('common/resetErrorNotification')
+      }
+    },
+    resetNotification() {
+      if (this.notification) {
+        this.$store.dispatch('common/resetNotification')
+      }
+    }
   }
 }
 </script>

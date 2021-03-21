@@ -61,7 +61,7 @@ export default {
   },
   computed: {
     errorMessage() {
-      return this.$store.getters['auth/getAuthTemplateErrorMessage']
+      return this.$store.getters['common/getErroNotification']
     }
   },
   data() {
@@ -74,7 +74,7 @@ export default {
   methods: {
     login() {
       // get new token pair
-      return apiService.post('auth/token/obtain/', {email: this.email, password: this.password})
+      return apiService.post('auth/token/obtain/', {username: this.email, password: this.password})
         .then(response => {
           // reset errors object
           this.errors = {}
@@ -85,14 +85,14 @@ export default {
 
           // populate the current user state in the users module once tokens is obtained
           this.$store.dispatch('auth/fetchCurrentUser')
-          this.$store.dispatch('auth/setAuthMessage', 'Logget inn suksessfullt!')
+          this.$store.dispatch('common/setNotification', 'Logget inn suksessfullt!')
           
           // redirect to home
           this.$router.push({name: 'Home'})
         })
         .catch(error => {
           this.errors = this.$catchError(error)
-          this.$store.dispatch('auth/setAuthTemplateErrorMessage', this.$catchError(error))
+          this.$store.dispatch('common/setErrorNotification', this.$catchError(error))
 
           // reset variables
           this.email = ''
@@ -101,7 +101,7 @@ export default {
     },
     resetErrorMessage() {
       if (this.errorMessage) {
-        this.$store.dispatch('auth/resetAuthTemplateErrorMessage')
+        this.$store.dispatch('common/resetErrorNotification')
       }
     }
   },

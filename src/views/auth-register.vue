@@ -30,6 +30,66 @@
             />
           </div>
         </div>
+        <div class="sm:flex sm:items-end sm:justify-between sm:w-full mt-5">
+          <div class="sm:w-1/4">
+            <BaseSelect 
+              id="id_birth_day"
+              v-model="birthDay"
+              label="Fødselsdato" 
+              block
+              :error="$errorMsg(errors.birth_date)"
+              @input="resetErrorMessage"
+            >
+              <option 
+                v-for="i in 31" 
+                :key="i" 
+                :value="i" 
+                :selected="i == 1"
+              >
+                {{ i }}
+              </option>
+            </BaseSelect>
+          </div>
+          <div class="sm:w-1/2 sm:ml-5 sm:mt-0 mt-5">
+            <BaseSelect 
+              id="id_birth_month"
+              v-model="birthMonth"
+              label="Fødselsmåned"
+              hiddenLabel 
+              block
+              :error="$errorMsg(errors.birth_date)"
+              @input="resetErrorMessage"
+            >
+              <option 
+                v-for="month in months" 
+                :key="month.val" :value="month.val" 
+                :selected="month.val == '01'"
+              >
+                  {{ month.text }}
+              </option>
+            </BaseSelect>
+          </div>
+          <div class="sm:w-1/4 sm:ml-5 sm:mt-0 mt-5">
+            <BaseSelect 
+              id="id_birth_year"
+              v-model="birthYear"
+              label="Fødselsår"
+              hiddenLabel 
+              block
+              :error="$errorMsg(errors.birth_date)"
+              @input="resetErrorMessage"
+            >
+              <option 
+                v-for="year in years" 
+                :key="year" 
+                :value="year" 
+                :selected="year == 2021"
+              >
+                {{ year }}
+              </option>
+            </BaseSelect>
+          </div>
+        </div>
         <div class="mt-5">
           <BaseInput 
             id="id_phone_number"
@@ -128,7 +188,7 @@
             class="mt-5"
           />
         </div>
-        <BaseButton type="submit" class="flex justify-center w-full mt-5">Logg inn</BaseButton>
+        <BaseButton type="submit" class="flex justify-center w-full mt-5">Opprett konto</BaseButton>
       </form>
     </template>
   </AuthTemplate>
@@ -157,6 +217,14 @@ export default {
   computed: {
     errorMessage() {
       return this.$store.getters['auth/getAuthTemplateErrorMessage']
+    },
+    years() {
+      const year = new Date().getFullYear()
+
+      return Array.from({length: year - 1900}, (value, index) => 1901 + index).sort((a, b) => b - a)
+    },
+    fullBirthDate() {
+      return `${this.birthYear}-${this.birthMonth}-${this.birthDay}`
     }
   },
   data() {
@@ -165,6 +233,7 @@ export default {
         first_name: '',
         last_name: '',
         phone_number: '',
+        birth_date: '',
         email: '',
         password: '',
         password2: '',
@@ -177,28 +246,47 @@ export default {
       },
       error: false,
       errors: {},
-      showNotification: false
+      showNotification: false,
+      months: [
+        {val: '01', text: 'Januar'},
+        {val: '02', text: 'Februar'},
+        {val: '03', text: 'Mars'},
+        {val: '04', text: 'April'},
+        {val: '05', text: 'Mai'},
+        {val: '06', text: 'Juni'},
+        {val: '07', text: 'Juli'},
+        {val: '08', text: 'August'},
+        {val: '09', text: 'September'},
+        {val: '10', text: 'Oktober'},
+        {val: '11', text: 'November'},
+        {val: '12', text: 'Desember'},
+      ],
+      birthDay: '1',
+      birthMonth: '01',
+      birthYear: '2021'
     }
   },
   methods: {
     createAccount() {
       // create the user
+      this.user.birth_date = this.fullBirthDate
+
       return apiService.post('users/create/', this.user)
         .then(() => {
           // if there previously have been errors, reset
           this.errors = {}
 
           // get tokens and fetch user
-          this.$store.dispatch('auth/obtainToken', {email: this.user.email, password: this.user.password})
+          this.$store.dispatch('auth/obtainToken', {username: this.user.email, password: this.user.password})
           this.$store.dispatch('auth/fetchCurrentUser')
-          this.$store.dispatch('auth/setAuthMessage', 'Konto opprettet suksessfullt!')
+          this.$store.dispatch('common/setNotification', 'Konto opprettet suksessfullt!')
 
           // redirect to home
           this.$router.push({name: 'Home'})
         })
         .catch(error => {
           this.errors = this.$catchError(error)
-          this.$store.dispatch('auth/setAuthTemplateErrorMessage', this.$catchError(error))
+          this.$store.dispatch('common/setErrorNotification', this.$catchError(error))
 
           // reset text fields
           this.user = {
@@ -215,11 +303,14 @@ export default {
             allow_personalization: true,
             allow_third_party_personalization: true
           }
+          this.birthDay = '1',
+          this.birthMonth = '01',
+          this.birthYear = '2021'
         })
     },
     resetErrorMessage() {
       if (this.errorMessage) {
-        this.$store.dispatch('auth/resetAuthTemplateErrorMessage')
+        this.$store.dispatch('common/resetErrorNoification')
       }
 
       if (this.errors) {

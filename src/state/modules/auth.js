@@ -2,8 +2,6 @@ import apiService from '@/common/api'
 
 export const state = {
   currentUser: null,
-  authTemplateErrorMessage: null,
-  authMessage: null,
 }
 
 export const mutations = {
@@ -22,12 +20,6 @@ export const mutations = {
   'SET_CURRENT_USER' (state, user) {
     state.currentUser = user
   },
-  'SET_AUTH_TEMPLATE_ERROR_MESSAGE' (state, message) {
-    state.authTemplateErrorMessage = message
-  },
-  'SET_AUTH_MESSAGE' (state, message) {
-    state.authMessage = message
-  }
 }
 
 export const actions = {
@@ -48,7 +40,7 @@ export const actions = {
       })
   },
   logOut: ({ commit }) => {
-    
+
     // save the refresh token var
     const refreshToken = localStorage.getItem('refresh_token')
 
@@ -77,22 +69,12 @@ export const actions = {
       // populate the current user state in the users module once tokens is obtained
       return apiService.get('user/')
         .then(user => {
-          // set the state as the user data
-          commit('SET_CURRENT_USER', user.data)
+          if (user) {
+            // set the state as the user data
+            commit('SET_CURRENT_USER', user.data)
+          }
         })
     }
-  },
-  setAuthTemplateErrorMessage({commit}, message) {
-    commit('SET_AUTH_TEMPLATE_ERROR_MESSAGE', message)
-  },
-  resetAuthTemplateErrorMessage({commit}) {
-    commit('SET_AUTH_TEMPLATE_ERROR_MESSAGE', null)
-  },
-  setAuthMessage({commit}, message) {
-    commit('SET_AUTH_MESSAGE', message)
-  },
-  resetAuthMessage({commit}) {
-    commit('SET_AUTH_MESSAGE', null)
   },
 }
 
@@ -112,10 +94,4 @@ export const getters = {
 
     return false
   },
-  getAuthTemplateErrorMessage: (state) => {
-    return state.authTemplateErrorMessage
-  },
-  getAuthMessage: (state) => {
-    return state.authMessage
-  }
 }

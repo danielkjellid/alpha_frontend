@@ -1,10 +1,10 @@
 <template>
   <div>
     <BaseNotification 
-      :display="authMessage" 
+      :display="notification" 
       :success="true" 
-      :title="authMessage" 
-      @close-notification="resetAuthMessage"
+      :title="notification" 
+      @close-notification="resetNotification"
     />
     <header :class="!renderNavbarTransparent ? 'relative' : 'absolute left-0 right-0'" v-click-outside="hideFlyoutMenu">
       <!-- color of navbar content is rended according to route meta -->
@@ -176,8 +176,8 @@ export default {
     userIsAuthenticated() {
       return this.$store.getters['users/getIsAuthenticated']
     },
-    authMessage() {
-      return this.$store.getters['auth/getAuthMessage']
+    notification() {
+      return this.$store.getters['common/getNotification']
     }
   },
   data() {
@@ -206,13 +206,15 @@ export default {
       }
     },
     logOut() {
+      this.$store.dispatch('common/resetNotification')
+      this.$store.dispatch('common/resetErrorNotification')
       this.$store.dispatch('auth/logOut')
       this.userMenuActive = false
       this.$store.dispatch('auth/setAuthMessage', 'Logget ut suksessfullt!')
     },
-    resetAuthMessage() {
-      if (this.authMessage) {
-        this.$store.dispatch('auth/resetAuthMessage')
+    resetNotification() {
+      if (this.notification) {
+        this.$store.dispatch('common/resetNotification')
       }
     }
   },

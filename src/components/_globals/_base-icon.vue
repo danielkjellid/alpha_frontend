@@ -2,6 +2,7 @@
   <div
     v-html="renderRequirePath"
     :class="[dark ? 'text-gray-900' : fill, height, width]"
+    class="flex-none"
   />
 </template>
 

@@ -10,20 +10,18 @@
       <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
         <BaseIcon v-if="icon" :name="icon" :fill="iconColor"/>
       </div>
-      <input
+      <select
         @input="$emit('input', $event.target.value)" 
         :id="id"
-        :value="value"
         :class="{ 
           'pl-10': icon, 
           'w-full': block,
           'pr-10 border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red': error,
-          'border-0 focus:ring-transparent' : plain, 
         }"
-        :placeholder="placeholder"
-        :type="type"
         class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 focus:border-transparent block text-sm leading-5 border-gray-200 rounded-md" 
-      />
+      >
+        <slot />
+      </select>
       <div v-if="error" class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
         <BaseIcon name="exclemation-circle" solid fill="text-red-500" />
       </div>
@@ -53,20 +51,10 @@ export default {
       type: String,
       required: true,
     },
-    placeholder: {
-      type: String,
-      required: false,
-    },
     value: {
       type: String,
       required: false
     },
-    type: {
-      type: String,
-      required: false,
-      default: 'text'
-    },
-    // decides wether an input should have an icon by defined icon name
     icon: {
       type: String,
       required: false,
@@ -88,11 +76,6 @@ export default {
       type: [Array, String],
       required: false
     },
-    plain: {
-      type: Boolean,
-      required: false,
-      default: false,
-    }
   }
 }
 </script>

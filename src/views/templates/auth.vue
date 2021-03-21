@@ -7,10 +7,10 @@
       @close-notification="resetErrorMessage"
     />
     <BaseNotification 
-      :display="authMessage" 
+      :display="notification" 
       :success="true" 
-      :title="authMessage" 
-      @close-notification="resetAuthMessage"
+      :title="notification" 
+      @close-notification="resetNotification"
     />
     <div :style="`background-image: url(${require('../../assets/images/auth.jpg')});`" class="bg-center bg-no-repeat bg-cover">
       <div class="md:bg-transparent bg-white">
@@ -66,10 +66,10 @@ export default {
       return this.$store.getters['auth/getCurrentUser']
     },
     errorMessage() {
-      return this.$store.getters['auth/getAuthTemplateErrorMessage']
+      return this.$store.getters['common/getErrorNotification']
     },
-    authMessage() {
-      return this.$store.getters['auth/getAuthMessage']
+    notification() {
+      return this.$store.getters['common/getNotification']
     },
     navigableRoute() {
       if (this.$route.name === 'LogIn' || this.$route.name === 'Register') return true
@@ -94,12 +94,12 @@ export default {
     },
     resetErrorMessage() {
       if (this.errorMessage) {
-        this.$store.dispatch('auth/resetAuthTemplateErrorMessage')
+        this.$store.dispatch('common/resetErrorNotification')
       }
     },
-    resetAuthMessage() {
-      if (this.authMessage) {
-        this.$store.dispatch('auth/resetAuthMessage')
+    resetNotification() {
+      if (this.notification) {
+        this.$store.dispatch('common/resetNotification')
       }
     }
   }
