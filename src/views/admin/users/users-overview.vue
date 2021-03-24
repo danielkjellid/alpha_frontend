@@ -283,7 +283,7 @@ export default {
       if (message !== undefined) return message.toString()
     },
     addUser() {
-      apiService.post('users/', this.formData)
+      apiService.post('users/create/', this.formData)
         .then(response => {
           if (response) {
             // close modal

@@ -6,6 +6,12 @@
       :title="notification" 
       @close-notification="resetNotification"
     />
+    <BaseNotification 
+      :display="errorNotification" 
+      :success="false" 
+      :title="errorNotification" 
+      @close-notification="resetErrorNotification"
+    />
     <header :class="!renderNavbarTransparent ? 'relative' : 'absolute left-0 right-0'" v-click-outside="hideFlyoutMenu">
       <!-- color of navbar content is rended according to route meta -->
       <!-- this is because we want to render a transparent bar and white text over pages where there is an image on top -->
@@ -178,6 +184,9 @@ export default {
     },
     notification() {
       return this.$store.getters['common/getNotification']
+    },
+    errorNotification() {
+      return this.$store.getters['common/getErrorNotification']
     }
   },
   data() {
@@ -210,11 +219,16 @@ export default {
       this.$store.dispatch('common/resetErrorNotification')
       this.$store.dispatch('auth/logOut')
       this.userMenuActive = false
-      this.$store.dispatch('auth/setAuthMessage', 'Logget ut suksessfullt!')
+      this.$store.dispatch('common/setNotification', 'Logget ut suksessfullt!')
     },
     resetNotification() {
       if (this.notification) {
         this.$store.dispatch('common/resetNotification')
+      }
+    },
+    resetErrorNotification() {
+      if (this.errorNotification) {
+        this.$store.dispatch('common/resetErrorNotification')
       }
     }
   },

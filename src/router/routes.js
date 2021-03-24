@@ -6,6 +6,7 @@ import Register from '@/views/auth-register.vue'
 import ResetPassword from '@/views/auth-reset-password.vue'
 import ResetPasswordConfirm from '@/views/auth-reset-password-confirm.vue'
 import ResetPasswordSetPassword from '@/views/auth-reset-password-set-password.vue'
+import VerifyAccount from '@/views/auth-verify-account.vue'
 
 // inventory views
 import ProductList from '@/views/inventory-product-list.vue'
@@ -54,6 +55,11 @@ export default [
     path: '/konto/nullstill-passord/:uid/:token/sett-passord/',
     name: 'ResetPasswordSetPassword',
     component: ResetPasswordSetPassword
+  },
+  {
+    path: '/konto/bekreft/:uid/:token/',
+    name: 'VerifyAccount',
+    component: VerifyAccount
   },
 
   // inventory paths

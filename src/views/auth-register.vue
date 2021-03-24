@@ -281,31 +281,19 @@ export default {
           this.$store.dispatch('auth/fetchCurrentUser')
           this.$store.dispatch('common/setNotification', 'Konto opprettet suksessfullt!')
 
+          // after user is created, send email to verify account
+          apiService.post('users/verify/', {email: this.user.email})
+            .catch((error) => {
+              this.errors = this.$catchError(error)
+              this.$store.dispatch('common/setErrorNotification', this.$catchError(error))
+          })
+
           // redirect to home
           this.$router.push({name: 'Home'})
         })
         .catch(error => {
           this.errors = this.$catchError(error)
           this.$store.dispatch('common/setErrorNotification', this.$catchError(error))
-
-          // reset text fields
-          this.user = {
-            first_name: '',
-            last_name: '',
-            phone_number: '',
-            email: '',
-            password: '',
-            password2: '',
-            street_address: '',
-            zip_code: '',
-            zip_place: '',
-            subscribed_to_newsletter: true,
-            allow_personalization: true,
-            allow_third_party_personalization: true
-          }
-          this.birthDay = '1',
-          this.birthMonth = '01',
-          this.birthYear = '2021'
         })
     },
     resetErrorMessage() {
