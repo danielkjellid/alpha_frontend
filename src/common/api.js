@@ -9,7 +9,7 @@ const apiService = axios.create({
   baseURL: baseURL,
   timeout: 30000,
   headers: {
-    'Authorization': `JWT  ${localStorage.getItem('access_token')}`,
+    'Authorization': `JWT ${localStorage.getItem('access_token')}`,
     'Content-Type': 'application/json',
     'Accept': 'application/json'
   },

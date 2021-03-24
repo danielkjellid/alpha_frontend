@@ -64,7 +64,7 @@ export const actions = {
 
     if (refreshToken && accessToken) {
       // set auth header for request
-      apiService.defaults.headers['Authorization'] = `JWT  ${accessToken}`
+      apiService.defaults.headers['Authorization'] = `JWT ${accessToken}`
 
       // populate the current user state in the users module once tokens is obtained
       return apiService.get('user/')
