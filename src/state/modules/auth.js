@@ -1,4 +1,4 @@
-import apiService from '@/common/api'
+import apiService from '@/common/api.js'
 
 export const state = {
   currentUser: null,
@@ -20,6 +20,9 @@ export const mutations = {
   'SET_CURRENT_USER' (state, user) {
     state.currentUser = user
   },
+  'SET_USER_ACCOUNT_CONFIRMED' (state, verified) {
+    state.currentUser.has_confirmed_email = verified
+  }
 }
 
 export const actions = {
@@ -76,6 +79,18 @@ export const actions = {
         })
     }
   },
+  resendVerificationEmail: ({commit, state}) => {
+    apiService.post('users/verify/', {email: state.currentUser.email})
+      .then(() => {
+        commit('common/SET_NOTIFICATION', 'E-post sendt!', { root: true })
+      })
+      .catch(() => {
+        commit('common/SET_ERROR_NOTIFICATION', 'Det har oppstått en feil. Prøv igjen senere.', { root: true })
+      })
+  },
+  setUserAccountVerified: ({commit}, verified) => {
+    commit('SET_USER_ACCOUNT_CONFIRMED', verified)
+  }
 }
 
 export const getters = {
@@ -94,4 +109,15 @@ export const getters = {
 
     return false
   },
+  getIsAccountVerified: (state) => {
+    if (state.currentUser) {
+      if (state.currentUser.has_confirmed_email) {
+        return true
+      } else {
+        return false
+      }
+    } else {
+      return true
+    }
+  }
 }

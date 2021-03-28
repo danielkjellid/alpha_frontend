@@ -27,7 +27,7 @@ export const actions = {
       })
       .catch(error => {
         console.log(error)
-      })
+      }) 
   },
   fetchCategories: ({ state, commit }) => {
 

@@ -32,6 +32,7 @@ export default {
       return apiService.post(`users/verify/confirm/${uid}/${token}/`, payload)
         .then(() => {
           // confirm change success to user and redirect to login
+          this.$store.dispatch('auth/setUserAccountVerified', true)
           this.$store.dispatch('common/setNotification', 'Konto bekreftet')
           this.$router.push({name: 'Home'})
         })

@@ -28,10 +28,17 @@ apiService.interceptors.response.use(
       const originalRequest = error.config
 
       // to prevent infinite loops, check status and original request url
-      // if response is unauthorized, redirect to login
-      if (error.response.status === 401 && originalRequest.url === baseURL+'auth/token/refresh/') {
-        router.push({name: 'LogIn'})
-        return Promise.reject(error)
+      // if response is token_not_valid because of blacklisting, redirect to login
+      // obtain a new pair
+      if (
+        error.response.status === 401 && 
+        error.response.statusText === 'Unauthorized' && 
+        error.response.data.code === 'token_not_valid') {
+          if (router.history.current.meta.authRequired || router.history.current.meta.staffRequired) {
+            router.push({name: 'LogIn'})
+          }
+        
+          return Promise.reject(error)
       }
 
       // check if token is valid and request response is unauthorized
@@ -42,7 +49,8 @@ apiService.interceptors.response.use(
         if (refreshToken) {
           const tokenParts = JSON.parse(atob(refreshToken.split('.')[1]))
 
-          // token exp date is expressed in seconds, while now() returns milliseconds, so convert now() to seconds
+          // token exp date is expressed in seconds, while now() returns milliseconds, 
+          // so convert now() to seconds
           const now = Math.ceil(Date.now() / 1000)
 
           // if token refresh token is valid

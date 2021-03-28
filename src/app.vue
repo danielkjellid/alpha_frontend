@@ -3,6 +3,16 @@
     <div v-if="isDevEnvironment" class="dev-env-warning z-50 py-1 text-center">
       <span class="z-50 text-sm font-semibold text-yellow-900">Development environment</span>
     </div>
+    <SiteMessage :display="confimedAccount == false">
+      <div class="md:hidden flex-col">
+        <span>Bekreft kontoen din gjennom e-posten vi har sendt deg. Ikke mottatt?</span>
+        <BaseButton @click="sendNewVerificationEmail" plain class="hover:text-gray-700 sm:ml-0 ml-1 font-medium underline">Send e-post</BaseButton>
+      </div>
+      <div class="md:block hidden">
+        <span>Daniel, for å kunne gå videre må du bekrefte kontoen din ved å trykke på knappen i e-posten vi har sendt deg på daniel@kjellid.no. Ikke mottatt e-post?</span>
+        <BaseButton @click="sendNewVerificationEmail" plain class="hover:text-gray-900 ml-1 font-medium underline">Send e-post på nytt</BaseButton>
+      </div>
+    </SiteMessage>
     <router-view class="relative" />
     <div v-if="showMessage" class="sm:pb-5 fixed inset-x-0 bottom-0 pb-2">
       <div class="sm:px-6 lg:px-8 max-w-screen-xl px-2 mx-auto">
@@ -38,6 +48,8 @@
 </template>
 
 <script>
+import SiteMessage from '@/components/site-message.vue'
+
 export default {
   name: 'App',
   page() {
@@ -46,22 +58,32 @@ export default {
       titleTemplate: 'Flishuset - %s'
     }
   },
+  components: {
+    SiteMessage
+  },
   computed: {
     isDevEnvironment() {
       if (process.env.NODE_ENV !== 'production') return true
 
       return false
-    }
+    },
+
+    confimedAccount() {
+      return this.$store.getters['auth/getIsAccountVerified']
+    },
   },
   data() {
     return {
-      showMessage: localStorage.getItem('show_message') ? JSON.parse(localStorage.getItem('show_message')) : true
+      showMessage: localStorage.getItem('show_message') ? JSON.parse(localStorage.getItem('show_message')) : true,
     }
   },
   methods: {
     hideMessage() {
       this.showMessage = false
       localStorage.setItem('show_message', false)
+    },
+    sendNewVerificationEmail() {
+      this.$store.dispatch('auth/resendVerificationEmail')
     }
   },
 }
