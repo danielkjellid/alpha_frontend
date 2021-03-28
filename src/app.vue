@@ -69,7 +69,7 @@ export default {
     },
 
     confimedAccount() {
-      return this.$store.getters['auth/getIsAccountVerified']
+      return this.$store.getters['auth/getIsAccountVerifiedOrAnonymous']
     },
   },
   data() {

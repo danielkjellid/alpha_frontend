@@ -109,7 +109,7 @@ export const getters = {
 
     return false
   },
-  getIsAccountVerified: (state) => {
+  getIsAccountVerifiedOrAnonymous: (state) => {
     if (state.currentUser) {
       if (state.currentUser.has_confirmed_email) {
         return true
