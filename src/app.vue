@@ -9,7 +9,7 @@
         <BaseButton @click="sendNewVerificationEmail" plain class="hover:text-gray-700 sm:ml-0 ml-1 font-medium underline">Send e-post</BaseButton>
       </div>
       <div class="md:block hidden">
-        <span>{{ currentUser.first_name }}, for å kunne gå videre må du bekrefte kontoen din ved å trykke på knappen i e-posten vi har sendt deg på {{ userEmail }}. Ikke mottatt e-post?</span>
+        <span>{{ userFirstName }}, for å kunne gå videre må du bekrefte kontoen din ved å trykke på knappen i e-posten vi har sendt deg på {{ userEmail }}. Ikke mottatt e-post?</span>
         <BaseButton @click="sendNewVerificationEmail" plain class="hover:text-gray-900 ml-1 font-medium underline">Send e-post på nytt</BaseButton>
       </div>
     </SiteMessage>
