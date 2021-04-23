@@ -74,7 +74,7 @@ export default {
       return this.$store.getters['auth/getCurrentUser']
     },
     userEmail() {
-      if (currentUser) return currentUser.email
+      if (this.currentUser) return this.currentUser.email
 
       return undefined
     }
