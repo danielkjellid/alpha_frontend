@@ -9,7 +9,7 @@
         <BaseButton @click="sendNewVerificationEmail" plain class="hover:text-gray-700 sm:ml-0 ml-1 font-medium underline">Send e-post</BaseButton>
       </div>
       <div class="md:block hidden">
-        <span>Daniel, for å kunne gå videre må du bekrefte kontoen din ved å trykke på knappen i e-posten vi har sendt deg på daniel@kjellid.no. Ikke mottatt e-post?</span>
+        <span>Daniel, for å kunne gå videre må du bekrefte kontoen din ved å trykke på knappen i e-posten vi har sendt deg på {{ userEmail }}. Ikke mottatt e-post?</span>
         <BaseButton @click="sendNewVerificationEmail" plain class="hover:text-gray-900 ml-1 font-medium underline">Send e-post på nytt</BaseButton>
       </div>
     </SiteMessage>
@@ -67,10 +67,17 @@ export default {
 
       return false
     },
-
     confimedAccount() {
       return this.$store.getters['auth/getIsAccountVerifiedOrAnonymous']
     },
+    currentUser() {
+      return this.$store.getters['auth/getCurrentUser']
+    },
+    userEmail() {
+      if (currentUser) return currentUser.email
+
+      return undefined
+    }
   },
   data() {
     return {
