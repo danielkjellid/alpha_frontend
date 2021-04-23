@@ -77,6 +77,11 @@ export default {
       if (this.currentUser) return this.currentUser.email
 
       return undefined
+    },
+    userFirstName() {
+      if (this.currentUser) return this.currentUser.first_name
+
+      return undefined
     }
   },
   data() {
