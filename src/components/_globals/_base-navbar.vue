@@ -15,8 +15,8 @@
     <header :class="!renderNavbarTransparent ? 'relative' : 'absolute left-0 right-0'" v-click-outside="hideFlyoutMenu">
       <!-- color of navbar content is rended according to route meta -->
       <!-- this is because we want to render a transparent bar and white text over pages where there is an image on top -->
-      <div class="relative z-10" :class="!renderNavbarTransparent ? 'bg-white shadow' : ( flyoutMenuActive ? 'bg-white shadow' : 'bg-transparent')">
-        <div style="max-width: 1600px;" class="sm:py-8 sm:px-8 px-5 py-5 mx-auto">
+      <div class="relative z-10" :class="!renderNavbarTransparent ? 'bg-white shadow' : ( flyoutMenuActive ? 'bg-white shadow' : 'navbar-blur')">
+        <div style="max-width: 1600px;" class="sm:py-4 sm:px-8 px-5 py-5 mx-auto">
           <div class="flex items-center justify-between">
             <div class="flex items-center">
               <div>
@@ -63,7 +63,12 @@
               <div v-click-outside="hideUserMenu" class="relative mr-3">
                 <div class="flex items-center">
                   <BaseButton aria-label="Open user menu" @click="openUserMenuOrRedirect" icon plain :light="renderNavbarIconLight">
-                    <BaseIcon name="user" height="h-6" width="w-6"/>
+                    <div v-if="user && user != undefined" :style="`background-color: ${user.avatar_color}`" class="flex items-center justify-center w-10 h-10 rounded-full">
+                      <span class="text-sm text-white">{{ user.initial }}</span>
+                    </div>
+                    <div v-else>
+                      <BaseIcon name="user" height="h-6" width="w-6"/>
+                    </div>
                   </BaseButton>
                 </div>
                 <transition
@@ -117,7 +122,6 @@
         leave-active-class="transition duration-150 ease-in"
         leave-to-class="-translate-y-1 opacity-0"
       > 
-        <!-- closing menu does not work -->
         <FlyoutMenu v-show="flyoutMenuActive" @close-menu="flyoutMenuActive = false" :menuItems="menuItems" />
       </transition>
       <!-- mobile menu component -->
@@ -149,7 +153,7 @@ export default {
     renderNavbarLinkClasses() {
       if (!this.renderNavbarTransparent || this.flyoutMenuActive) return 'hover:text-gray-600 leading-8 text-gray-800 transition duration-150 ease-in-out'
 
-      return 'text-white leading-8 transition duration-150 ease-in-out hover:text-gray-300'
+      return 'text-white leading-8 transition duration-150 ease-in-out hover:text-gray-200'
     },
     // set active links according to route meta
     renderNavbarLinkActiveClasses() {
@@ -255,5 +259,11 @@ export default {
 
 .active-pale-link {
   color: #ffffff !important;
+}
+
+.navbar-blur {
+  background-color: rgba(255, 255, 255, 0.3);
+ -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
 }
 </style>

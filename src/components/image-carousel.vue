@@ -15,9 +15,10 @@
             v-for="(image, index) in images" :key="`image-${index}`" v-show="showingIndex === index"
             :src="image.image_1536x660"
             alt="Decorative image"
-            class="absolute bottom-0 left-0 right-0 w-full h-full"
-            :srcset="`${image.image_512x512} 512w,
-                      ${image.image_1024x1024} 1024w,
+            class="absolute bottom-0 left-0 right-0 object-cover w-full h-full"
+            :srcset="` 
+                      ${image.image_512x512} 512w,
+                      ${image.image_1024x1024} 1024w
                       ${image.image_1024x480} 1024w,
                       ${image.image_1536x660} 1536w,
                       ${image.image_2048x800} 2048w,

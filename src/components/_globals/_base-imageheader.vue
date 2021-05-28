@@ -5,7 +5,7 @@
         <img 
           :src="object.image_1536x660" 
           alt="Decorative background image"
-          class="absolute bottom-0 left-0 right-0 w-full h-full"
+          class="absolute bottom-0 left-0 right-0 object-cover w-full h-full"
           :srcset="`${object.image_512x512} 512w,
                     ${object.image_1024x1024} 1024w,
                     ${object.image_1024x480} 1024w,

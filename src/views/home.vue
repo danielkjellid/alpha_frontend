@@ -62,8 +62,8 @@
               <img
                 v-if="category.width === 'full'" 
                 :src="category.image_1536x660" 
-                alt=""
-                class="absolute bottom-0 left-0 right-0 w-full h-full"
+                :alt="`Placeholder image for the ${category.name} category.`"
+                class="absolute bottom-0 left-0 right-0 object-cover w-full h-full"
                 :srcset="`${category.image_512x512} 512w,
                           ${category.image_1024x1024} 1024w,
                           ${category.image_1024x480} 1024w,
@@ -76,6 +76,7 @@
                 v-else
                 :src="category.image_1024x1024" 
                 :alt="`Placeholder image of the ${category.name} category.`"
+                class="object-cover"
                 :srcset="`${category.image_512x512} 512w,
                           ${category.image_1024x1024} 1024w`"
               >
