@@ -95,7 +95,7 @@
               <img
                 src="https://flishuset.s3.amazonaws.com/CACHE/images/media/categories/Kj%C3%B8kken/1705_04_V01/e7c130d30ae92bf328bb61eab2bf8ed5.jpg" 
                 alt=""
-                class="absolute bottom-0 left-0 right-0 w-full h-full"
+                class="absolute bottom-0 left-0 right-0 object-cover w-full h-full"
                 srcset="https://flishuset.s3.eu-north-1.amazonaws.com/CACHE/images/media/kitchens/default/4327513b303bdda4203fcea3505383bf.jpg 512w,
                         https://flishuset.s3.eu-north-1.amazonaws.com/CACHE/images/media/kitchens/default/598aac538a099b7a2943731a769abc46.jpg 1024w,
                         https://flishuset.s3.eu-north-1.amazonaws.com/CACHE/images/media/kitchens/default/3f6c9bc7b7784b50aced890e0073e1da_YNMYSBh.jpg 1024w,
