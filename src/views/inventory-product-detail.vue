@@ -21,7 +21,7 @@
                   </div>
                 </div>
                 <div v-if="loaded" class="mt-5">
-                  <h2 class="text-lg font-medium text-gray-900">kr {{ product.gross_price | formatPrice }} <span class="text-gray-600">per {{ product.unit }}</span></h2>
+                  <h2 v-if="product.site_state.display_price" class="text-lg font-medium text-gray-900">kr {{ product.site_state.gross_price | formatPrice }} <span class="text-gray-600">per {{ product.unit }}</span></h2>
                 </div>
                 <div v-else class="animate-pulse mt-5">
                   <div class="w-2/3 h-8 bg-gray-400 rounded" />
@@ -100,7 +100,8 @@
           <div>
             <ProductDescriptionBlock 
               :title="product.name" 
-              :price="{gross_price: product.gross_price, unit: product.unit}" 
+              :price="{gross_price: product.site_state.gross_price, unit: product.unit}"
+              :display_price="product.site_state.display_price"
               :loaded="loaded" 
               :text="product.short_description" 
             />

@@ -2,7 +2,7 @@
   <article>
     <div v-if="loaded" :class="{'flex items-center justify-between' : price}">
       <h2 class="text-lg font-medium text-gray-900" :class="{'text-center' : center}">{{ title }}</h2>
-      <h2 v-if="price" class="text-lg font-medium text-gray-900"><span class="text-gray-600">fra </span>{{ price.gross_price | formatPrice }} <span class="text-gray-600">{{ price.unit }}</span></h2>
+      <h2 v-if="display_price" class="text-lg font-medium text-gray-900"><span class="text-gray-600">fra </span>{{ price.gross_price | formatPrice }} <span class="text-gray-600">{{ price.unit }}</span></h2>
     </div>
     <div v-else class="animate-pulse flex items-center justify-between">
       <h2 class="text-lg font-medium text-gray-900" :class="{'text-center' : center}">{{ title }}</h2>
@@ -33,6 +33,10 @@ export default {
     },
     price: {
       type: Object,
+      required: false
+    },
+    display_price: {
+      type: Boolean,
       required: false
     },
     loaded: {

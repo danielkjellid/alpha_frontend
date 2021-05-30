@@ -67,7 +67,7 @@
                       <span class="text-sm text-white">{{ user.initial }}</span>
                     </div>
                     <div v-else>
-                      <BaseIcon name="user" height="h-6" width="w-6"/>
+                      <BaseIcon name="user" height="h-6" width="w-6" fill="text-white" />
                     </div>
                   </BaseButton>
                 </div>

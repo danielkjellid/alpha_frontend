@@ -6,14 +6,15 @@
           :src="object.image_1536x660" 
           alt="Decorative background image"
           class="absolute bottom-0 left-0 right-0 object-cover w-full h-full"
-          :srcset="`${object.image_512x512} 512w,
-                    ${object.image_1024x1024} 1024w,
-                    ${object.image_1024x480} 1024w,
-                    ${object.image_1536x660} 1536w,
-                    ${object.image_2048x800} 2048w,
-                    ${object.image_2560x940} 2560w,
+          :srcset="`${object.image_512x512} 512w, 
+                    ${object.image_1024x1024} 1024w, 
+                    ${object.image_1024x480} 1024w, 
+                    ${object.image_1536x660} 1536w, 
+                    ${object.image_2048x800} 2048w, 
+                    ${object.image_2560x940} 2560w, 
                     ${object.image_3072x940} 3072w`"
         >
+        <div v-if="object.apply_filter" class="opacity-20 absolute inset-0 bg-black" />
         <div class="absolute bottom-0 left-0 right-0 flex items-center justify-center h-full px-4">
           <div class="text-center">
             <slot>

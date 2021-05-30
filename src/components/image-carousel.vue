@@ -1,31 +1,27 @@
 <template>
-  <section>
+  <section v-if="images">
     <article class="image-full-container relative overflow-hidden">
       <div class="table-cell align-middle">
-        <transition-group
-          enter-class="translate-x-full"
-          enter-active-class="transition-all duration-500 ease-linear transform"
-          enter-to-class="translate-x-none"
-          leave-class="translate-x-none"
-          leave-active-class="transition-all duration-500 ease-linear transform"
-          leave-to-class="-translate-x-full"
-          tag="div"
+        <div 
+          v-for="(image, index) in images" 
+          :key="`image-containter-${index}`" 
+          class="absolute inset-0" 
+          v-show="showingIndex === index"
         >
-          <img
-            v-for="(image, index) in images" :key="`image-${index}`" v-show="showingIndex === index"
-            :src="image.image_1536x660"
-            alt="Decorative image"
-            class="absolute bottom-0 left-0 right-0 object-cover w-full h-full"
-            :srcset="` 
-                      ${image.image_512x512} 512w,
-                      ${image.image_1024x1024} 1024w
-                      ${image.image_1024x480} 1024w,
-                      ${image.image_1536x660} 1536w,
-                      ${image.image_2048x800} 2048w,
-                      ${image.image_2560x940} 2560w,
-                      ${image.image_3072x940} 3072w`"
-          >
-        </transition-group>
+            <img
+                :src="image.image_1536x660"
+                alt=""
+                class="absolute inset-0 object-cover w-full h-full"
+                :srcset="`${image.image_512x512} 512w, 
+                          ${image.image_1024x1024} 1024w, 
+                          ${image.image_1024x480} 1024w, 
+                          ${image.image_1536x660} 1536w, 
+                          ${image.image_2048x800} 2048w, 
+                          ${image.image_2560x940} 2560w, 
+                          ${image.image_3072x940} 3072w`"
+            >
+            <div v-if="image.apply_filter" class="opacity-20 absolute inset-0 bg-black" />
+        </div>
       </div>
       <div class="table-cell align-middle">
         <slot></slot>
