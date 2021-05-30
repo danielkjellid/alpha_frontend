@@ -27,7 +27,7 @@
           </div>
         </template>
         <template #gross_price="{ item }">
-          {{ item.gross_price | formatPrice }}kr
+          {{ item.site_state.gross_price | formatPrice }}kr
         </template>
         <template #status="{ item }">
           <div v-if="item.status == 'Draft'" class="flex items-center">
