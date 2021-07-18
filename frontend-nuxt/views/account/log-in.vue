@@ -29,7 +29,7 @@
           />
         </div>
         <div class="mt-4 mb-4 text-center">
-          <router-link to="/konto/nullstill-passord/" class="text-sm font-medium text-gray-900 underline">Glemt passordet?</router-link>
+          <nuxt-link to="/account/reset-password/" class="text-sm font-medium text-gray-900 underline">Glemt passordet?</nuxt-link>
         </div>
         <BaseButton type="submit" class="flex justify-center w-full">Logg inn</BaseButton>
       </form>
@@ -39,13 +39,22 @@
 
 <script lang="ts">
 import AuthSidebarContent from '~/components/auth-sidebar-content.vue'
-import { useStore, computed, ref, useContext, useRouter} from '@nuxtjs/composition-api'
+import { defineComponent, useStore, computed, ref, useContext, useRouter} from '@nuxtjs/composition-api'
 import $catchError from '~/mixins/catch-error'
 import $errorMsg from '~/mixins/error-message'
 
-export default {
+export default defineComponent({
   name: 'LogIn',
   layout: 'auth',
+  head: {
+    title: 'Logg inn',
+    meta: [
+      {
+        name: 'description',
+        content: 'Logg inn på flishuset'
+      }
+    ]
+  },
   components: {
     AuthSidebarContent
   },
@@ -107,5 +116,5 @@ export default {
       resetErrorMessage
     }
   }
-}
+})
 </script>

@@ -196,13 +196,22 @@
 
 <script lang="ts">
 import AuthSidebarContent from '~/components/auth-sidebar-content.vue'
-import { useStore, computed, ref, useContext, useRouter, reactive, toRefs } from '@nuxtjs/composition-api'
+import { defineComponent, useStore, computed, ref, useContext, useRouter, reactive, toRefs } from '@nuxtjs/composition-api'
 import $catchError from '~/mixins/catch-error'
 import $errorMsg from '~/mixins/error-message'
 
-export default {
+export default defineComponent({
   name: 'Register',
   layout: 'auth',
+  head: {
+    title: 'Lag konto',
+    meta: [
+      {
+        name: 'description',
+        content: 'Lag konto hos oss'
+      }
+    ]
+  },
   components: {
     AuthSidebarContent
   },
@@ -301,7 +310,6 @@ export default {
     }
 
     let errors = ref<HTMLElement | object | string>('')
-    let showNotification = ref<HTMLElement | boolean>(false)
 
     const errorMessage = computed(() => {
       return store.getters['common/getErroNotification']
@@ -330,5 +338,5 @@ export default {
       resetErrorMessage,
     }
   }
-}
+})
 </script>

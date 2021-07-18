@@ -233,7 +233,7 @@ export default defineComponent({
         flyoutMenuActive.value = false
         userMenuActive.value = !userMenuActive.value
       } else {
-        router.push('/konto/logg-inn/')
+        router.push('/account/log-in/')
       }
     }
 

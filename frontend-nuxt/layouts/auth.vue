@@ -49,6 +49,26 @@ import Tabs from '~/components/tabs.vue'
 
 export default defineComponent({
   name: 'AuthTemplate',
+  head: {
+    title: 'Flishuset',
+    titleTemplate: 'Flishuset - %s',
+    htmlAttrs: {
+      lang: 'no',
+    },
+    meta: [
+      { charset: 'utf-8' },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1'
+      },
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'Flishuset er en familiedrevet flisebutikk med over 25 års erfaring. Velkommen!'
+      }
+    ]
+  },
   components: {
     Tabs,
   },
