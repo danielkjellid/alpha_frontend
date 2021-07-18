@@ -67,9 +67,16 @@ const storeData = { modules: {} }
 
 // Recursively get the namespace of a Vuex module, even if nested.
 function getNamespace(subtree, path) {
+
+  // console.log('sub', typeof subtree)
+  // console.log('path', typeof path)
+
   if (path.length === 1) return subtree
 
   const namespace = path.shift()
+
+  console.log('name', namespace)
+
   subtree.modules[namespace] = {
     modules: {},
     namespaced: true,
